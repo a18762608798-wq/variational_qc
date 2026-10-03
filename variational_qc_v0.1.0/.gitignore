@@ -1,0 +1,2 @@
+# 本地生成产物（可由 solve.jl 确定性再生，不进 git）
+data/interim/psi_archive.npz

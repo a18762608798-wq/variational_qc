@@ -1,0 +1,30 @@
+# task8 真机单层 VQE 前向测量配置（hardware-vqe-d1）
+
+L = 8
+shots = 1024
+
+[grid]
+s_min = 0.0
+s_max = 1.0
+ns = 51
+deltas = [-1.0, 1.0]
+
+# 行序：delta 外层、s 内层（与 task3 CSV 契约同序）
+
+[mapping]
+# 全 Baihua；逻辑 j 按列表序映射
+chain = [67, 68, 69, 70, 71, 72, 73, 74]
+# sym-topo：10 电路比特 → 物理（含桥比特 125/138，走 0-7 连接）
+ring10 = [126, 127, 128, 129, 142, 141, 140, 139, 125, 138]
+
+[thetas]
+sym = "task3_vqe/data/interim/vqe_thetas.json"
+nosym = "task5_vqe_nosym/depth1/data/interim/vqe_thetas.json"
+
+[paths]
+sym_csv = "task8_hardware_vqe/data/interim/vqe_sym_L8_OBC.csv"
+nosym_csv = "task8_hardware_vqe/data/interim/vqe_nosym_L8_OBC.csv"
+sym_q = "task8_hardware_vqe/data/interim/vqe_sym_Q_L8_OBC.csv"
+nosym_q = "task8_hardware_vqe/data/interim/vqe_nosym_Q_L8_OBC.csv"
+output_dir = "task8_hardware_vqe/data"
+name = "task8_hwvqe"

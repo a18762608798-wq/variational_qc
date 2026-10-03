@@ -1,0 +1,50 @@
+# variational_qc 独立仓库 ignore 规则
+# 原则：数据 / npz / pdf / 缓存不进 git；png 保留（论文插图）
+
+# ---- 数据（全部忽略，可本地再生）----
+data/
+*.npz
+*.h5
+*_stats/
+stats$/
+
+# ---- PDF（论文/草稿输出不进 git，png 保留）----
+*.pdf
+!*.png
+
+# ---- Python 缓存与构建产物 ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+*.egg
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.so
+.venv/
+venv/
+.env/
+
+# ---- Julia ----
+.CondaPkg/
+.pixi/
+*.cov
+*.mem
+*.jl.cov
+*.jl.mem
+
+# ---- Node / opencode 本地依赖 ----
+**/node_modules/
+.opencode/node_modules/
+
+# ---- 日志与临时文件 ----
+*.log
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+*~

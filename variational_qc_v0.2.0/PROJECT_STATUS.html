@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>SSH-XXZ 数值项目总览 PROJECT STATUS</title>
+<style>
+body{font-family:sans-serif;max-width:960px;margin:auto;padding:24px;color:#222}
+h1{font-size:22px;margin-bottom:4px}
+.meta{color:#666;font-size:13px;margin-bottom:16px}
+h2{font-size:18px;border-bottom:2px solid #2e7d32;padding-bottom:4px;margin-top:28px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:12px}
+.card{border:1px solid #ddd;border-radius:8px;padding:12px;border-left:6px solid #2e7d32;background:#fff}
+.card.prog{border-left-color:#9c7d00}
+.badge{display:inline-block;border-radius:4px;padding:2px 8px;font-size:12px;margin-bottom:6px}
+.ok{background:#c6efce;color:#2e7d32} .prog{background:#ffeb9c;color:#9c7d00}
+.bad{background:#ffc7ce;color:#9c0006} .unk{background:#e2e2e2;color:#666}
+.ev{color:#666;font-size:12px;margin-top:6px}
+.bar{background:#eee;border-radius:6px;height:22px;overflow:hidden;margin-top:8px}
+.bar>div{height:100%;background:#2e7d32;color:#fff;font-size:12px;line-height:22px;text-align:center}
+.timeline{border-left:3px solid #2e7d32;margin:12px 0 0 8px;padding-left:16px}
+.step{margin-bottom:12px}
+.chips{margin-top:12px}
+.chips a{display:inline-block;border:1px solid #ccc;border-radius:16px;padding:4px 12px;margin:4px;text-decoration:none;color:#222;font-size:13px}
+svg{max-width:100%;height:auto;display:block;margin-top:12px}
+</style>
+</head>
+<body>
+
+<h1>SSH-XXZ 数值项目总览</h1>
+<div class="meta">派生文档，不是真源。物理口径以 doc/plan/theory/H.md、实验口径以 doc/plan/experiment/、任务状态以 specs/002-julia-core-rewrite/tasks.md 为准。更新时间：2026-10-01。</div>
+
+<h2>总览</h2>
+<svg viewBox="0 0 960 90" role="img" aria-label="研究阶段条">
+<defs>
+<marker id="arw" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#666" stroke-width="1.5"/></marker>
+</defs>
+<rect x="2" y="15" width="140" height="60" rx="8" fill="#c6efce" stroke="#2e7d32" stroke-width="2"/>
+<text x="72" y="42" text-anchor="middle" font-size="14">问题定义</text>
+<text x="72" y="62" text-anchor="middle" font-size="12">已验证</text>
+<line x1="144" y1="45" x2="166" y2="45" stroke="#666" stroke-width="1.5" marker-end="url(#arw)"/>
+<rect x="168" y="15" width="140" height="60" rx="8" fill="#c6efce" stroke="#2e7d32" stroke-width="2"/>
+<text x="238" y="42" text-anchor="middle" font-size="14">方法选型</text>
+<text x="238" y="62" text-anchor="middle" font-size="12">已验证</text>
+<line x1="310" y1="45" x2="332" y2="45" stroke="#666" stroke-width="1.5" marker-end="url(#arw)"/>
+<rect x="334" y="15" width="140" height="60" rx="8" fill="#c6efce" stroke="#2e7d32" stroke-width="2"/>
+<text x="404" y="42" text-anchor="middle" font-size="14">实现</text>
+<text x="404" y="62" text-anchor="middle" font-size="12">已验证</text>
+<line x1="476" y1="45" x2="498" y2="45" stroke="#666" stroke-width="1.5" marker-end="url(#arw)"/>
+<rect x="500" y="15" width="140" height="60" rx="8" fill="#ffeb9c" stroke="#9c7d00" stroke-width="2"/>
+<text x="570" y="42" text-anchor="middle" font-size="14">验证</text>
+<text x="570" y="62" text-anchor="middle" font-size="12">进行中</text>
+<line x1="642" y1="45" x2="664" y2="45" stroke="#666" stroke-width="1.5" marker-end="url(#arw)"/>
+<rect x="666" y="15" width="140" height="60" rx="8" fill="#ffeb9c" stroke="#9c7d00" stroke-width="3.5"/>
+<text x="736" y="42" text-anchor="middle" font-size="14">参数扫描</text>
+<text x="736" y="62" text-anchor="middle" font-size="12">进行中 当前</text>
+<line x1="808" y1="45" x2="830" y2="45" stroke="#666" stroke-width="1.5" marker-end="url(#arw)"/>
+<rect x="832" y="15" width="126" height="60" rx="8" fill="#ffc7ce" stroke="#9c0006" stroke-width="2"/>
+<text x="895" y="42" text-anchor="middle" font-size="14">终审分析</text>
+<text x="895" y="62" text-anchor="middle" font-size="12">未验证</text>
+</svg>
+
+<h2>1. 是什么</h2>
+<div class="cards">
+<div class="card"><span class="badge ok">已验证</span><div>一维 SSH-XXZ 自旋链，开边界，主尺寸 L=8，能隙线 L=8 12 16，参数 s δ (spec.md)</div></div>
+<div class="card"><span class="badge ok">已验证</span><div>当前目标：Julia 栈全量计算实验 01–04，结果存 schema exp01-04 v2 (plan.md)</div></div>
+<div class="card"><span class="badge ok">已验证</span><div>方法：稀疏 ED KrylovKit 加 L≤8 稠密交叉，Yao 理想 VQE DE 加 COBYLA，Python 出图 (research.md R1)</div></div>
+<div class="card"><span class="badge ok">已验证</span><div>物理定义冲突处以 doc/plan/theory/H.md 为准 (宪法 I XII)</div></div>
+</div>
+
+<h2>2. 做了什么</h2>
+<div class="cards">
+<div class="card"><span class="badge ok">已验证</span><div>Julia 基础栈与测试：21 块测试绿，稀疏稠密 ED 一致</div><div class="ev">证据：test/runtests.jl，T005–T057</div></div>
+<div class="card"><span class="badge ok">已验证</span><div>01 相图与能隙：2401 点相图加 147 点能隙完成</div><div class="ev">证据：data/exp01，figs/qs1pra 加 SHA256SUMS</div></div>
+<div class="card"><span class="badge ok">已验证</span><div>02 观测量表征：四热量图加三条 S 曲线完成</div><div class="ev">证据：data/exp02，figs/qs2pra 加 SHA256SUMS</div></div>
+<div class="card"><span class="badge ok">已验证</span><div>03 精确参考：98 点完成，可作 04 唯一基准</div><div class="ev">证据：data/exp03，figs/qs3pra 加 SHA256SUMS</div></div>
+<div class="card"><span class="badge ok">已验证</span><div>出图门 G01 G02 G03：绘图对加哈希门全绿</div><div class="ev">证据：tasks.md T058 T059 T060</div></div>
+</div>
+
+<h2>3. 正在做什么</h2>
+<div class="cards">
+<div class="card prog"><span class="badge prog">进行中</span><div>04 理想 VQE 生产：634/1470 分支记录，后台运行中</div><div class="bar"><div style="width:43%">43%</div></div><div class="ev">证据：data/exp04，阻塞：需等 PROD04 DONE 后统一验收</div></div>
+<div class="card prog"><span class="badge prog">进行中</span><div>04 验收与出图门 G04：依赖生产完成，尚未开始</div><div class="ev">证据：verify_selection 零违反加 comparison 出图 (T061)</div></div>
+</div>
+<svg viewBox="0 0 640 190" role="img" aria-label="计算管线">
+<defs>
+<marker id="arw2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="none" stroke="#666" stroke-width="1.5"/></marker>
+</defs>
+<rect x="20" y="20" width="160" height="60" rx="8" fill="#c6efce" stroke="#2e7d32" stroke-width="2"/>
+<text x="100" y="46" text-anchor="middle" font-size="14">输入网格</text>
+<text x="100" y="66" text-anchor="middle" font-size="12">已验证</text>
+<line x1="180" y1="50" x2="226" y2="50" stroke="#666" stroke-width="1.5" marker-end="url(#arw2)"/>
+<rect x="230" y="20" width="160" height="60" rx="8" fill="#c6efce" stroke="#2e7d32" stroke-width="2"/>
+<text x="310" y="46" text-anchor="middle" font-size="14">稀疏求解</text>
+<text x="310" y="66" text-anchor="middle" font-size="12">已验证</text>
+<line x1="390" y1="50" x2="436" y2="50" stroke="#666" stroke-width="1.5" marker-end="url(#arw2)"/>
+<rect x="440" y="20" width="160" height="60" rx="8" fill="#c6efce" stroke="#2e7d32" stroke-width="2"/>
+<text x="520" y="46" text-anchor="middle" font-size="14">观测量</text>
+<text x="520" y="66" text-anchor="middle" font-size="12">已验证</text>
+<rect x="230" y="110" width="160" height="60" rx="8" fill="#ffeb9c" stroke="#9c7d00" stroke-width="2"/>
+<text x="310" y="136" text-anchor="middle" font-size="14">变分优化</text>
+<text x="310" y="156" text-anchor="middle" font-size="12">进行中</text>
+<rect x="440" y="110" width="160" height="60" rx="8" fill="#ffeb9c" stroke="#9c7d00" stroke-width="2"/>
+<text x="520" y="136" text-anchor="middle" font-size="14">出图归档</text>
+<text x="520" y="156" text-anchor="middle" font-size="12">进行中</text>
+<line x1="310" y1="80" x2="310" y2="106" stroke="#666" stroke-width="1.5" marker-end="url(#arw2)"/>
+<line x1="520" y1="80" x2="520" y2="106" stroke="#666" stroke-width="1.5" marker-end="url(#arw2)"/>
+<line x1="390" y1="140" x2="436" y2="140" stroke="#666" stroke-width="1.5" marker-end="url(#arw2)"/>
+</svg>
+
+<h2>4. 后面做什么</h2>
+<div class="timeline">
+<div class="step"><b>1. 跑完 04 全量分支</b> → verify_selection 零违反 → G04 出图门关闭 → converge (T061)</div>
+<div class="step"><b>2. 补基线交叉对照</b>，落盘 xcheck_report.md (T052)</div>
+<div class="step"><b>3. 终审</b>：宪法检查 (T053) 加全套件绿 (T054)</div>
+<div class="step"><b>有效决策</b>：主算 Julia，主出图 Python，pdf 加 png 对加哈希门 (spec.md 002，宪法 XII)</div>
+</div>
+
+<h2>5. 去哪看</h2>
+<div class="chips">
+<a href="specs/002-julia-core-rewrite/spec.md">问题与口径 spec.md</a>
+<a href="doc/plan/theory/H.md">物理定义 H.md</a>
+<a href="specs/002-julia-core-rewrite/plan.md">数值方案 plan.md</a>
+<a href="specs/002-julia-core-rewrite/tasks.md">当前任务 tasks.md</a>
+<a href="doc/plan/experiment/00_data_spec.md">实验口径 00</a>
+<a href="src_jl/SSHXXZ">实现 src_jl</a>
+<a href="experiments_jl">编排 experiments_jl</a>
+<a href="data/exp04">数据 exp04</a>
+<a href="figs/qs2pra">图 qs2pra</a>
+<a href="test/runtests.jl">测试 runtests.jl</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+# task6 真机 8 比特选链配置（qubit-chain-select）
+# 解释器：03 qmeas 项目 env python（已含 quarkstudio/quarkcircuit/qmeas editable），见 README。
+
+chips = ["Baihua", "Shenglian"]
+chain_length = 8
+max_chains_per_chip = 1000
+shots = 1024
+w_stab = 0.8
+w_ro = 0.2
+expansion = "sample"
+name = "task6_qubit_select"
+fetch_throttle_interval = 60.0
+output_dir = "task6_qubit_select/data"

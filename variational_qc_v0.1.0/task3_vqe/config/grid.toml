@@ -1,0 +1,32 @@
+# task3 VQE 网格与优化配置（vqe-spectra-delta-pm1）
+
+L = 8
+boundary = "OBC"
+
+[grid]
+s_min = 0.0
+s_max = 1.0
+ns_default = 51
+deltas = [-1.0, 1.0]
+
+# 行序：delta 外层、s 内层（与既有 CSV 契约同序）
+[paths]
+vqe_csv = "task3_vqe/data/interim/vqe_L8_OBC.csv"
+figure_delta_m1 = "task3_vqe/data/figures/vqe_comparison_deltam1.png"
+figure_delta_p1 = "task3_vqe/data/figures/vqe_comparison_deltap1.png"
+# 对照输入（task1 解析谱，delta=±1 切线）
+spectra_csv = "task1_baseline/data/interim/spectra_L8_OBC.csv"
+
+[optimize]
+# 全局步：scipy differential_evolution，theta in [0, 2pi)^4
+global_method = "differential_evolution"
+# 局部步：以全局解为起点 polish
+local_method = "COBYLA"
+# 全量预算由 pilot 结论锁定（见 task3_vqe/config/pilot.md）：
+de_maxiter = 30
+de_popsize = 10
+cobyla_maxiter = 300
+n_seeds = 3  # 逐点取最优
+workers = 8
+# 确定性要求单线程 BLAS（见 pilot.md 结论 6）
+seed_base = 20260921

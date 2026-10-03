@@ -1,0 +1,60 @@
+{
+ "pairs": [
+  {
+   "phase": "trivial",
+   "start": [
+    0.01,
+    0.02
+   ],
+   "end": [
+    0.21,
+    0.42
+   ]
+  },
+  {
+   "phase": "topological",
+   "start": [
+    0.99,
+    0.02
+   ],
+   "end": [
+    0.9,
+    0.2
+   ]
+  },
+  {
+   "phase": "afm",
+   "start": [
+    0.5,
+    1.98
+   ],
+   "end": [
+    0.61,
+    1.44
+   ]
+  }
+ ],
+ "figure": "figs/exp01/exp01_D05.png",
+ "figure_bare": "figs/exp01/exp01_D01.png",
+ "style": {
+  "helper": "scripts/figure_style.py (skill scientific-figure-style vendored copy)",
+  "pair_colors": [
+   "#0072B2",
+   "#D55E00",
+   "#009E73"
+  ],
+  "end_markers": [
+   "*",
+   "*",
+   "*"
+  ],
+  "mathtext": true,
+  "export": "PDF vector master + PNG 300dpi"
+ },
+ "python": {
+  "executable": "/home/mintusr/sync/theory/physics/contemporary_physics/quant_comp_note/04_project/variational_qc/variational_qc_v0.3.0/.CondaPkg/.pixi/envs/default/bin/python",
+  "version": "3.12.14",
+  "numpy": "2.5.3",
+  "matplotlib": "3.11.2"
+ }
+}

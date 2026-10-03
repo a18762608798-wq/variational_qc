@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "presets": {
+    "scientific-computing": {
+      "version": "0.1.0",
+      "source": "local",
+      "manifest_hash": "sha256:6b3d3f869ad45b95b6a5e09e511a9d013e516382523ad557c84dd5d4126913cb",
+      "enabled": true,
+      "priority": 5,
+      "registered_commands": {
+        "opencode": [
+          "speckit.specify",
+          "speckit.clarify",
+          "speckit.plan",
+          "speckit.tasks",
+          "speckit.analyze",
+          "speckit.implement",
+          "speckit.converge"
+        ]
+      },
+      "registered_skills": {},
+      "installed_at": "2026-10-02T11:44:20.896720+00:00"
+    }
+  }
+}

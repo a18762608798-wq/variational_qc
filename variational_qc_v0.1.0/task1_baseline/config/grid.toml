@@ -1,0 +1,31 @@
+# 默认网格与模型配置（首个增量锁定值）
+
+L = 8
+boundary = "OBC"
+# 子系统（operator.md OBC 特殊值）
+I = [2, 3, 4, 5]
+I1 = [2, 3]
+I2 = [2 + 2, 3 + 2]  # 即 [4, 5]，写开以备后续 L 变化时复用
+
+[grid]
+s_min = 0.0
+s_max = 1.0
+ns_default = 100
+delta_min = -3.0
+delta_max = 3.0
+ndelta_default = 100
+ns_smoke = 11
+ndelta_smoke = 11
+
+[tolerance]
+degeneracy_gap = 1.0e-10
+norm_tol = 1.0e-8
+energy_tol = 1.0e-8
+
+[paths]
+archive_npz = "task1_baseline/data/interim/psi_archive.npz"
+interim_csv = "task1_baseline/data/interim/tilde_ZR_L8_OBC.csv"
+ostr_csv = "task1_baseline/data/interim/Ostr_L8_OBC.csv"
+spi_csv = "task1_baseline/data/interim/Spi_L8_OBC.csv"
+smoke_csv = "task1_baseline/data/interim/tilde_ZR_L8_OBC_smoke.csv"
+figure_png = "task1_baseline/data/figures/tilde_ZR_heatmap.png"

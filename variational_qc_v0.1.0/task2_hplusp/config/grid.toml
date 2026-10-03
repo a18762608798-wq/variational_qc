@@ -1,0 +1,35 @@
+# task2（H+P，λ=1）网格与模型配置：网格/容差与 task1 一致，仅路径指向 task2
+
+L = 8
+boundary = "OBC"
+# 子系统（operator.md OBC 特殊值）
+I = [2, 3, 4, 5]
+I1 = [2, 3]
+I2 = [2 + 2, 3 + 2]  # 即 [4, 5]，写开以备后续 L 变化时复用
+
+# 对称性项：H' = H + P，P = Z_tot^2 - prod(X)，系数固定 1（见 doc/model/ref/symmetry.md）
+
+[grid]
+s_min = 0.0
+s_max = 1.0
+ns_default = 100
+delta_min = -3.0
+delta_max = 3.0
+ndelta_default = 100
+ns_smoke = 11
+ndelta_smoke = 11
+
+[tolerance]
+degeneracy_gap = 1.0e-10
+norm_tol = 1.0e-8
+energy_tol = 1.0e-8
+compare_tol = 1.0e-8
+
+[paths]
+archive_npz = "task2_hplusp/data/interim/psi_archive.npz"
+interim_csv = "task2_hplusp/data/interim/tilde_ZR_L8_OBC.csv"
+ostr_csv = "task2_hplusp/data/interim/Ostr_L8_OBC.csv"
+spi_csv = "task2_hplusp/data/interim/Spi_L8_OBC.csv"
+q_csv = "task2_hplusp/data/interim/Q_L8_OBC.csv"
+zr_figure_png = "task2_hplusp/data/figures/tilde_ZR_heatmap.png"
+q_figure_png = "task2_hplusp/data/figures/Q_heatmap.png"

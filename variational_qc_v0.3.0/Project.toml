@@ -1,0 +1,7 @@
+[deps]
+Arpack = "7d9fca2a-8960-54d3-9f78-7d1dccf2cb97"
+CondaPkg = "992eb4ea-22a4-4c89-a5bb-47a3300528ab"
+JSON3 = "0f8b85d8-7281-11e9-16c2-39a750bddbf1"
+NPZ = "15e1cf62-19b3-5cfa-8e77-841668bca605"
+Optim = "429524aa-4258-5aef-a3af-852621145aeb"
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"

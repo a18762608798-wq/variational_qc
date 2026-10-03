@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>PAPER STATUS — variational_qc_v0.3.0</title>
+<style>
+body{font-family:sans-serif;max-width:960px;margin:auto;padding:24px;color:#222;line-height:1.55}
+h1{font-size:24px;margin-bottom:4px}
+h2{font-size:19px;margin-top:28px;border-bottom:2px solid #eee;padding-bottom:6px}
+h3{font-size:15px;margin-top:18px;color:#444}
+.sub{color:#666;font-size:13px;margin-bottom:14px}
+.legend span{display:inline-block;border-radius:4px;padding:2px 10px;font-size:12px;margin-right:6px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.card{border:1px solid #ddd;border-radius:8px;padding:12px;border-left:6px solid #666;background:#fff}
+.card.done{border-left-color:#2e7d32}
+.card.prog{border-left-color:#9c7d00}
+.card.block{border-left-color:#9c0006}
+.card.todo{border-left-color:#666}
+.badge{display:inline-block;border-radius:4px;padding:2px 8px;font-size:12px}
+.done-b{background:#c6efce;color:#2e7d32} .prog-b{background:#ffeb9c;color:#9c7d00}
+.block-b{background:#ffc7ce;color:#9c0006} .todo-b{background:#e2e2e2;color:#666}
+.card .t{font-weight:bold;margin:6px 0 4px}
+.card .d{font-size:14px}
+.links{font-size:13px;margin-top:8px}
+.links a{margin-right:12px}
+.bar{background:#eee;border-radius:6px;height:22px;overflow:hidden;margin-top:8px}
+.bar>div{height:100%;background:#ffeb9c;color:#9c7d00;font-size:12px;line-height:22px;text-align:center}
+svg{max-width:100%;height:auto}
+.cap{font-size:12px;color:#666;margin-top:6px}
+.note{font-size:13px;color:#666;margin:6px 0}
+</style>
+</head>
+<body>
+
+<h1>PAPER STATUS — variational_qc_v0.3.0</h1>
+<div class="sub">更新时间 2026-10-03 20:06 CST ｜ 图 / 数据编号与出场顺序以 <code>doc/paper-outline.md</code> 为准，生产归属以 <code>doc/expriment-map.md</code> 为准。本页为派生视图，不是事实来源。</div>
+<div class="sub">主线来源：<a href="doc/paper-outline.md">doc/paper-outline.md</a></div>
+<div class="legend">
+  <span class="done-b">已完成</span>
+  <span class="prog-b">进行中</span>
+  <span class="block-b">阻塞</span>
+  <span class="todo-b">未开始</span>
+</div>
+
+<h2>论文主线</h2>
+<svg viewBox="0 0 940 152" role="img" aria-label="论文主线图">
+  <defs>
+    <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 z" fill="#888"/>
+    </marker>
+  </defs>
+  <rect x="14" y="16" width="132" height="56" rx="8" fill="#f7f7f7" stroke="#666" stroke-width="2"/>
+  <text x="80" y="48" text-anchor="middle" font-size="13" fill="#333">模型与基本性质</text>
+  <line x1="146" y1="44" x2="164" y2="44" stroke="#888" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="166" y="16" width="132" height="56" rx="8" fill="#f7f7f7" stroke="#666" stroke-width="2"/>
+  <text x="232" y="48" text-anchor="middle" font-size="13" fill="#333">拓扑物理量</text>
+  <line x1="298" y1="44" x2="316" y2="44" stroke="#888" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="318" y="16" width="132" height="56" rx="8" fill="#f7f7f7" stroke="#666" stroke-width="2"/>
+  <text x="384" y="48" text-anchor="middle" font-size="13" fill="#333">变分电路</text>
+  <line x1="450" y1="44" x2="468" y2="44" stroke="#888" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="470" y="16" width="132" height="56" rx="8" fill="#f7f7f7" stroke="#666" stroke-width="2"/>
+  <text x="536" y="48" text-anchor="middle" font-size="13" fill="#333">优质比特</text>
+  <line x1="602" y1="44" x2="620" y2="44" stroke="#888" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="622" y="16" width="132" height="56" rx="8" fill="#f7f7f7" stroke="#666" stroke-width="2"/>
+  <text x="688" y="48" text-anchor="middle" font-size="13" fill="#333">读出缓解</text>
+  <line x1="754" y1="44" x2="772" y2="44" stroke="#888" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="774" y="16" width="132" height="56" rx="8" fill="#f7f7f7" stroke="#666" stroke-width="2"/>
+  <text x="840" y="48" text-anchor="middle" font-size="13" fill="#333">实验结果</text>
+
+  <line x1="80" y1="72" x2="80" y2="98" stroke="#bbb" stroke-width="1.5"/>
+  <rect x="36" y="98" width="42" height="26" rx="5" fill="#c6efce" stroke="#2e7d32" stroke-width="2"/>
+  <text x="57" y="115" text-anchor="middle" font-size="11" fill="#2e7d32">D01</text>
+  <rect x="82" y="98" width="42" height="26" rx="5" fill="#c6efce" stroke="#2e7d32" stroke-width="2"/>
+  <text x="103" y="115" text-anchor="middle" font-size="11" fill="#2e7d32">D02</text>
+
+  <line x1="232" y1="72" x2="232" y2="98" stroke="#bbb" stroke-width="1.5"/>
+  <rect x="188" y="98" width="42" height="26" rx="5" fill="#c6efce" stroke="#2e7d32" stroke-width="2"/>
+  <text x="209" y="115" text-anchor="middle" font-size="11" fill="#2e7d32">D03</text>
+  <rect x="234" y="98" width="42" height="26" rx="5" fill="#c6efce" stroke="#2e7d32" stroke-width="2"/>
+  <text x="255" y="115" text-anchor="middle" font-size="11" fill="#2e7d32">D04</text>
+
+  <line x1="384" y1="72" x2="384" y2="98" stroke="#bbb" stroke-width="1.5"/>
+  <rect x="340" y="98" width="42" height="26" rx="5" fill="#c6efce" stroke="#2e7d32" stroke-width="2"/>
+  <text x="361" y="115" text-anchor="middle" font-size="11" fill="#2e7d32">D05</text>
+  <rect x="386" y="98" width="42" height="26" rx="5" fill="#c6efce" stroke="#2e7d32" stroke-width="2"/>
+  <text x="407" y="115" text-anchor="middle" font-size="11" fill="#2e7d32">D06</text>
+
+  <line x1="536" y1="72" x2="536" y2="98" stroke="#bbb" stroke-width="1.5"/>
+  <rect x="469" y="98" width="42" height="26" rx="5" fill="#ffeb9c" stroke="#9c7d00" stroke-width="2"/>
+  <text x="490" y="115" text-anchor="middle" font-size="11" fill="#9c7d00">D07</text>
+  <rect x="515" y="98" width="42" height="26" rx="5" fill="#ffeb9c" stroke="#9c7d00" stroke-width="2"/>
+  <text x="536" y="115" text-anchor="middle" font-size="11" fill="#9c7d00">D08</text>
+  <rect x="561" y="98" width="42" height="26" rx="5" fill="#ffeb9c" stroke="#9c7d00" stroke-width="2"/>
+  <text x="582" y="115" text-anchor="middle" font-size="11" fill="#9c7d00">D09</text>
+
+  <line x1="840" y1="72" x2="840" y2="98" stroke="#bbb" stroke-width="1.5"/>
+  <rect x="773" y="98" width="42" height="26" rx="5" fill="#c6efce" stroke="#2e7d32" stroke-width="2"/>
+  <text x="794" y="115" text-anchor="middle" font-size="11" fill="#2e7d32">D10</text>
+  <rect x="819" y="98" width="42" height="26" rx="5" fill="#ffeb9c" stroke="#9c7d00" stroke-width="2"/>
+  <text x="840" y="115" text-anchor="middle" font-size="11" fill="#9c7d00">D11</text>
+  <rect x="865" y="98" width="42" height="26" rx="5" fill="#ffeb9c" stroke="#9c7d00" stroke-width="2"/>
+  <text x="886" y="115" text-anchor="middle" font-size="11" fill="#9c7d00">D12</text>
+</svg>
+<div class="cap">「读出缓解」一节为纯叙述，无 Dxx 数据产品。已完成 7 / 12；进行中 5（D07、D08、D09、D11、D12）；未开始 0。</div>
+
+<h2>模型的引入和基本性质</h2>
+<div class="cards">
+  <div class="card done">
+    <span class="badge done-b">已完成</span>
+    <div class="t">D01 有限尺寸 <code>~Z_R</code> 相图</div>
+    <div class="d">生产实验 exp01。</div>
+    <div class="links"><a href="specs/exp01/spec.md">→ spec</a><a href="figs/exp01/exp01_D01.png">→ 看图</a></div>
+  </div>
+  <div class="card done">
+    <span class="badge done-b">已完成</span>
+    <div class="t">D02 有限尺寸能隙标度</div>
+    <div class="d">生产实验 exp03。</div>
+    <div class="links"><a href="specs/exp03/spec.md">→ spec</a><a href="figs/exp03/exp03_D02a.png">→ 图(a)</a><a href="figs/exp03/exp03_D02b.png">→ 图(b)</a><a href="figs/exp03/exp03_D02c.png">→ 图(c)</a></div>
+  </div>
+</div>
+
+<h2>引入反映拓扑性质的物理量</h2>
+<div class="cards">
+  <div class="card done">
+    <span class="badge done-b">已完成</span>
+    <div class="t">D03 三相代表点 <code>S(q)</code> 曲线</div>
+    <div class="d">生产实验 exp02。</div>
+    <div class="links"><a href="specs/exp02/spec.md">→ spec</a><a href="figs/exp02/exp02_D03.png">→ 看图</a></div>
+  </div>
+  <div class="card done">
+    <span class="badge done-b">已完成</span>
+    <div class="t">D04 <code>S(π)</code> / string / <code>Q</code> / <code>~Z_R</code> 热力图</div>
+    <div class="d">生产实验 exp02。</div>
+    <div class="links"><a href="specs/exp02/spec.md">→ spec</a><a href="figs/exp02/exp02_D04a.png">→ 图(a)</a><a href="figs/exp02/exp02_D04b.png">→ 图(b)</a><a href="figs/exp02/exp02_D04c.png">→ 图(c)</a><a href="figs/exp02/exp02_D04d.png">→ 图(d)</a></div>
+  </div>
+</div>
+
+<h2>变分电路介绍</h2>
+<div class="cards">
+  <div class="card done">
+    <span class="badge done-b">已完成</span>
+    <div class="t">D05 起点终点标记示意图</div>
+    <div class="d">生产实验 exp01；三对起终点已选定。</div>
+    <div class="links"><a href="specs/exp01/spec.md">→ spec</a><a href="figs/exp01/exp01_D05.png">→ 看图</a></div>
+  </div>
+  <div class="card done">
+    <span class="badge done-b">已完成</span>
+    <div class="t">D06 拟设结构示意图</div>
+    <div class="d">生产实验 exp04；纯示意，无数据依赖。</div>
+    <div class="links"><a href="specs/exp04/spec.md">→ spec</a><a href="figs/exp04/exp04_D06.png">→ 看图</a></div>
+  </div>
+</div>
+
+<h2>真机优质比特选择方法介绍</h2>
+<div class="cards">
+  <div class="card prog">
+    <span class="badge prog-b">进行中</span>
+    <div class="t">D07 <code>8</code> 链评分排名前十</div>
+    <div class="d">生产实验 exp05；Baihua 重校准后数据待重跑。</div>
+    <div class="links"><a href="specs/exp05/spec.md">→ spec</a></div>
+  </div>
+  <div class="card prog">
+    <span class="badge prog-b">进行中</span>
+    <div class="t">D08 <code>10</code> 环评分排名前十</div>
+    <div class="d">生产实验 exp05；Baihua 重校准后数据待重跑。</div>
+    <div class="links"><a href="specs/exp05/spec.md">→ spec</a></div>
+  </div>
+  <div class="card prog">
+    <span class="badge prog-b">进行中</span>
+    <div class="t">D09 冠军环内十条 <code>8</code>-子链评分排名</div>
+    <div class="d">生产实验 exp05；Baihua 重校准后数据待重跑。</div>
+    <div class="links"><a href="specs/exp05/spec.md">→ spec</a></div>
+  </div>
+</div>
+
+<h2>真机读出误差缓解介绍</h2>
+<div class="note">本节为纯叙述，无 Dxx 数据产品。</div>
+
+<h2>实验结果展示</h2>
+<div class="cards">
+  <div class="card done">
+    <span class="badge done-b">已完成</span>
+    <div class="t">D10 模拟机 VQE 曲线</div>
+    <div class="d">生产实验 exp04。</div>
+    <div class="links"><a href="specs/exp04/spec.md">→ spec</a><a href="figs/exp04/exp04_D10_d0_spi.png">→ d0/S(π)</a><a href="figs/exp04/exp04_D10_d0_ostr.png">→ d0/str</a><a href="figs/exp04/exp04_D10_d085_spi.png">→ d085/S(π)</a><a href="figs/exp04/exp04_D10_d085_ostr.png">→ d085/str</a></div>
+  </div>
+  <div class="card prog">
+    <span class="badge prog-b">进行中</span>
+    <div class="t">D11 真机 VQE 散点加误差棒</div>
+    <div class="d">生产实验 exp06。</div>
+    <div class="links"><a href="specs/exp06/spec.md">→ spec</a></div>
+  </div>
+  <div class="card prog">
+    <span class="badge prog-b">进行中</span>
+    <div class="t">D12 真机与模拟机归一化趋势比较</div>
+    <div class="d">生产实验 exp04 + exp06；exp04 侧已展开。</div>
+    <div class="links"><a href="specs/exp04/spec.md">→ spec</a></div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+# task10 反射对称 orbit 参数 VQE 网格与优化配置（vqe-reflect-orbit-sweep）
+
+L = 8
+boundary = "OBC"
+depths = [1, 2, 3]
+
+[grid]
+s_min = 0.0
+s_max = 1.0
+ns_default = 51
+deltas = [-1.0, 1.0]
+
+# 行序：delta 外层、s 内层（与 task3/task4 契约同序）
+[paths]
+# {depth} 占位：如 task10_reflect_orbit/depth1/data/interim/vqe_L8_OBC.csv
+vqe_csv = "task10_reflect_orbit/depth{depth}/data/interim/vqe_L8_OBC.csv"
+thetas = "task10_reflect_orbit/depth{depth}/data/interim/vqe_thetas.json"
+q_csv = "task10_reflect_orbit/depth{depth}/data/interim/vqe_Q_L8_OBC.csv"
+zr_csv = "task10_reflect_orbit/depth{depth}/data/interim/vqe_ZR_L8_OBC.csv"
+ckpt = "task10_reflect_orbit/depth{depth}/data/interim/sweep_ckpt.json"
+# 对照输入（task1 解析谱、Q、tilde_ZR，只读）
+spectra_csv = "task1_baseline/data/interim/spectra_L8_OBC.csv"
+q_ref_csv = "task1_baseline/data/interim/Q_L8_OBC.csv"
+zr_ref_csv = "task1_baseline/data/interim/tilde_ZR_L8_OBC.csv"
+
+[optimize]
+# depth1 两步优化初值（8 维 pilot 两档起点，见 tasks 2.1）：
+global_method = "differential_evolution"
+local_method = "COBYLA"
+de_maxiter = 30
+de_popsize = 15
+cobyla_maxiter = 300
+n_seeds = 3
+# depth2/3 warm-start 初值（pilot 锁定前占位，与 task4 同形）：
+perturb_scale = 0.3
+n_restarts = 3
+workers = 8
+# 确定性要求单线程 BLAS（同 task3/task4）；seed_base 与既有任务及作废 4 参数版数据不重叠
+seed_base = 20260929

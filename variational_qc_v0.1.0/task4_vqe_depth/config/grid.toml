@@ -1,0 +1,31 @@
+# task4 多层 VQE 网格与优化配置（vqe-depth-scaling）
+
+L = 8
+boundary = "OBC"
+depths = [2, 3, 4, 5]
+
+[grid]
+s_min = 0.0
+s_max = 1.0
+ns_default = 51
+deltas = [-1.0, 1.0]
+
+# 行序：delta 外层、s 内层（与 task3 契约同序）
+[paths]
+# {depth} 占位：如 task4_vqe_depth/depth2/data/interim/vqe_L8_OBC.csv
+vqe_csv = "task4_vqe_depth/depth{depth}/data/interim/vqe_L8_OBC.csv"
+thetas = "task4_vqe_depth/depth{depth}/data/interim/vqe_thetas.json"
+# task3 单层 thetas（depth2 递推起点）
+task3_thetas = "task3_vqe/data/interim/vqe_thetas.json"
+# 对照输入（task1 解析谱）
+spectra_csv = "task1_baseline/data/interim/spectra_L8_OBC.csv"
+
+[optimize]
+# warm-start：浅层最优垫底 + 微扰 + COBYLA polish（pilot 锁定，见 config/pilot.md）
+local_method = "COBYLA"
+perturb_scale = 0.3
+cobyla_maxiter = 500
+n_restarts = 3  # 逐点取最优
+workers = 8
+# 确定性要求单线程 BLAS（同 task3）
+seed_base = 20260922

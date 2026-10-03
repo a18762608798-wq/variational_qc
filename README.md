@@ -1,19 +1,22 @@
 # variational_qc
 
-变分量子计算实验项目（从 `sync` 的 `theory/physics/quant_comp/04_project` 分离）。
+变分量子计算实验项目：SSH-XXZ 自旋链的基态、序参量与 VQE 研究。
 
-当前工作区即主线（原 `variational_qc_v0.3.0` 已提至根目录）：
-`doc/paper-outline.md` + `doc/expriment-map.md`，进度见
-`PAPER_STATUS.html` / `EXPERIMENT_STATUS.html`。
+## 内容
 
-## 目录
-
-- `src/`：Exp01–Exp04 + Shared01（Julia）
-- `scripts/`：`run_*.jl`、`verify_*.jl`、硬件提交与绘图脚本
-- `specs/`：exp01–exp06、shared-01 的 spec/plan/tasks
-- `doc/theory/`：H、ansatz、cost_fun、gap、psi0、readout_mitigation、topological_op
-- `figs/`：论文插图（`*.png` 入库）
-- `test/`：`runtests.jl` + 硬件本地测试
+- `src/`：数值核心（Julia）
+  - `Shared01/`：哈密顿量、基态求解、数据读写
+  - `Exp01/`：约化密度矩阵与 ZTilde 序参量
+  - `Exp02/`：弦序、关联函数与面板数据
+  - `Exp03/`：能隙求解、截面基组与交叉拟合
+  - `Exp04/`：变分拟设、初态与 VQE 循环
+- `scripts/`：`run_*.jl`（实验运行）、`verify_*.jl`（结果校验）、
+  硬件任务提交（`exp05_*`、`exp06_*`）与论文绘图（`plot_*.py`）
+- `specs/`：exp01–exp06、shared-01 的 spec / plan / tasks
+- `doc/`：`paper-outline.md`、`expriment-map.md`、理论笔记（`doc/theory/`）
+- `figs/`：论文插图（`*.png`）
+- `test/`：`runtests.jl` 及相关测试
+- `PAPER_STATUS.html` / `EXPERIMENT_STATUS.html`：论文与实验进度总览
 
 ## 追踪规则
 
@@ -24,15 +27,3 @@
 
 - Julia：`Project.toml`，`CondaPkg.toml` 管理 Python 依赖
 - Python 绘图：`scripts/figure_style.py`（Okabe-Ito / Tol 配色，colorblind-safe）
-
-## 旧版本（v0.1.0 / v0.2.0）
-
-已移出工作区，仅保留在 git 历史中。查看：
-
-```bash
-git log --oneline -- variational_qc_v0.2.0 | head
-git show 3cd71a6:variational_qc_v0.2.0/Project.toml
-```
-
-注：`scripts/xcheck_v02.jl` 引用了已移出的 `variational_qc_v0.2.0/src_jl`，
-如需运行，先 `git checkout 3cd71a6 -- variational_qc_v0.2.0` 取回旧树。

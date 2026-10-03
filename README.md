@@ -17,6 +17,8 @@
 - `figs/`：论文插图（`*.png`）
 - `test/`：`runtests.jl` 及相关测试
 - `PAPER_STATUS.html` / `EXPERIMENT_STATUS.html`：论文与实验进度总览
+  （浏览器在线查看：[PAPER_STATUS](https://a18762608798-wq.github.io/variational_qc/PAPER_STATUS.html) /
+  [EXPERIMENT_STATUS](https://a18762608798-wq.github.io/variational_qc/EXPERIMENT_STATUS.html)）
 
 ## 追踪规则
 

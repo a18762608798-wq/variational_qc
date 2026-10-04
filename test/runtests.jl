@@ -371,13 +371,13 @@ end
     Y = ComplexF64[0 -im; im 0]
     Z = ComplexF64[1 0; 0 -1]
     I2 = ComplexF64[1 0; 0 1]
-    # bond (2,3): two-qubit reference RZZ(t2)*RYY(t1)*RXX(t1) (swap-symmetric)
-    t1, t2 = 0.7, -0.4
-    c1, s1 = cos(t1 / 2), sin(t1 / 2)
+    # bond (2,3): two-qubit reference RZZ(tz)*RYY(tx)*RXX(tx) (swap-symmetric)
+    tx, tz = 0.7, -0.4
+    c1, s1 = cos(tx / 2), sin(tx / 2)
     I4 = Matrix{ComplexF64}(I, 4, 4)
     RXX2 = c1 * I4 - im * s1 * kron(X, X)
     RYY2 = c1 * I4 - im * s1 * kron(Y, Y)
-    e1, e2 = exp(-im * t2 / 2), exp(im * t2 / 2)
+    e1, e2 = exp(-im * tz / 2), exp(im * tz / 2)
     RZZ2 = Diagonal(ComplexF64[e1, e2, e2, e1])
     U4 = Matrix(RZZ2 * RYY2 * RXX2)
     full = kron(fill(I2, 8)...)

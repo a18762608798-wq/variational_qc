@@ -135,7 +135,7 @@ runner 不直接复用（其按 Pauli 分组提交多电路；本实验全 `Z` �
   GHZ：`H` + CNOT 链；与 `Exp04.InitStates` 逐振幅对照测试）、
   `build_ansatz(theta,a*,p,delta)`（轨道配对 `O_j↔O_{M+1-j}` /
   `E_j↔E_{M-j}`、`δ=0` 参数减半映射、子层顺序按初态 `F/S`、
-  每键 `RXX(t1)RYY(t1)RZZ(t2)`；与 `Exp04.Ansatz` 语义逐项对应，
+  每键 `RXX(tx)RYY(tx)RZZ(tz)`；与 `Exp04.Ansatz` 语义逐项对应，
   对应表写进模块 docstring）、`build_estimator_circuit(...)`
   （初态 + 拟设 + 全 `Z` 测量；topo 用环状 coupling 信息仅作逻辑标注，
   物理映射在 submit 侧）、`build_calib_circuits(n)`（全 `0` / 全 `X`）。

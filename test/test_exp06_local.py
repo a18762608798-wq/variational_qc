@@ -97,21 +97,21 @@ def test_init_support_and_sector():
 def test_single_bond_unitary():
     from qiskit.quantum_info import Operator
     from qiskit import QuantumCircuit
-    t1, t2 = 0.7, -0.3
+    tx, tz = 0.7, -0.3
     qc = QuantumCircuit(2)
-    qc.rxx(t1, 0, 1)
-    qc.ryy(t1, 0, 1)
-    qc.rzz(t2, 0, 1)
+    qc.rxx(tx, 0, 1)
+    qc.ryy(tx, 0, 1)
+    qc.rzz(tz, 0, 1)
     U = np.asarray(Operator(qc).data)
     # 手算 RZZ·RYY·RXX（|q1 q0> 基，q0 快）。
-    c1, s1 = np.cos(t1 / 2), np.sin(t1 / 2)
-    c2, s2 = np.cos(t2 / 2), np.sin(t2 / 2)
+    c1, s1 = np.cos(tx / 2), np.sin(tx / 2)
+    c2, s2 = np.cos(tz / 2), np.sin(tz / 2)
     RXX = np.array([[c1, 0, 0, -1j * s1], [0, c1, -1j * s1, 0],
                     [0, -1j * s1, c1, 0], [-1j * s1, 0, 0, c1]])
     RYY = np.array([[c1, 0, 0, 1j * s1], [0, c1, -1j * s1, 0],
                     [0, -1j * s1, c1, 0], [1j * s1, 0, 0, c1]])
-    RZZ = np.diag([np.exp(-1j * t2 / 2), np.exp(1j * t2 / 2),
-                   np.exp(1j * t2 / 2), np.exp(-1j * t2 / 2)])
+    RZZ = np.diag([np.exp(-1j * tz / 2), np.exp(1j * tz / 2),
+                   np.exp(1j * tz / 2), np.exp(-1j * tz / 2)])
     assert np.allclose(U, RZZ @ RYY @ RXX, atol=1e-12)
 
 

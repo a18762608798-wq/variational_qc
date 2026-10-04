@@ -42,10 +42,10 @@ def y_of(site):
     return N - site
 
 
-GAP_L, GAP_R = 4.75, 5.45  # 与两侧 layer_frame 内边对齐
+GAP_L, GAP_R = 4.75, 6.25  # 与两侧 layer_frame 内边对齐
 
 
-def draw_wires(ax, x0=0.0, x1=10.6):
+def draw_wires(ax, x0=0.0, x1=10.4):
     xs = np.arange(N)
     for i in range(N):
         y = y_of(i + 1)
@@ -85,7 +85,7 @@ def gate_box(ax, a, b, x, color, group, layer):
 
 
 def layer_frame(ax, x0, x1):
-    frame = FancyBboxPatch((x0, -1.0), x1 - x0, 8.55,
+    frame = FancyBboxPatch((x0, -0.45), x1 - x0, 8.0,
                            boxstyle="round,pad=0.05", facecolor="none",
                            edgecolor="black", linewidth=1.0,
                            linestyle=(0, (4, 3)))
@@ -112,7 +112,7 @@ EVEN_BONDS = [((2, 3), 3), ((6, 7), 3),
 GROUP_COLORS: dict = {}
 
 # Column x positions: init | U^(1): F, S | dots | U^(k): F, S.
-X_INIT, X_F1, X_S1, X_FK, X_SK = 0.55, 2.2, 4.0, 6.2, 8.0
+X_INIT, X_F1, X_S1, X_FK, X_SK = 0.55, 2.2, 4.0, 7.0, 8.8
 
 
 def main():

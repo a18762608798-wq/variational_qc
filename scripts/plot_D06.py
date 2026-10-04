@@ -26,6 +26,8 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch
+from matplotlib.path import Path
+import matplotlib.patches as mpatches
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -86,12 +88,11 @@ def draw_sublayer(ax, bonds, x, colors, tag):
     ax.text(x, 7.62, tag, ha="center", va="bottom", fontsize=6)
 
 
-def finish(ax, title):
-    ax.set_xlim(-0.9, 10.3)
+def finish(ax):
+    ax.set_xlim(-1.6, 10.3)
     ax.set_ylim(-1.9, 9.0)
     ax.set_aspect("equal")
     ax.axis("off")
-    ax.set_title(title, fontsize=9)
 
 
 # Orbit-pair labels: same label + color = one shared (theta1, theta2).
@@ -118,7 +119,8 @@ def main():
     draw_wires(ax)
     for a, b in [(1, 2), (3, 4), (5, 6), (7, 8)]:
         link_bar(ax, a, b, X_INIT)
-    ax.text(X_INIT, 8.35, "init", ha="center", va="bottom", fontsize=7)
+    ax.text(X_INIT, 8.0, r"$|\psi_{\rm triv}\rangle$", ha="center",
+            va="bottom", fontsize=8)
     draw_sublayer(ax, EVEN_BONDS, X_F1, cE, r"$F$")
     draw_sublayer(ax, ODD_BONDS, X_S1, cO, r"$S$")
     layer_frame(ax, X_F1 - 0.75, X_S1 + 0.75)
@@ -131,7 +133,7 @@ def main():
     layer_frame(ax, X_FK - 0.75, X_SK + 0.75)
     ax.text((X_FK + X_SK) / 2, 8.35, r"$U^{(k)}$", ha="center",
             va="bottom", fontsize=7)
-    finish(ax, "trivial")
+    finish(ax)
     fig.tight_layout()
     finalize_figure(fig, os.path.join(FIGDIR, "exp04_D06a.pdf"))
     finalize_figure(fig, os.path.join(FIGDIR, "exp04_D06a.png"))
@@ -143,9 +145,12 @@ def main():
     draw_wires(ax)
     for a, b in [(2, 3), (4, 5), (6, 7)]:
         link_bar(ax, a, b, X_INIT)
-    ax.plot([X_INIT, X_INIT], [y_of(8), y_of(1)], color=GRAY, linewidth=3.0,
-            solid_capstyle="round")
-    ax.text(X_INIT, 8.35, "init", ha="center", va="bottom", fontsize=7)
+    verts = [(X_INIT, y_of(8)), (-1.3, 3.5), (X_INIT, y_of(1))]
+    ax.add_patch(mpatches.PathPatch(
+        Path(verts, [Path.MOVETO, Path.CURVE3, Path.CURVE3]),
+        facecolor="none", edgecolor=GRAY, linewidth=3.0, capstyle="round"))
+    ax.text(X_INIT, 8.0, r"$|\psi_{\rm topo}\rangle$", ha="center",
+            va="bottom", fontsize=8)
     draw_sublayer(ax, ODD_BONDS, X_F1, cO, r"$F$")
     draw_sublayer(ax, EVEN_BONDS, X_S1, cE, r"$S$")
     layer_frame(ax, X_F1 - 0.75, X_S1 + 0.75)
@@ -158,7 +163,7 @@ def main():
     layer_frame(ax, X_FK - 0.75, X_SK + 0.75)
     ax.text((X_FK + X_SK) / 2, 8.35, r"$U^{(k)}$", ha="center",
             va="bottom", fontsize=7)
-    finish(ax, "topo")
+    finish(ax)
     fig.tight_layout()
     finalize_figure(fig, os.path.join(FIGDIR, "exp04_D06b.pdf"))
     finalize_figure(fig, os.path.join(FIGDIR, "exp04_D06b.png"))
@@ -170,8 +175,9 @@ def main():
     fig, ax = plt.subplots(figsize=(9.5, 5.0))
     draw_wires(ax)
     for a in range(1, N):
-        link_bar(ax, a, a + 1, X_INIT)
-    ax.text(X_INIT, 8.35, "init", ha="center", va="bottom", fontsize=7)
+        link_bar(ax, a, a + 1, X_INIT + (0.16 if a % 2 else -0.16))
+    ax.text(X_INIT, 8.0, r"$|\psi_{\rm AFM}\rangle$", ha="center",
+            va="bottom", fontsize=8)
     draw_sublayer(ax, EVEN_BONDS, X_F1, cE, r"$F$")
     draw_sublayer(ax, ODD_BONDS, X_S1, cO, r"$S$")
     layer_frame(ax, X_F1 - 0.75, X_S1 + 0.75)
@@ -184,7 +190,7 @@ def main():
     layer_frame(ax, X_FK - 0.75, X_SK + 0.75)
     ax.text((X_FK + X_SK) / 2, 8.35, r"$U^{(k)}$", ha="center",
             va="bottom", fontsize=7)
-    finish(ax, "AFM")
+    finish(ax)
     fig.tight_layout()
     finalize_figure(fig, os.path.join(FIGDIR, "exp04_D06c.pdf"))
     finalize_figure(fig, os.path.join(FIGDIR, "exp04_D06c.png"))

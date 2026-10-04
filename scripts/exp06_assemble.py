@@ -66,6 +66,24 @@ def minmax_norm(x: np.ndarray) -> np.ndarray:
     return (np.asarray(x, dtype=float) - lo) / (hi - lo)
 
 
+def pick_pstar(hw_n: np.ndarray, ref_n: np.ndarray, s_idx: np.ndarray,
+               p_arr: np.ndarray, panel: np.ndarray) -> int:
+    """p*（spec §4）：归一化后真机 p 层 vs 归一化模拟机 p=3 曲线（B），
+    33 点平均 |A−B| 最小；按 s_idx 对齐；并列取小 p。
+    输入须为同面板归一化数组（含 NaN padding 区，掩码内须有限）。
+    """
+    mp3 = panel & (p_arr == 3)
+    b = ref_n[mp3][np.argsort(s_idx[mp3])]
+    best, best_v = 1, float("inf")
+    for p in (1, 2, 3):
+        mp = panel & (p_arr == p)
+        a = hw_n[mp][np.argsort(s_idx[mp])]
+        v = float(np.mean(np.abs(a - b)))
+        if v < best_v:
+            best, best_v = p, v
+    return best
+
+
 MANIFEST_KEYS = {"schema", "s03_ref", "s04_ref", "s06_ref", "points",
                  "shots", "reps", "batch_size", "basis_gates",
                  "optimization_level", "correct", "p_star",
@@ -206,13 +224,9 @@ def main() -> None:
         full_r[m] = minmax_norm(rf[m])
         norm[f"d{di}_{name}_hw"] = full_h
         norm[f"d{di}_{name}_ref"] = full_r
-        best, best_v = 1, float("inf")  # p*：33 点平均 |hw−sim| 最小，并列取小 p
-        for p in (1, 2, 3):
-            mp = m & (p_arr == p)
-            v = float(np.mean(np.abs(hw[mp] - rf[mp])))
-            if v < best_v:
-                best, best_v = p, v
-        p_star[d08] = best
+        p_star[d08] = pick_pstar(norm[f"d{di}_{name}_hw"],
+                                 norm[f"d{di}_{name}_ref"],
+                                 si_arr, p_arr, m)
     np.savez(DATA_DIR / "exp06_D08.npz",
              delta_idx=di_arr, s_idx=si_arr, p=p_arr, a_star=a_arr,
              s_grid=np.array([g["s"] for g in order]),

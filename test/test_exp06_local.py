@@ -187,6 +187,26 @@ def test_minmax_normalize():
     assert np.allclose(minmax_norm(x), [0.0, 1.0, 0.5])
 
 
+def test_pick_pstar_vs_sim_p3():
+    from exp06_assemble import pick_pstar  # noqa: E402
+    s_idx = np.tile(np.arange(1, 34), 3)
+    p_arr = np.repeat([1, 2, 3], 33)
+    m = np.ones(99, dtype=bool)
+    shape = np.linspace(0, 1, 33)
+    ref = np.tile(shape, 3)  # 归一化模拟机三线同形（合成）
+    hw = np.tile(shape, 3).copy()
+    hw[:33] += 0.10
+    hw[33:66] += 0.001  # p=2 最近
+    hw[66:] += 0.20
+    assert pick_pstar(hw, ref, s_idx, p_arr, m) == 2
+    # 并列取小 p；乱序输入按 s_idx 对齐结果不变。
+    hw_tie = np.tile(shape, 3)
+    assert pick_pstar(hw_tie, ref, s_idx, p_arr, m) == 1
+    perm = np.random.default_rng(0).permutation(99)
+    assert pick_pstar(hw[perm], ref[perm], s_idx[perm], p_arr[perm],
+                      m[perm]) == 2
+
+
 def test_manifest_schema():
     from exp06_assemble import (  # noqa: E402
         MANIFEST_KEYS,

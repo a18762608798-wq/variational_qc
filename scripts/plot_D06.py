@@ -26,8 +26,6 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch
-from matplotlib.path import Path
-import matplotlib.patches as mpatches
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -145,10 +143,7 @@ def main():
     draw_wires(ax)
     for a, b in [(2, 3), (4, 5), (6, 7)]:
         link_bar(ax, a, b, X_INIT)
-    verts = [(X_INIT, y_of(8)), (-1.3, 3.5), (X_INIT, y_of(1))]
-    ax.add_patch(mpatches.PathPatch(
-        Path(verts, [Path.MOVETO, Path.CURVE3, Path.CURVE3]),
-        facecolor="none", edgecolor=GRAY, linewidth=3.0, capstyle="round"))
+    link_bar(ax, 1, 8, X_INIT + 0.35)
     ax.text(X_INIT, 8.0, r"$|\psi_{\rm topo}\rangle$", ha="center",
             va="bottom", fontsize=8)
     draw_sublayer(ax, ODD_BONDS, X_F1, cO, r"$F$")

@@ -73,17 +73,16 @@ def gate_box(ax, a, b, x, color, orbit):
 
 
 def layer_frame(ax, x0, x1):
-    frame = FancyBboxPatch((x0, -1.0), x1 - x0, 9.2,
+    frame = FancyBboxPatch((x0, -1.0), x1 - x0, 8.55,
                            boxstyle="round,pad=0.05", facecolor="none",
                            edgecolor="black", linewidth=1.0,
                            linestyle=(0, (4, 3)))
     ax.add_patch(frame)
 
 
-def draw_sublayer(ax, bonds, x, colors, tag):
+def draw_sublayer(ax, bonds, x, colors):
     for (a, b), orb in bonds:
         gate_box(ax, a, b, x, colors[orb], orb)
-    ax.text(x, 7.62, tag, ha="center", va="bottom", fontsize=6)
 
 
 def finish(ax):
@@ -119,15 +118,15 @@ def main():
         link_bar(ax, a, b, X_INIT)
     ax.text(X_INIT, 8.0, r"$|\psi_{\rm triv}\rangle$", ha="center",
             va="bottom", fontsize=8)
-    draw_sublayer(ax, EVEN_BONDS, X_F1, cE, r"$F$")
-    draw_sublayer(ax, ODD_BONDS, X_S1, cO, r"$S$")
+    draw_sublayer(ax, EVEN_BONDS, X_F1, cE)
+    draw_sublayer(ax, ODD_BONDS, X_S1, cO)
     layer_frame(ax, X_F1 - 0.75, X_S1 + 0.75)
     ax.text((X_F1 + X_S1) / 2, 8.35, r"$U^{(1)}$", ha="center",
             va="bottom", fontsize=7)
     ax.text(X_DOTS, 3.5, r"$\vdots$", ha="center", va="center",
             fontsize=22)
-    draw_sublayer(ax, EVEN_BONDS, X_FK, cE, r"$F$")
-    draw_sublayer(ax, ODD_BONDS, X_SK, cO, r"$S$")
+    draw_sublayer(ax, EVEN_BONDS, X_FK, cE)
+    draw_sublayer(ax, ODD_BONDS, X_SK, cO)
     layer_frame(ax, X_FK - 0.75, X_SK + 0.75)
     ax.text((X_FK + X_SK) / 2, 8.35, r"$U^{(k)}$", ha="center",
             va="bottom", fontsize=7)
@@ -146,15 +145,15 @@ def main():
     link_bar(ax, 1, 8, X_INIT + 0.35)
     ax.text(X_INIT, 8.0, r"$|\psi_{\rm topo}\rangle$", ha="center",
             va="bottom", fontsize=8)
-    draw_sublayer(ax, ODD_BONDS, X_F1, cO, r"$F$")
-    draw_sublayer(ax, EVEN_BONDS, X_S1, cE, r"$S$")
+    draw_sublayer(ax, ODD_BONDS, X_F1, cO)
+    draw_sublayer(ax, EVEN_BONDS, X_S1, cE)
     layer_frame(ax, X_F1 - 0.75, X_S1 + 0.75)
     ax.text((X_F1 + X_S1) / 2, 8.35, r"$U^{(1)}$", ha="center",
             va="bottom", fontsize=7)
     ax.text(X_DOTS, 3.5, r"$\vdots$", ha="center", va="center",
             fontsize=22)
-    draw_sublayer(ax, ODD_BONDS, X_FK, cO, r"$F$")
-    draw_sublayer(ax, EVEN_BONDS, X_SK, cE, r"$S$")
+    draw_sublayer(ax, ODD_BONDS, X_FK, cO)
+    draw_sublayer(ax, EVEN_BONDS, X_SK, cE)
     layer_frame(ax, X_FK - 0.75, X_SK + 0.75)
     ax.text((X_FK + X_SK) / 2, 8.35, r"$U^{(k)}$", ha="center",
             va="bottom", fontsize=7)
@@ -181,15 +180,15 @@ def main():
             link_bar(ax, a, b, x)
     ax.text(X_INIT, 8.0, r"$|\psi_{\rm AFM}\rangle$", ha="center",
             va="bottom", fontsize=8)
-    draw_sublayer(ax, EVEN_BONDS, X_F1, cE, r"$F$")
-    draw_sublayer(ax, ODD_BONDS, X_S1, cO, r"$S$")
+    draw_sublayer(ax, EVEN_BONDS, X_F1, cE)
+    draw_sublayer(ax, ODD_BONDS, X_S1, cO)
     layer_frame(ax, X_F1 - 0.75, X_S1 + 0.75)
     ax.text((X_F1 + X_S1) / 2, 8.35, r"$U^{(1)}$", ha="center",
             va="bottom", fontsize=7)
     ax.text(X_DOTS, 3.5, r"$\vdots$", ha="center", va="center",
             fontsize=22)
-    draw_sublayer(ax, EVEN_BONDS, X_FK, cE, r"$F$")
-    draw_sublayer(ax, ODD_BONDS, X_SK, cO, r"$S$")
+    draw_sublayer(ax, EVEN_BONDS, X_FK, cE)
+    draw_sublayer(ax, ODD_BONDS, X_SK, cO)
     layer_frame(ax, X_FK - 0.75, X_SK + 0.75)
     ax.text((X_FK + X_SK) / 2, 8.35, r"$U^{(k)}$", ha="center",
             va="bottom", fontsize=7)

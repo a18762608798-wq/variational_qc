@@ -42,7 +42,7 @@ def y_of(site):
     return N - site
 
 
-def draw_wires(ax, x0=0.0, x1=9.6):
+def draw_wires(ax, x0=0.0, x1=10.6):
     xs = np.arange(N)
     for i in range(N):
         ax.plot([x0, x1], [y_of(i + 1)] * 2, color="black", linewidth=0.8,
@@ -53,7 +53,8 @@ def draw_wires(ax, x0=0.0, x1=9.6):
                 va="center", fontsize=7)
     ax.arrow(x1 + 0.1, -1.3, 0.6, 0, head_width=0.18, head_length=0.18,
              fc="black", ec="black")
-    ax.text(x1 + 0.45, -1.65, "time", ha="center", va="top", fontsize=7)
+    ax.text(x1 + 0.45, -1.65, "time steps", ha="center", va="top",
+            fontsize=7)
 
 
 def link_bar(ax, a, b, x):
@@ -65,13 +66,13 @@ def link_bar(ax, a, b, x):
 def gate_box(ax, a, b, x, color, group, layer):
     """One orbit bond gate box spanning two wires."""
     ya, yb = y_of(a), y_of(b)
-    box = FancyBboxPatch((x - 0.42, yb - 0.32), 0.84, ya - yb + 0.64,
+    box = FancyBboxPatch((x - 0.5, yb - 0.32), 1.0, ya - yb + 0.64,
                          boxstyle="round,pad=0.02", facecolor="white",
                          edgecolor=color, linewidth=1.6)
     ax.add_patch(box)
     ax.text(x, (ya + yb) / 2, f"$\\theta^{{({layer})}}_{{{group}}}$" + "\n"
             f"$\\varphi^{{({layer})}}_{{{group}}}$", ha="center",
-            va="center", fontsize=5.5, color=color, linespacing=1.7)
+            va="center", fontsize=7, color=color, linespacing=1.4)
 
 
 def layer_frame(ax, x0, x1):
@@ -88,7 +89,7 @@ def draw_sublayer(ax, bonds, x, layer):
 
 
 def finish(ax):
-    ax.set_xlim(-1.6, 10.3)
+    ax.set_xlim(-0.9, 11.6)
     ax.set_ylim(-1.9, 9.0)
     ax.set_aspect("equal")
     ax.axis("off")
@@ -116,7 +117,7 @@ def main():
     os.makedirs(FIGDIR, exist_ok=True)
 
     # --- D06a trivial: odd-bond singlet pairs; F = even. ---
-    fig, ax = plt.subplots(figsize=(9.5, 5.0))
+    fig, ax = plt.subplots(figsize=(10.5, 5.0))
     draw_wires(ax)
     for a, b in [(1, 2), (3, 4), (5, 6), (7, 8)]:
         link_bar(ax, a, b, X_INIT)
@@ -125,14 +126,14 @@ def main():
     draw_sublayer(ax, EVEN_BONDS, X_F1, "1")
     draw_sublayer(ax, ODD_BONDS, X_S1, "1")
     layer_frame(ax, X_F1 - 0.75, X_S1 + 0.75)
-    ax.text((X_F1 + X_S1) / 2, 8.35, r"$U^{(1)}$", ha="center",
+    ax.text((X_F1 + X_S1) / 2, 8.0, r"$U^{(1)}$", ha="center",
             va="bottom", fontsize=7)
     ax.text(X_DOTS, 3.5, r"$\vdots$", ha="center", va="center",
             fontsize=22)
     draw_sublayer(ax, EVEN_BONDS, X_FK, "k")
     draw_sublayer(ax, ODD_BONDS, X_SK, "k")
     layer_frame(ax, X_FK - 0.75, X_SK + 0.75)
-    ax.text((X_FK + X_SK) / 2, 8.35, r"$U^{(k)}$", ha="center",
+    ax.text((X_FK + X_SK) / 2, 8.0, r"$U^{(k)}$", ha="center",
             va="bottom", fontsize=7)
     finish(ax)
     fig.tight_layout()
@@ -142,7 +143,7 @@ def main():
     print("wrote: figs/exp04/exp04_D06a.pdf + .png")
 
     # --- D06b topo: (1,8) link + even-bond pairs; F = odd. ---
-    fig, ax = plt.subplots(figsize=(9.5, 5.0))
+    fig, ax = plt.subplots(figsize=(10.5, 5.0))
     draw_wires(ax)
     for a, b in [(2, 3), (4, 5), (6, 7)]:
         link_bar(ax, a, b, X_INIT)
@@ -152,14 +153,14 @@ def main():
     draw_sublayer(ax, ODD_BONDS, X_F1, "1")
     draw_sublayer(ax, EVEN_BONDS, X_S1, "1")
     layer_frame(ax, X_F1 - 0.75, X_S1 + 0.75)
-    ax.text((X_F1 + X_S1) / 2, 8.35, r"$U^{(1)}$", ha="center",
+    ax.text((X_F1 + X_S1) / 2, 8.0, r"$U^{(1)}$", ha="center",
             va="bottom", fontsize=7)
     ax.text(X_DOTS, 3.5, r"$\vdots$", ha="center", va="center",
             fontsize=22)
     draw_sublayer(ax, ODD_BONDS, X_FK, "k")
     draw_sublayer(ax, EVEN_BONDS, X_SK, "k")
     layer_frame(ax, X_FK - 0.75, X_SK + 0.75)
-    ax.text((X_FK + X_SK) / 2, 8.35, r"$U^{(k)}$", ha="center",
+    ax.text((X_FK + X_SK) / 2, 8.0, r"$U^{(k)}$", ha="center",
             va="bottom", fontsize=7)
     finish(ax)
     fig.tight_layout()
@@ -170,7 +171,7 @@ def main():
 
     # --- D06c AFM: adjacent-link GHZ chain (qmeas xxz pidx=0 links);
     # F = even. ---
-    fig, ax = plt.subplots(figsize=(9.5, 5.0))
+    fig, ax = plt.subplots(figsize=(10.5, 5.0))
     draw_wires(ax)
     # GHZ cascade moments (qmeas xxz pidx=0 middle-out fan-out):
     # middle pair first, outward pairs in later moments, staggered in x.
@@ -187,14 +188,14 @@ def main():
     draw_sublayer(ax, EVEN_BONDS, X_F1, "1")
     draw_sublayer(ax, ODD_BONDS, X_S1, "1")
     layer_frame(ax, X_F1 - 0.75, X_S1 + 0.75)
-    ax.text((X_F1 + X_S1) / 2, 8.35, r"$U^{(1)}$", ha="center",
+    ax.text((X_F1 + X_S1) / 2, 8.0, r"$U^{(1)}$", ha="center",
             va="bottom", fontsize=7)
     ax.text(X_DOTS, 3.5, r"$\vdots$", ha="center", va="center",
             fontsize=22)
     draw_sublayer(ax, EVEN_BONDS, X_FK, "k")
     draw_sublayer(ax, ODD_BONDS, X_SK, "k")
     layer_frame(ax, X_FK - 0.75, X_SK + 0.75)
-    ax.text((X_FK + X_SK) / 2, 8.35, r"$U^{(k)}$", ha="center",
+    ax.text((X_FK + X_SK) / 2, 8.0, r"$U^{(k)}$", ha="center",
             va="bottom", fontsize=7)
     finish(ax)
     fig.tight_layout()

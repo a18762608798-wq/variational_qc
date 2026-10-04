@@ -1,10 +1,10 @@
-"""exp05 T004 组装（零机时）：checkpoints → 打分验算 → D07/D08/D09/S04 + manifest。
+"""exp05 T004 组装（零机时）：checkpoints → 打分验算 → D07a/D07b/D07c/S04 + manifest。
 
 读 checkpoints（exp05_chain/exp05_ring + 可能的 exp05_supp），逐候选
 score_chain 复算（与 recommend 一致，不一致即报错），链/环各自跨芯片统一排序。
-D09：冠军环（D08 第 1 名）内 10 条连续 8-子链 join 链 evidence；
+D07c：冠军环（D07b 第 1 名）内 10 条连续 8-子链 join 链 evidence；
 未命中输出 supp_chain.json（由 submit --supp 补测后重跑本脚本）。
-产物：data/exp05/exp05_{D07,D08,D09,S04}.npz + exp05_manifest.json。
+产物：data/exp05/exp05_{D07a,D07b,D07c,S04}.npz + exp05_manifest.json。
 """
 
 from __future__ import annotations
@@ -117,7 +117,7 @@ def main() -> None:
     top10_chain = ranked_chain[:10]
     top10_ring = ranked_ring[:10]
 
-    # D09：冠军环（D08 第 1 名）内 10 条连续 8-子链
+    # D07c：冠军环（D07b 第 1 名）内 10 条连续 8-子链
     champ_ring = ranked_ring[0]
     subs = subchain_windows(champ_ring["chain"], CHAIN_LEN)
     d09, missing = [], []
@@ -135,13 +135,13 @@ def main() -> None:
     if missing:
         write_json(DATA_DIR / "supp_chain.json",
                    {"chains": {champ_ring["chip"]: missing},
-                    "reason": "D09 未覆盖子链补测（spec Q4）"})
-        print(f"D09 缺 {len(missing)} 条子链 → supp_chain.json，"
+                    "reason": "D07c 未覆盖子链补测（spec Q4）"})
+        print(f"D07c 缺 {len(missing)} 条子链 → supp_chain.json，"
               f"跑 submit --supp 补测后重跑 assemble")
     d09_ranked = sorted([d for d in d09 if d["score"] is not None],
                         key=lambda d: d["score"], reverse=True)
     if missing:
-        raise RuntimeError("D09 有缺失子链，已输出补测清单（见上）")
+        raise RuntimeError("D07c 有缺失子链，已输出补测清单（见上）")
 
     # S04：冠军链 + 冠军环（并列 <0.02 全记）
     tied_chain = tie_group(ranked_chain)
@@ -168,11 +168,11 @@ def main() -> None:
             "score": np.array([e["score"] for e in ranked]),
         }
 
-    np.savez(DATA_DIR / "exp05_D07.npz", **ev_arrays(ranked_chain),
+    np.savez(DATA_DIR / "exp05_D07a.npz", **ev_arrays(ranked_chain),
              top10_idx=np.arange(min(10, len(ranked_chain))))
-    np.savez(DATA_DIR / "exp05_D08.npz", **ev_arrays(ranked_ring),
+    np.savez(DATA_DIR / "exp05_D07b.npz", **ev_arrays(ranked_ring),
              top10_idx=np.arange(min(10, len(ranked_ring))))
-    np.savez(DATA_DIR / "exp05_D09.npz",
+    np.savez(DATA_DIR / "exp05_D07c.npz",
              subchain=np.array([d["subchain"] for d in d09_ranked],
                                dtype=np.int64),
              chip=np.array([d["chip"] for d in d09_ranked]),
@@ -213,9 +213,9 @@ def main() -> None:
         "python": sys.executable,
     }
     write_json(DATA_DIR / "exp05_manifest.json", manifest)
-    print(f"D07 链 {len(ranked_chain)} 条，top1 {manifest['top1_chain']}")
-    print(f"D08 环 {len(ranked_ring)} 条，top1 {manifest['top1_ring']}")
-    print(f"D09 {len(d09_ranked)} 条子链；S04 并列链 {len(tied_chain)} / 环 "
+    print(f"D07a 链 {len(ranked_chain)} 条，top1 {manifest['top1_chain']}")
+    print(f"D07b 环 {len(ranked_ring)} 条，top1 {manifest['top1_ring']}")
+    print(f"D07c {len(d09_ranked)} 条子链；S04 并列链 {len(tied_chain)} / 环 "
           f"{len(tied_ring)}；manifest 落盘")
 
 

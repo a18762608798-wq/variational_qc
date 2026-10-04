@@ -43,14 +43,14 @@ def main() -> None:
                     hard(False, f"{kind} {chip} 候选含重复节点 {c}")
         hard(True, f"{kind} survivors 无重复节点/死比特（prescreen 已滤）")
 
-    d07 = np.load(DATA_DIR / "exp05_D07.npz", allow_pickle=True)
-    d08 = np.load(DATA_DIR / "exp05_D08.npz", allow_pickle=True)
-    d09 = np.load(DATA_DIR / "exp05_D09.npz", allow_pickle=True)
+    d07 = np.load(DATA_DIR / "exp05_D07a.npz", allow_pickle=True)
+    d08 = np.load(DATA_DIR / "exp05_D07b.npz", allow_pickle=True)
+    d09 = np.load(DATA_DIR / "exp05_D07c.npz", allow_pickle=True)
     s04 = np.load(DATA_DIR / "exp05_S04.npz", allow_pickle=True)
 
     for name, d, pfile in (
-        ("D07", d07, "prescreen_chain.json"),
-        ("D08", d08, "prescreen_ring.json"),
+        ("D07a", d07, "prescreen_chain.json"),
+        ("D07b", d08, "prescreen_ring.json"),
     ):
         pre = read_json(DATA_DIR / pfile)
         n_surv = sum(len(v) for v in pre["survivors"].values())
@@ -80,19 +80,19 @@ def main() -> None:
     src = [str(s) for s in d09["source"]]
     hard(all(s == "chain_evidence" for s in src)
          or all(s in ("chain_evidence", "supp") for s in src),
-         f"D09 来源可追溯 {set(src)}")
+         f"D07c 来源可追溯 {set(src)}")
     if "supp" in set(src):
-        hard((DATA_DIR / "exp05_S04.npz").is_file(), "D09 补测已并入产品")
+        hard((DATA_DIR / "exp05_S04.npz").is_file(), "D07c 补测已并入产品")
 
-    for name, d in (("D07", d07), ("D08", d08)):
+    for name, d in (("D07a", d07), ("D07b", d08)):
         top, second = d["score"][0], d["score"][1] if len(d["score"]) > 1 else -9
         n_tied = int(np.sum(top - d["score"] < TIE_TOL))
-        s_key = "champion_chain" if name == "D07" else "champion_ring"
+        s_key = "champion_chain" if name == "D07a" else "champion_ring"
         hard(len(s04[s_key]) == n_tied,
              f"{name} 并列复算一致（tol={TIE_TOL}，{n_tied} 个）")
 
     # --- 诊断（只记录，非门） ---
-    for name, d in (("D07", d07), ("D08", d08)):
+    for name, d in (("D07a", d07), ("D07b", d08)):
         print(f"诊断 {name}：冠军 S̄={d['stab_mean'][0]:.4f}"
               f"{' ← 可疑（>0.95，疑似 CZ 未真实执行），需人工核查' if d['stab_mean'][0] > 0.95 else ''}")
         order = np.argsort(-d["score"])

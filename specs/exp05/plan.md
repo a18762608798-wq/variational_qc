@@ -10,8 +10,8 @@
 排序采样截断至多 `3000` 条，去重后计数）与 `10` 环（全枚举全测）。
 每候选跑 `4` 个基准电路（`stab_g0` / `stab_g1` / `allzero` / `allone`，
 shots `2048`），按 `score = 0.8·S̄ + 0.2·F_ro` 打分，
-链环各自内部排序产出 D07 / D08；冠军环内 `10` 条连续 `8`-子链 join 链 evidence
-（缺失补测）产出 D09；冠军链 + 冠军环（首名分差 `< 0.02` 并列全记）产出 S04。
+链环各自内部排序产出 D07a / D07b；冠军环内 `10` 条连续 `8`-子链 join 链 evidence
+（缺失补测）产出 D07c；冠军链 + 冠军环（首名分差 `< 0.02` 并列全记）产出 S04。
 技术路线：复用 `qmeas.benchmark` 内核（拓扑 / 电路 / 提交轮询 / 打分），
 exp05 侧只写薄编排（预览 / 预筛 / 提交 / 组装 / 验证 / 出图），不建新框架、
 不改 `qmeas`；离线预览打印账单→人工确认后才提交机时。
@@ -30,10 +30,10 @@ exp05 侧只写薄编排（预览 / 预筛 / 提交 / 组装 / 验证 / 出图�
 
 **Storage**: 两层落盘——原始层复用 `qmeas.benchmark.io`
 （`data/exp05/checkpoints_{chain,ring}/` 逐候选 JSON，中断续跑只补缺失）；
-产品层本实验组装（`data/exp05/exp05_{D07,D08,D09,S04}.npz` +
+产品层本实验组装（`data/exp05/exp05_{D07a,D07b,D07c,S04}.npz` +
 `exp05_manifest.json`，与 exp01–04 产品惯例一致，供 exp06 取用）
 
-**Testing**: `pytest`（纯本地逻辑：去重 / 打分公式 / D09 join 匹配 / 并列判定 /
+**Testing**: `pytest`（纯本地逻辑：去重 / 打分公式 / D07c join 匹配 / 并列判定 /
 manifest schema；零真机调用）
 
 **Target Platform**: Linux（本机编排）+ 远端超导芯片（Baihua、Shenglian，经工具链提交）
@@ -46,7 +46,7 @@ manifest schema；零真机调用）
 **Constraints**: 未人工确认账单不得提交（spec 两步闸门）；单候选 `4` 电路缺一不可；
 转译不得引入候选子图之外的纠缠门（正确性门，非性能项）
 
-**Scale/Scope**: 链候选 ≤ `6000` 条、环候选全枚举（量级十余）、D09 子链 `10` 条
+**Scale/Scope**: 链候选 ≤ `6000` 条、环候选全枚举（量级十余）、D07c 子链 `10` 条
 （+ 可能补测）、S04 冠军 `2` 项（+ 可能并列）
 
 ## Constitution Check
@@ -87,14 +87,14 @@ scripts/
 ├── exp05_preview.py      # 离线预览：拉拓扑（缓存优先）→ 枚举 → 采样截断 → 打印账单（零机时）
 ├── exp05_prescreen.py    # 静态预筛：边保真度卫生过滤 → survivors/剔除清单
 ├── exp05_submit.py       # 真机提交：人工确认后提交 → 增量落盘 → 对账 → Failed 重跑
-├── exp05_assemble.py     # 组装：checkpoints → 打分验算 → D07/D08/D09/S04.npz + manifest
+├── exp05_assemble.py     # 组装：checkpoints → 打分验算 → D07a/D07b/D07c/S04.npz + manifest
 ├── verify_exp05.py       # 生产断言（见 §4，对正式输出全量执行）
-├── plot_D07D08D09.py     # D07/D08 前十排名图 + D09 子链排名图 → figs/exp05/
+├── plot_D07.py             # D07a/D07b 前十排名图 + D07c 子链排名图 → figs/exp05/
 data/exp05/
 ├── topology_cache/       # 拓扑快照（文件名含 calibration_time）
 ├── checkpoints_chain/    # 链逐候选结果（复用 qmeas io，中断续跑只补缺失）
 ├── checkpoints_ring/     # 环逐候选结果（同上）
-├── exp05_D07.npz / exp05_D08.npz / exp05_D09.npz / exp05_S04.npz
+├── exp05_D07a.npz / exp05_D07b.npz / exp05_D07c.npz / exp05_S04.npz
 └── exp05_manifest.json   # schema exp05/v1（见 §2）
 figs/exp05/
 test/
@@ -115,9 +115,9 @@ test/
   快照标识）→ **人工确认** → 提交（`run_benchmark`，逐候选 4 电路，shots 2048，
   checkpoints 增量落盘）→ 对账层（tid 清单 vs 收回结果，Failed 显式 query +
   单条重跑；checkpoint 只记收回成功者，已收回永不重提）→ 组装
-  （`score_chain` 复算验算 + 排名 + 并列判定 + D09 join/补测 + S04）→
+  （`score_chain` 复算验算 + 排名 + 并列判定 + D07c join/补测 + S04）→
   verify 全量断言 → 出图。
-- D09 join：冠军环的 10 条连续 8-子链（环顺序滑窗，含跨起点/终点闭合段），
+- D07c join：冠军环的 10 条连续 8-子链（环顺序滑窗，含跨起点/终点闭合段），
   逐条在链 evidence 中匹配（同芯片 + 序列相等或反转相等）→ 命中则引用
   （记来源 + 被引用候选 id，可追溯）；未命中则走补测小批量（同基准电路与
   shots，同样提交/对账/落盘），来源记补测。
@@ -138,15 +138,15 @@ test/
   `run_benchmark` → 对账层（§3）→ checkpoints；支持中断续跑（只补缺失）。
 - `scripts/exp05_assemble.py`：读 checkpoints → `score_chain` 复算
   （与落盘值比对，不一致报错）→ 链 / 环各自排序 → 前十 + 全量 evidence →
-  并列判定（`0.02`，spec）→ D09 join/补测清单 → 写
-  `exp05_{D07,D08,D09,S04}.npz` + `exp05_manifest.json`
+  并列判定（`0.02`，spec）→ D07c join/补测清单 → 写
+  `exp05_{D07a,D07b,D07c,S04}.npz` + `exp05_manifest.json`
  （含芯片、快照标识、`rng_seed`、过滤阈值、shots、`w_stab/w_ro`、
   工具栈名与版本、schema `exp05/v1`）。
 - `scripts/verify_exp05.py`：见 §4。
-- `scripts/plot_D07D08D09.py`：三排名图（前十 score + `S̄`/`F_ro` 分解；
-  D09 十条子链 + 来源标注引用/补测；冠军/并列高亮）。
+- `scripts/plot_D07.py`：三排名图（前十 score + `S̄`/`F_ro` 分解；
+  D07c 十条子链 + 来源标注引用/补测；冠军/并列高亮）。
 - `test/test_exp05_local.py`：链无向去重、环旋转/翻转去重、`score_chain`
-  手算对照、D09 滑窗（含闭合段）与反转匹配、并列边界（`0.0199` 并列 /
+  手算对照、D07c 滑窗（含闭合段）与反转匹配、并列边界（`0.0199` 并列 /
   `0.0201` 不并列）、manifest 必填字段。
 
 ## 3. 数值与技术决策
@@ -177,7 +177,7 @@ test/
 - 可信度诊断阈值（spec 授权 plan，只记录不作硬门）：冠军 `S̄` 若 `> 0.95`
   （与理想值 `1.0` 偏离不足）则标记可疑（疑似 CZ 未真实执行），需人工核查；
   全榜 `S̄` 按 score 单调退化检查， Spearman 系数记入诊断（不设门）。
-- D09 闭合段：环滑窗 10 条含跨接缝段（如比特 `[138,125,...]`），匹配时同样
+- D07c 闭合段：环滑窗 10 条含跨接缝段（如比特 `[138,125,...]`），匹配时同样
   适用反转等价；补测候选同样先过转译 pin 断言。
 
 ## 4. 验证方案（覆盖 spec §5）
@@ -189,13 +189,13 @@ test/
     checkpoints 与 npz evidence 逐候选一致（`score_chain` 复算比对）。
   - 转译门：每候选转译后 CZ 数 == 边数且比特集 ⊆ 候选（由 submit 侧留存
     转译后电路摘要供查）。
-  - D09 每条子链来源可追溯（引用链候选 id / 补测任务 tid）。
+  - D07c 每条子链来源可追溯（引用链候选 id / 补测任务 tid）。
   - 并列判定复算（阈值 `0.02`）。
   - 诊断输出（非门）：冠军 `S̄` 可疑标记（`> 0.95`）、退化单调性、
     稳定子–读出相关系数（权重事后验证线索）。
 - invalid 触发任一条即相关候选（或整批）判 invalid，不得出图/入库；
   verify 非零退出并指明候选 id。
-- 出图前人工核对：D07/D08 榜单与 npz 一致、D09 来源标注正确、S04 比特表
+- 出图前人工核对：D07a/D07b 榜单与 npz 一致、D07c 来源标注正确、S04 比特表
   与快照拓扑相容（候选边确为可用边）。
 
 ## Complexity Tracking

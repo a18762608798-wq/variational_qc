@@ -133,10 +133,10 @@ def test_orbit_param_layout():
         build_init(4)
 
 
-def test_golden_cross_vs_d10():
-    """Aer 黄金交叉：抽样组 Qiskit 电路 vs D10 S(π)/string（容限 1e-8）。"""
+def test_golden_cross_vs_s06():
+    """Aer 黄金交叉：抽样组 Qiskit 电路 vs S06 S(π)/string（容限 1e-8）。"""
     s03 = np.load(PROJ / "data/exp04/exp04_S03.npz")
-    d10 = np.load(PROJ / "data/exp04/exp04_D10.npz")
+    s06 = np.load(PROJ / "data/exp04/exp04_S06.npz")
     meta, th = s03["meta"], s03["theta"]
     deltas = s03["deltas"]
     n_checked = 0
@@ -152,9 +152,9 @@ def test_golden_cross_vs_d10():
                     th[r][:npl * p], a, p, float(delta)))
                 probs = probs_of(psi)
                 assert s_pi_of(probs) == pytest.approx(
-                    d10[f"{tag}_spi"][si - 1, p - 1], abs=1e-8)
+                    s06[f"{tag}_spi"][si - 1, p - 1], abs=1e-8)
                 assert string_of(probs) == pytest.approx(
-                    d10[f"{tag}_ostr"][si - 1, p - 1], abs=1e-8)
+                    s06[f"{tag}_ostr"][si - 1, p - 1], abs=1e-8)
                 n_checked += 1
     assert n_checked == 18
 

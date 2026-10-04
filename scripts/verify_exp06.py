@@ -33,9 +33,9 @@ def main() -> None:
     bill = read_json(DATA_DIR / "bill.json")
     hard(bool(bill.get("confirmed", False)), "bill 已人工确认")
 
-    d11 = np.load(DATA_DIR / "exp06_D11.npz", allow_pickle=True)
-    G = len(d11["s_idx"])
-    hard(G == 198, f"D11 组数 {G} == 198")
+    d08 = np.load(DATA_DIR / "exp06_D08.npz", allow_pickle=True)
+    G = len(d08["s_idx"])
+    hard(G == 198, f"D08 真机图层组数 {G} == 198")
 
     s03 = np.load(DATA_DIR.parent / "exp04" / "exp04_S03.npz")
     meta, th = s03["meta"], s03["theta"]
@@ -46,20 +46,20 @@ def main() -> None:
         th_map[(di, si, p)] = th[r][:npl * p]
     ok_th = True
     for i in range(G):
-        key = (int(d11["delta_idx"][i]), int(d11["s_idx"][i]),
-               int(d11["p"][i]))
+        key = (int(d08["delta_idx"][i]), int(d08["s_idx"][i]),
+               int(d08["p"][i]))
         ref = th_map.get(key)
-        if ref is None or not np.allclose(d11["theta"][i][:len(ref)], ref,
+        if ref is None or not np.allclose(d08["theta"][i][:len(ref)], ref,
                                           equal_nan=True):
             ok_th = False
             print(f"  θ 不一致组 {key}", flush=True)
     hard(ok_th, "θ 与 S03 同组逐元一致")
 
     # 三件套：counts + 缓解前 + 缓解后（H3）。
-    pre_ok = bool(np.all(np.isfinite(d11["spi_pre"]))) and bool(
-        np.all(np.isfinite(d11["ostr_pre"])))
-    post_ok = bool(np.all(np.isfinite(d11["spi_post"]))) and bool(
-        np.all(np.isfinite(d11["ostr_post"])))
+    pre_ok = bool(np.all(np.isfinite(d08["spi_pre"]))) and bool(
+        np.all(np.isfinite(d08["ostr_pre"])))
+    post_ok = bool(np.all(np.isfinite(d08["spi_post"]))) and bool(
+        np.all(np.isfinite(d08["ostr_post"])))
     hard(pre_ok and post_ok, "三件套：缓解前/后全有限（counts 见 batches）")
     batches = read_json(DATA_DIR / "batches.json")["batches"]
     counts_ok = True
@@ -82,11 +82,11 @@ def main() -> None:
         for gi, g in enumerate(batch):
             idx = None
             for i in range(G):
-                if (int(d11["delta_idx"][i]) == g["delta_idx"]
-                        and int(d11["s_idx"][i]) == g["s_idx"]
-                        and int(d11["p"][i]) == g["p"]):
+                if (int(d08["delta_idx"][i]) == g["delta_idx"]
+                        and int(d08["s_idx"][i]) == g["s_idx"]
+                        and int(d08["p"][i]) == g["p"]):
                     idx = i
-            if idx is None or int(d11["batch_id"][idx]) != bid:
+            if idx is None or int(d08["batch_id"][idx]) != bid:
                 batch_ok = False
             for r in range(5):
                 key = f"g{gi}_rep{r}"
@@ -105,6 +105,12 @@ def main() -> None:
     hard(s05_ok, "提交参数 correct=False 留存可查")
     hard(route_ok, "转译验路断言：CZ 边集 ⊆ 允许集")
 
+    # p*：manifest 记录与 npz 存档一致（D08a–d 顺序）。
+    p_star = manifest.get("p_star", {})
+    hard([int(p_star.get(k, -1)) for k in ("D08a", "D08b", "D08c", "D08d")]
+         == [int(v) for v in d08["p_star"]],
+         "p* manifest 与 npz 一致（D08a–d）")
+
     # 对账：无 invalid 残留。
     import glob as _glob
     inv = _glob.glob(str(DATA_DIR / "batches" / "*" / "invalid.json"))
@@ -112,16 +118,16 @@ def main() -> None:
 
     # 诊断（只记录）。
     print(f"诊断：缓解前后 |ΔS(π)| 均值 = "
-          f"{np.nanmean(np.abs(d11['spi_post'] - d11['spi_pre'])):.4f}")
+          f"{np.nanmean(np.abs(d08['spi_post'] - d08['spi_pre'])):.4f}")
     for di in (1, 2):
         for p in (1, 2, 3):
-            m = (d11["delta_idx"] == di) & (d11["p"] == p)
-            sd = d11["spi_std"][m]
+            m = (d08["delta_idx"] == di) & (d08["p"] == p)
+            sd = d08["spi_std"][m]
             med = np.median(sd)
             flag = np.nonzero(sd > 5 * med)[0]
             if len(flag):
                 print(f"诊断：δ{di} p{p} 离散度异常组（>5×中位数）{len(flag)} 个")
-    print("诊断：D12 真机–模拟机趋势一致性请目检出图")
+    print("诊断：D08 真机–模拟机趋势一致性请目检出图")
 
     if FAIL:
         print(f"VERIFY-EXP06-FAIL：{len(FAIL)} 项", flush=True)

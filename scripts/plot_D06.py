@@ -6,7 +6,7 @@ Circuit-leaning hybrid (not a literal qiskit circuit):
   qmeas.models.xxz pidx=0 middle-out CNOT fan-out, X/H omitted);
 - then two layer blocks U^(1) and U^(k) joined by vertical dots;
 - each block: F then S sublayer gate boxes (one rounded box per bond,
-  orbit colors; same color = shared (theta1, theta2)).
+  orbit colors; same color = shared (theta, phi)).
 Faithful to doc/theory/psi0.md + doc/theory/ansatz.md for L = 8 only:
 - D06a trivial: odd-bond singlet pairs; F = even (U_o U_e).
 - D06b topo: |s>_{1,8} link + even-bond singlet pairs; F = odd (U_e U_o).
@@ -69,8 +69,8 @@ def gate_box(ax, a, b, x, color, group, layer):
                          boxstyle="round,pad=0.02", facecolor="white",
                          edgecolor=color, linewidth=1.6)
     ax.add_patch(box)
-    ax.text(x, (ya + yb) / 2, f"$\\theta^{{({layer})}}_{{{group}1}}$" + "\n"
-            f"$\\theta^{{({layer})}}_{{{group}2}}$", ha="center",
+    ax.text(x, (ya + yb) / 2, f"$\\theta^{{({layer})}}_{{{group}}}$" + "\n"
+            f"$\\varphi^{{({layer})}}_{{{group}}}$", ha="center",
             va="center", fontsize=5.5, color=color, linespacing=1.7)
 
 
@@ -94,7 +94,7 @@ def finish(ax):
     ax.axis("off")
 
 
-# Orbit groups: same group + color = one shared (theta1, theta2).
+# Orbit groups: same group + color = one shared (theta, phi).
 ODD_BONDS = [((1, 2), 1), ((7, 8), 1),
              ((3, 4), 2), ((5, 6), 2)]
 EVEN_BONDS = [((2, 3), 3), ((6, 7), 3),

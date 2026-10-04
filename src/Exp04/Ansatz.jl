@@ -1,10 +1,10 @@
 # Orbit ansatz circuit for exp04 (doc/theory/ansatz.md), fixed statevector action.
 #
 # Odd bonds O_j=(2j-1,2j) pair as O_j <-> O_{M+1-j}; even bonds E_j=(2j,2j+1)
-# pair as E_j <-> E_{M-j} (at most one self-mirror bond). Per orbit one (t1,t2)
+# pair as E_j <-> E_{M-j} (at most one self-mirror bond). Per orbit one (tx,tz)
 # pair (δ=0: single t, structural halving). Sublayer order pairs with the init
 # state: triv/afm legs apply even first (F=e), topo leg odd first (F=o).
-# Each bond realizes RXX(t1)RYY(t1)RZZ(t2) fused into one 4x4.
+# Each bond realizes RXX(tx)RYY(tx)RZZ(tz) fused into one 4x4.
 # Basis convention identical to Shared01.Hamiltonian (LSB = site 1).
 # Pure kernel, no I/O.
 
@@ -81,7 +81,7 @@ end
 nparams(meta::AnsatzMeta, delta::Real, p::Integer) =
     (abs(Float64(delta)) < 1e-15 ? (meta.L ÷ 2) : meta.L) * Int(p)
 
-"""1-based t1 index of orbit oi within a layer block (t2 follows, unless halved)."""
+"""1-based tx index of orbit oi within a layer block (tz follows, unless halved)."""
 function _orbit_base(meta::AnsatzMeta, halved::Bool, isodd::Bool, oi::Integer)
     no = length(meta.odd_orbits)
     if isodd
@@ -182,9 +182,9 @@ function apply_circuit!(psi::Vector{ComplexF64}, psi_init::Vector{ComplexF64},
             orbs = sub == :odd ? meta.odd_orbits : meta.even_orbits
             for (oi, orb) in enumerate(orbs)
                 b = _orbit_base(meta, halved, sub == :odd, oi)
-                t1 = Float64(blk[b])
-                t2 = halved ? t1 : Float64(blk[b + 1])
-                U = _bond_unitary(t1, t1, t2)
+                tx = Float64(blk[b])
+                tz = halved ? tx : Float64(blk[b + 1])
+                U = _bond_unitary(tx, tx, tz)
                 for (a, c) in orb
                     apply_bond_vec!(psi, meta.bond_bases[(a, c)],
                                     1 << (a - 1), 1 << (c - 1), U)

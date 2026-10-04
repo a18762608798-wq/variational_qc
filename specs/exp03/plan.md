@@ -5,9 +5,9 @@
 - 主要模块：`SectorBasis`（`P=−2` 扇区轨道基矢 + 扇区矩阵组装）、
   `GapSolver`（逐点扇区对角化取最低两本征值 → `Δ`）、
   `CrossFit`（交点 bracketing + 线性插值、最小二乘拟合）、
-  `Store`（按 `L` 分块增量落盘 + 断点续算 + D02 组装）、
+  `Store`（按 `L` 分块增量落盘 + 断点续算 + D02a/b/c 组装）、
   薄编排 `scripts/run_exp03.jl`、生产断言 `scripts/verify_exp03.jl`、
-  出图 `scripts/plot_D02.py`（三独立图 `(a)/(b)/(c)`）。
+  出图 `scripts/plot_D02.py`（三独立图 `(a)=D02a` / `(b)=D02b` / `(c)=D02c`）。
 - 数据流：无外部输入（自含）→ 每 `(L,s)` 稀疏组装扇区 `H` → ARPACK 最低两根 →
   `Δ_sec` → 分块落盘 → 组装 `(i)(ii)` + `(iii)` 另两点（`L=20/24` 单点直算，
   同残差门控）→ 交点/拟合（拟合仅用 `20/24`）→ Python 出图。
@@ -45,17 +45,17 @@
   相邻两点线性插值，返回全部交点；零 bracketing 返回空，由调用层判 invalid）、
   `linear_fit(xs, ys)`（一次最小二乘，返回 `(a,b)`）；纯内核。
 - `src/Exp03/Store.jl`：按 `L` 分块 `.npz` + 完成表续算（同 exp01/exp02 模式，
-  任务内实现）；组装 `exp03_D02.npz`（(i) `Δ[3,99]`、(ii) `A[3,99]`、
-  交点表、(iii) 五点 + `(a,b)`，拟合仅用 `L=20/24`）+ `exp03_manifest.json`
+  任务内实现）；组装 `exp03_D02.npz`（三合一包：(i) `Δ[3,99]`→D02a、(ii) `A[3,99]`→D02b、
+  交点表、(iii) 五点 + `(a,b)`→D02c，拟合仅用 `L=20/24`）+ `exp03_manifest.json`
   （`H_DEF_ID` 引用、扇区维数、网格、`delta=0`、阈值、schema `exp03/v1`）；
   `(iii)` 另两点经 `solve_gap` 直算（残差门控同）存 `extra_iii` chunk，组装合并。
 - `scripts/run_exp03.jl`：薄编排（模块 API → 分块落盘 → extra 两点 → 组装；无输入门控，
   自含实验，但须记录 `H_DEF_ID` 语义一致）。
 - `scripts/verify_exp03.jl`：生产断言（见 §4，对正式输出全量执行）。
-- `scripts/plot_D02.py`：三独立图 `(a) Δ–s`（三 `L` 同图 + 各曲线同形最低点 marker）/
-  `(b) A–s`（三 `L` 同图 + 三对交点 marker，其中 `12–16` 用彩色 marker 并保留
+- `scripts/plot_D02.py`：三独立图 `(a) Δ–s`（→D02a，三 `L` 同图 + 各曲线同形最低点 marker）/
+  `(b) A–s`（→D02b，三 `L` 同图 + 三对交点 marker，其中 `12–16` 用彩色 marker 并保留
   图例注 `s` 值，另两对 marker 保留、图例省略）/
-  `(c) Δ–1/L`（五点 + `L=20/24` 两点拟合直线 + `(a,b)` 标注），风格经 `figure_style.py`，
+  `(c) Δ–1/L`（→D02c，五点 + `L=20/24` 两点拟合直线 + `(a,b)` 标注），风格经 `figure_style.py`，
   mathtext 标签，矢量 PDF + 300dpi PNG，落 `figs/exp03/`；坐标系自检见 §4。
 - `test/runtests.jl`：在既有文件追加 Exp03 testsets（见 §4）。
 
@@ -84,7 +84,7 @@
   预计总量共 `582` 点，约数分钟，中断可恢复；
   生产顺序按 `L=8`、`12`、`16`，先在小尺寸验证全链路再跑 `L=16`；
   `(iii)` 另两点（`L=20/24`）经独立 `extra_iii` chunk 落盘 + 进度位续算后并入组装。
-- 出图：matplotlib + `figure_style.py`，只读 D02 与版式元数据。
+- 出图：matplotlib + `figure_style.py`，只读 D02a/b/c 与版式元数据。
 - 关键依赖：Julia `LinearAlgebra` + `SparseArrays`（stdlib）、`Arpack.jl`、
   `NPZ.jl`、`JSON3.jl`（`Project`/`Manifest` 已更新并冻结）；
   Python 侧沿用 CondaPkg（numpy + matplotlib，现成）。
@@ -100,9 +100,9 @@ spec 验证条件的落实（硬断言，失败即 invalid）：
 - 组装：交点每对至少一个 bracketing（否则 invalid，不静默出图）；
   拟合 `(a,b)` 由存档 `L=20/24` 两点重算一致；(iii) 中 `L=8/12/16` 三点
   与 (i) `s=0.5` 条目一致（同一计算复用，构造性保证，断言锁定）。
-- 出图：三独立图顺序 `(a)(b)(c)` 与版式一致；交点 marker 坐标与存档交点表一致；
+- 出图：三独立图顺序 `(a)=D02a` / `(b)=D02b` / `(c)=D02c` 与版式一致；交点 marker 坐标与存档交点表一致；
   `(c)` 五点 + 拟合线（`20/24`）与存档一致；
-  底图坐标系与 D02 数据一致（脚本自检断言）。
+  底图坐标系与 D02a/b/c 数据一致（脚本自检断言）。
 - 单元测试：轨道基构造性（维数 `>0`、代表元磁化、算符不变性）；
   `L=8` 暴力一致；`L=16` 单点稠密全谱抽查；插值/拟合合成数据（已知交点直线、
   共线三点精确恢复）；`sector_hamiltonian` 非法 `L` 拒绝路径；

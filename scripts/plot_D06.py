@@ -1,14 +1,17 @@
 """D06a-c per-phase schematics (exp04 T009): zero data input, pure drawing.
 
+Circuit-leaning hybrid (not a literal qiskit circuit):
+- 8 horizontal qubit wires (site 1 top = logical 0), time flows left to right;
+- left column: init-state preparation marks (gray singlet bars / GHZ bracket);
+- middle columns: F then S sublayer gate boxes (one rounded box per bond,
+  orbit colors, labeled with orbit + (theta1, theta2));
+- dashed box = one layer U^(l) = U_S U_F, layers stack U^(1) -> ... -> U^(p).
 Faithful to doc/theory/psi0.md + doc/theory/ansatz.md for L = 8 only:
-- D06a trivial: init = odd-bond singlets; F = even acts first (U_o U_e).
-- D06b topo: init = |s>_{1,8} + even-bond singlets; F = odd acts first (U_e U_o).
-- D06c AFM: init = GHZ (no singlets); F = even acts first (U_o U_e).
-Orbit colors/pairing shared across figures:
-- odd-bond orbits O1 <-> O4, O2 <-> O3 (shared color per pair);
-- even-bond orbits E1 <-> E3, E2 self-mirror.
-Each layer U^(l) = U^(l)_S U^(l)_F, layers stack U^(1) -> ... -> U^(p).
-No gate types or connections beyond ansatz.md are drawn.
+- D06a trivial: odd-bond singlets; F = even (U_o U_e).
+- D06b topo: |s>_{1,8} + even-bond singlets; F = odd (U_e U_o).
+- D06c AFM: GHZ bracket; F = even (U_o U_e).
+Orbit colors/pairing: O1 <-> O4, O2 <-> O3 (shared color per pair);
+E1 <-> E3, E2 self-mirror. No gate types beyond ansatz.md are drawn.
 
 Project Python: .CondaPkg/.pixi/envs/default/bin/python.
 """
@@ -19,144 +22,153 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import Arc
+from matplotlib.patches import FancyBboxPatch
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 FIGDIR = os.path.join(HERE, "..", "figs", "exp04")
 
 GRAY = "0.45"
+N = 8
 
 
-def draw_chain(ax, bonds, title, note, arc_height=0.42, label_y=0.26,
-               ymax=0.62):
-    """8 sites in a row; bonds drawn as colored arcs above."""
-    xs = np.arange(8)
-    ax.plot(xs, np.zeros(8), color="black", linewidth=0.8, zorder=1)
-    ax.scatter(xs, np.zeros(8), s=36, color="white", edgecolors="black",
-               linewidths=0.8, zorder=3)
-    for i, x in enumerate(xs):
-        ax.text(x, -0.16, rf"${i + 1}$", ha="center", va="top", fontsize=7)
-    for (a, b, color, label) in bonds:
-        xa, xb = a - 1, b - 1
-        xm = (xa + xb) / 2
-        arc = Arc((xm, 0), width=abs(xb - xa), height=arc_height, theta1=0,
-                  theta2=180, color=color, linewidth=1.5)
-        ax.add_patch(arc)
-        ax.text(xm, label_y, label, ha="center", va="bottom", fontsize=6,
-                color=color)
-    ax.set_xlim(-0.7, 7.7)
-    ax.set_ylim(-0.35, ymax)
+def y_of(site):
+    """Site 1..8 top-down (site 1 = logical 0, qiskit-style top)."""
+    return N - site
+
+
+def draw_wires(ax, x0=0.0, x1=6.2):
+    xs = np.arange(N)
+    for i in range(N):
+        ax.plot([x0, x1], [y_of(i + 1)] * 2, color="black", linewidth=0.8,
+                zorder=1)
+        ax.scatter([x0], [y_of(i + 1)], s=36, color="white",
+                   edgecolors="black", linewidths=0.8, zorder=3)
+        ax.text(x0 - 0.25, y_of(i + 1), rf"${i + 1}$", ha="right",
+                va="center", fontsize=7)
+    ax.arrow(x1 + 0.1, -1.3, 0.6, 0, head_width=0.18, head_length=0.18,
+             fc="black", ec="black")
+    ax.text(x1 + 0.45, -1.65, "time", ha="center", va="top", fontsize=7)
+
+
+def singlet_bar(ax, a, b, x, label=None):
+    """Gray vertical bar linking two wires = one initial singlet."""
+    ya, yb = y_of(a), y_of(b)
+    ax.plot([x, x], [yb, ya], color=GRAY, linewidth=3.0, solid_capstyle="round")
+    if label:
+        ax.text(x + 0.12, (ya + yb) / 2, label, ha="left", va="center",
+                fontsize=6, color=GRAY)
+
+
+def gate_box(ax, a, b, x, color, orbit):
+    """One orbit bond gate box spanning two wires."""
+    ya, yb = y_of(a), y_of(b)
+    box = FancyBboxPatch((x - 0.42, yb - 0.32), 0.84, ya - yb + 0.64,
+                         boxstyle="round,pad=0.02", facecolor="white",
+                         edgecolor=color, linewidth=1.6)
+    ax.add_patch(box)
+    ax.text(x, (ya + yb) / 2, f"${orbit}$\n"
+            r"$(\theta_1,\theta_2)$", ha="center", va="center",
+            fontsize=6, color=color, linespacing=0.9)
+
+
+def layer_frame(ax, x0, x1, label):
+    frame = FancyBboxPatch((x0, -1.0), x1 - x0, 9.2,
+                           boxstyle="round,pad=0.05", facecolor="none",
+                           edgecolor="black", linewidth=1.0,
+                           linestyle=(0, (4, 3)))
+    ax.add_patch(frame)
+    ax.text((x0 + x1) / 2, 8.55, label, ha="center", va="bottom", fontsize=7)
+
+
+def finish(ax, title):
+    ax.set_xlim(-0.9, 7.0)
+    ax.set_ylim(-1.9, 9.3)
     ax.set_aspect("equal")
     ax.axis("off")
-    ax.set_title(title, fontsize=8)
-    ax.text(3.5, -0.33, note, ha="center", va="top", fontsize=6)
+    ax.set_title(title, fontsize=9)
 
 
-def draw_F_e(ax, cE1, cE2):
-    """First-acting even sublayer (triv/afm): same bonds as before."""
-    draw_chain(ax,
-               [(2, 3, cE1, r"$E_1$"), (6, 7, cE1, r"$E_3$"),
-                (4, 5, cE2, r"$E_2$")],
-               r"first $F=e$: even sublayer $U_e$ ($E_1\leftrightarrow E_3$, $E_2$ self-mirror)",
-               r"each orbit one $(\theta_1,\theta_2)$; bond $R_{XX}R_{YY}R_{ZZ}$")
+ODD_BONDS = [((1, 2), "O_1"), ((7, 8), "O_1"),
+             ((3, 4), "O_2"), ((5, 6), "O_2")]
+EVEN_BONDS = [((2, 3), "E_1"), ((6, 7), "E_3"),
+              ((4, 5), "E_2",)]
 
 
-def draw_S_o(ax, cO1, cO2):
-    """Second-acting odd sublayer (triv/afm)."""
-    draw_chain(ax,
-               [(1, 2, cO1, r"$O_1$"), (7, 8, cO1, r"$O_1$"),
-                (3, 4, cO2, r"$O_2$"), (5, 6, cO2, r"$O_2$")],
-               r"then $S=o$: odd sublayer $U_o$ ($O_1\leftrightarrow O_4$, $O_2\leftrightarrow O_3$)",
-               r"$U^{(l)}=U^{(l)}_SU^{(l)}_F$; layers $U^{(1)}\to\cdots\to U^{(p)}$")
-
-
-def draw_F_o(ax, cO1, cO2):
-    """First-acting odd sublayer (topo)."""
-    draw_chain(ax,
-               [(1, 2, cO1, r"$O_1$"), (7, 8, cO1, r"$O_1$"),
-                (3, 4, cO2, r"$O_2$"), (5, 6, cO2, r"$O_2$")],
-               r"first $F=o$: odd sublayer $U_o$ ($O_1\leftrightarrow O_4$, $O_2\leftrightarrow O_3$)",
-               r"each orbit one $(\theta_1,\theta_2)$; bond $R_{XX}R_{YY}R_{ZZ}$")
-
-
-def draw_S_e(ax, cE1, cE2):
-    """Second-acting even sublayer (topo)."""
-    draw_chain(ax,
-               [(2, 3, cE1, r"$E_1$"), (6, 7, cE1, r"$E_3$"),
-                (4, 5, cE2, r"$E_2$")],
-               r"then $S=e$: even sublayer $U_e$ ($E_1\leftrightarrow E_3$, $E_2$ self-mirror)",
-               r"$U^{(l)}=U^{(l)}_SU^{(l)}_F$; layers $U^{(1)}\to\cdots\to U^{(p)}$")
+def draw_sublayer(ax, bonds, x, colors, title):
+    for (a, b), orb in bonds:
+        gate_box(ax, a, b, x, colors[orb], orb)
+    ax.text(x, 8.0, title, ha="center", va="bottom", fontsize=7)
 
 
 def main():
-    from figure_style import apply_figure_style, finalize_figure, DEFAULT_PALETTE
+    from figure_style import apply_figure_style, finalize_figure
 
     palette = apply_figure_style()
-    cO1, cO2 = palette[0], palette[1]
-    cE1, cE2 = palette[2], palette[3]
+    cO = {"O_1": palette[0], "O_2": palette[1]}
+    cE = {"E_1": palette[2], "E_3": palette[2], "E_2": palette[3]}
 
     os.makedirs(FIGDIR, exist_ok=True)
 
-    # --- D06a trivial: odd-bond singlet product; F = e. ---
-    fig, axes = plt.subplots(3, 1, figsize=(7.0, 5.0))
-    draw_chain(axes[0],
-               [(1, 2, GRAY, r"$|s\rangle$"), (3, 4, GRAY, r"$|s\rangle$"),
-                (5, 6, GRAY, r"$|s\rangle$"), (7, 8, GRAY, r"$|s\rangle$")],
-               r"init $|\psi_{\rm triv}\rangle=\bigotimes_j|s\rangle_{2j-1,2j}$: odd-bond singlets",
-               r"gray = initial singlets (not orbit bonds)")
-    draw_F_e(axes[1], cE1, cE2)
-    draw_S_o(axes[2], cO1, cO2)
+    # --- D06a trivial: odd singlets; F = e (U_o U_e). ---
+    fig, ax = plt.subplots(figsize=(7.0, 5.0))
+    draw_wires(ax)
+    for (a, b), _ in [((1, 2), None), ((3, 4), None),
+                      ((5, 6), None), ((7, 8), None)]:
+        singlet_bar(ax, a, b, 0.55, r"$|s\rangle$")
+    ax.text(0.55, 8.0, r"init $|\psi_{\rm triv}\rangle$", ha="center",
+            va="bottom", fontsize=7)
+    draw_sublayer(ax, EVEN_BONDS, 2.3, cE, r"$F=e$: $U_e$")
+    draw_sublayer(ax, ODD_BONDS, 4.1, cO, r"$S=o$: $U_o$")
+    layer_frame(ax, 1.55, 4.85, r"one layer $U^{(l)}=U^{(l)}_SU^{(l)}_F$"
+                r", layers $U^{(1)}\to\cdots\to U^{(p)}$")
+    finish(ax, r"D06a trivial: odd-singlet init, even acts first")
     fig.tight_layout()
     finalize_figure(fig, os.path.join(FIGDIR, "exp04_D06a.pdf"))
     finalize_figure(fig, os.path.join(FIGDIR, "exp04_D06a.png"))
     plt.close(fig)
     print("wrote: figs/exp04/exp04_D06a.pdf + .png")
 
-    # --- D06b topo: |s>_{1,8} + even-bond singlets; F = o. ---
-    fig, axes = plt.subplots(3, 1, figsize=(7.0, 5.4))
-    draw_chain(axes[0],
-               [(2, 3, GRAY, r"$|s\rangle$"), (4, 5, GRAY, r"$|s\rangle$"),
-                (6, 7, GRAY, r"$|s\rangle$")],
-               r"init $|\psi_{\rm topo}\rangle=|s\rangle_{1,8}\otimes_j|s\rangle_{2j,2j+1}$",
-               r"gray = initial singlets (not orbit bonds)",
-               ymax=1.45)
-    axes[0].add_patch(Arc((3.5, 0), width=7, height=2.2, theta1=0,
-                          theta2=180, color=GRAY, linewidth=1.5))
-    axes[0].text(3.5, 1.18, r"$|s\rangle_{1,8}$", ha="center", va="bottom",
-                 fontsize=6, color=GRAY)
-    draw_F_o(axes[1], cO1, cO2)
-    draw_S_e(axes[2], cE1, cE2)
+    # --- D06b topo: |s>_{1,8} + even singlets; F = o (U_e U_o). ---
+    fig, ax = plt.subplots(figsize=(7.0, 5.0))
+    draw_wires(ax)
+    for (a, b) in [(2, 3), (4, 5), (6, 7)]:
+        singlet_bar(ax, a, b, 0.55, r"$|s\rangle$")
+    singlet_bar(ax, 1, 8, 0.05, None)
+    ax.text(0.05, 7.35, r"$|s\rangle_{1,8}$", ha="center", va="bottom",
+            fontsize=6, color=GRAY)
+    ax.text(0.55, 8.0, r"init $|\psi_{\rm topo}\rangle$", ha="center",
+            va="bottom", fontsize=7)
+    draw_sublayer(ax, ODD_BONDS, 2.3, cO, r"$F=o$: $U_o$")
+    draw_sublayer(ax, EVEN_BONDS, 4.1, cE, r"$S=e$: $U_e$")
+    layer_frame(ax, 1.55, 4.85, r"one layer $U^{(l)}=U^{(l)}_SU^{(l)}_F$"
+                r", layers $U^{(1)}\to\cdots\to U^{(p)}$")
+    finish(ax, r"D06b topo: $|s\rangle_{1,8}$ + even singlets, odd acts first")
     fig.tight_layout()
     finalize_figure(fig, os.path.join(FIGDIR, "exp04_D06b.pdf"))
     finalize_figure(fig, os.path.join(FIGDIR, "exp04_D06b.png"))
     plt.close(fig)
     print("wrote: figs/exp04/exp04_D06b.pdf + .png")
 
-    # --- D06c AFM: GHZ (no singlets); F = e. ---
-    fig, axes = plt.subplots(3, 1, figsize=(7.0, 5.0))
-    ax = axes[0]
-    xs = np.arange(8)
-    ax.plot(xs, np.zeros(8), color="black", linewidth=0.8, zorder=1)
-    ax.scatter(xs, np.zeros(8), s=36, color="white", edgecolors="black",
-               linewidths=0.8, zorder=3)
-    for i, x in enumerate(xs):
-        ax.text(x, -0.16, rf"${i + 1}$", ha="center", va="top", fontsize=7)
-    ax.plot([-0.5, 7.5], [0.42, 0.42], color=GRAY, linewidth=1.5)
-    ax.plot([-0.5, -0.5], [0.30, 0.42], color=GRAY, linewidth=1.5)
-    ax.plot([7.5, 7.5], [0.30, 0.42], color=GRAY, linewidth=1.5)
-    ax.text(3.5, 0.46,
-            r"init $|\psi_{\rm AFM}\rangle=(|0101\cdots\rangle+|1010\cdots\rangle)/\sqrt{2}$",
-            ha="center", va="bottom", fontsize=7, color=GRAY)
-    ax.set_xlim(-0.7, 7.7)
-    ax.set_ylim(-0.35, 0.72)
-    ax.set_aspect("equal")
-    ax.axis("off")
-    ax.set_title(r"init: GHZ, no singlet pairs", fontsize=8)
-    ax.text(3.5, -0.33, r"gray bracket = global superposition (not bonds)",
-            ha="center", va="top", fontsize=6)
-    draw_F_e(axes[1], cE1, cE2)
-    draw_S_o(axes[2], cO1, cO2)
+    # --- D06c AFM: GHZ bracket; F = e (U_o U_e). ---
+    fig, ax = plt.subplots(figsize=(7.0, 5.0))
+    draw_wires(ax)
+    ax.plot([0.35, 0.35], [y_of(8) - 0.2, y_of(1) + 0.2], color=GRAY,
+            linewidth=2.0, solid_capstyle="round")
+    ax.plot([0.35, 0.6], [y_of(8) - 0.2] * 2, color=GRAY, linewidth=2.0)
+    ax.plot([0.35, 0.6], [y_of(1) + 0.2] * 2, color=GRAY, linewidth=2.0)
+    ax.text(0.7, 7.45, r"init $|\psi_{\rm AFM}\rangle$", ha="center",
+            va="bottom", fontsize=7, color=GRAY)
+    ax.text(2.75, -1.55,
+            r"$|\psi_{\rm AFM}\rangle=\frac{|0101\cdots\rangle"
+            r"+|1010\cdots\rangle}{\sqrt{2}}$",
+            ha="center", va="top", fontsize=7, color=GRAY)
+    draw_sublayer(ax, EVEN_BONDS, 2.6, cE, r"$F=e$: $U_e$")
+    draw_sublayer(ax, ODD_BONDS, 4.4, cO,
+                  r"$S=o$: $U_o$")
+    layer_frame(ax, 1.85, 5.15, r"one layer $U^{(l)}=U^{(l)}_SU^{(l)}_F$"
+                r", layers $U^{(1)}\to\cdots\to U^{(p)}$")
+    finish(ax, r"D06c AFM: GHZ init, even acts first")
     fig.tight_layout()
     finalize_figure(fig, os.path.join(FIGDIR, "exp04_D06c.pdf"))
     finalize_figure(fig, os.path.join(FIGDIR, "exp04_D06c.png"))

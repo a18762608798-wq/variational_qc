@@ -1,6 +1,7 @@
-"""D10 result curves (exp04 T006): 4 figures = 2 δ-lines x {S(pi), string}.
+"""S06 diagnostic curves (exp04 T006): 4 figures = 2 δ-lines x {S(pi), string}.
 
-Reads data/exp04/exp04_D10.npz only; no physics recomputed.
+Diagnostic only (not a paper product; paper shows D08 overlays).
+Reads data/exp04/exp04_S06.npz only; no physics recomputed.
 Each figure overlays p = 1, 2, 3. Style via scripts/figure_style.py.
 Self-checks grids, shapes, and winner/min-leg agreement before plotting.
 
@@ -29,7 +30,7 @@ def main():
     from figure_style import apply_figure_style, finalize_figure, DEFAULT_PALETTE
 
     palette = apply_figure_style()
-    d = np.load(os.path.join(DATA, "exp04_D10.npz"))
+    d = np.load(os.path.join(DATA, "exp04_S06.npz"))
 
     assert list(d["deltas"]) == [0.0, 0.85]
     s = None
@@ -64,10 +65,10 @@ def main():
             ax.set_ylabel(ylabel)
             ax.set_title(rf"{dlabel} VQE")
             ax.legend(frameon=False, fontsize=7)
-            finalize_figure(fig, os.path.join(FIGDIR, f"exp04_D10_{tag}_{key}.pdf"))
-            finalize_figure(fig, os.path.join(FIGDIR, f"exp04_D10_{tag}_{key}.png"))
+            finalize_figure(fig, os.path.join(FIGDIR, f"exp04_S06_{tag}_{key}.pdf"))
+            finalize_figure(fig, os.path.join(FIGDIR, f"exp04_S06_{tag}_{key}.png"))
             plt.close(fig)
-            print(f"wrote: figs/exp04/exp04_D10_{tag}_{key}.pdf + .png")
+            print(f"wrote: figs/exp04/exp04_S06_{tag}_{key}.pdf + .png")
 
 
 if __name__ == "__main__":

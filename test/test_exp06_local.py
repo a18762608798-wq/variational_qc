@@ -97,21 +97,21 @@ def test_init_support_and_sector():
 def test_single_bond_unitary():
     from qiskit.quantum_info import Operator
     from qiskit import QuantumCircuit
-    t1, t2 = 0.7, -0.3
+    tx, tz = 0.7, -0.3
     qc = QuantumCircuit(2)
-    qc.rxx(t1, 0, 1)
-    qc.ryy(t1, 0, 1)
-    qc.rzz(t2, 0, 1)
+    qc.rxx(tx, 0, 1)
+    qc.ryy(tx, 0, 1)
+    qc.rzz(tz, 0, 1)
     U = np.asarray(Operator(qc).data)
     # 手算 RZZ·RYY·RXX（|q1 q0> 基，q0 快）。
-    c1, s1 = np.cos(t1 / 2), np.sin(t1 / 2)
-    c2, s2 = np.cos(t2 / 2), np.sin(t2 / 2)
+    c1, s1 = np.cos(tx / 2), np.sin(tx / 2)
+    c2, s2 = np.cos(tz / 2), np.sin(tz / 2)
     RXX = np.array([[c1, 0, 0, -1j * s1], [0, c1, -1j * s1, 0],
                     [0, -1j * s1, c1, 0], [-1j * s1, 0, 0, c1]])
     RYY = np.array([[c1, 0, 0, 1j * s1], [0, c1, -1j * s1, 0],
                     [0, -1j * s1, c1, 0], [1j * s1, 0, 0, c1]])
-    RZZ = np.diag([np.exp(-1j * t2 / 2), np.exp(1j * t2 / 2),
-                   np.exp(1j * t2 / 2), np.exp(-1j * t2 / 2)])
+    RZZ = np.diag([np.exp(-1j * tz / 2), np.exp(1j * tz / 2),
+                   np.exp(1j * tz / 2), np.exp(-1j * tz / 2)])
     assert np.allclose(U, RZZ @ RYY @ RXX, atol=1e-12)
 
 
@@ -133,10 +133,10 @@ def test_orbit_param_layout():
         build_init(4)
 
 
-def test_golden_cross_vs_d10():
-    """Aer 黄金交叉：抽样组 Qiskit 电路 vs D10 S(π)/string（容限 1e-8）。"""
+def test_golden_cross_vs_s06():
+    """Aer 黄金交叉：抽样组 Qiskit 电路 vs S06 S(π)/string（容限 1e-8）。"""
     s03 = np.load(PROJ / "data/exp04/exp04_S03.npz")
-    d10 = np.load(PROJ / "data/exp04/exp04_D10.npz")
+    s06 = np.load(PROJ / "data/exp04/exp04_S06.npz")
     meta, th = s03["meta"], s03["theta"]
     deltas = s03["deltas"]
     n_checked = 0
@@ -152,9 +152,9 @@ def test_golden_cross_vs_d10():
                     th[r][:npl * p], a, p, float(delta)))
                 probs = probs_of(psi)
                 assert s_pi_of(probs) == pytest.approx(
-                    d10[f"{tag}_spi"][si - 1, p - 1], abs=1e-8)
+                    s06[f"{tag}_spi"][si - 1, p - 1], abs=1e-8)
                 assert string_of(probs) == pytest.approx(
-                    d10[f"{tag}_ostr"][si - 1, p - 1], abs=1e-8)
+                    s06[f"{tag}_ostr"][si - 1, p - 1], abs=1e-8)
                 n_checked += 1
     assert n_checked == 18
 
@@ -185,6 +185,54 @@ def test_minmax_normalize():
     from exp06_assemble import minmax_norm  # noqa: E402
     x = np.array([0.5, 0.7, 0.6])
     assert np.allclose(minmax_norm(x), [0.0, 1.0, 0.5])
+
+
+def test_obs_basis_agrees_with_loop():
+    from exp06_assemble import (  # noqa: E402
+        obs_basis_arrays,
+        obs_from_probs,
+    )
+    o_spi, o_ostr = obs_basis_arrays()
+    rng = np.random.default_rng(1)
+    p = rng.random(256)
+    p /= p.sum()
+    a, b = obs_from_probs(p)
+    assert a == pytest.approx(float(p @ o_spi))
+    assert b == pytest.approx(float(p @ o_ostr))
+
+
+def test_pooled_shot_se_closed_forms():
+    from exp06_assemble import obs_basis_arrays, pooled_shot_se  # noqa: E402
+    o_spi, _ = obs_basis_arrays()
+    # δ 分布 → 均值为该点值，SE=0（sum_p 为 5 批累加）。
+    d = np.zeros(256)
+    d[17] = 5.0
+    mu, se = pooled_shot_se(d, 5, o_spi, 2048)
+    assert mu == pytest.approx(o_spi[17])
+    assert se == pytest.approx(0.0)
+    # 均匀分布 → 闭式均值/方差，N=5×2048。
+    u = np.full(256, 5 / 256)
+    mu, se = pooled_shot_se(u, 5, o_spi, 2048)
+    assert mu == pytest.approx(float(np.mean(o_spi)))
+    var = float(np.mean(o_spi * o_spi)) - float(np.mean(o_spi)) ** 2
+    assert se == pytest.approx((var / (5 * 2048)) ** 0.5)
+
+
+def test_pick_pstar_same_p():
+    from exp06_assemble import pick_pstar  # noqa: E402
+    s_idx = np.tile(np.arange(1, 34), 3)
+    p_arr = np.repeat([1, 2, 3], 33)
+    m = np.ones(99, dtype=bool)
+    # 三线各异时选中与同层最贴合的 p（旧 p=3 对标规则会选 p=2，此处须选 p=1）。
+    ref = np.repeat([0.0, 0.5, 1.0], 33)
+    hw = np.repeat([0.01, 0.80, 0.0], 33)
+    assert pick_pstar(hw, ref, s_idx, p_arr, m) == 1
+    # 并列取小 p；乱序输入按 s_idx 对齐结果不变。
+    hw_tie = np.repeat([0.0, 0.5, 1.0], 33)
+    assert pick_pstar(hw_tie, ref, s_idx, p_arr, m) == 1
+    perm = np.random.default_rng(0).permutation(99)
+    assert pick_pstar(hw[perm], ref[perm], s_idx[perm], p_arr[perm],
+                      m[perm]) == 1
 
 
 def test_manifest_schema():

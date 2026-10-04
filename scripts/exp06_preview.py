@@ -24,7 +24,7 @@ from exp06_common import (  # noqa: E402
 )
 
 CHAIN_TOP1 = [77, 76, 75, 74, 73, 72, 71, 70]
-SUBCHAIN_TOP1 = [84, 83, 82, 69, 70, 71, 72, 73]  # D09 Rank1（Baihua 冠军环内）
+SUBCHAIN_TOP1 = [84, 83, 82, 69, 70, 71, 72, 73]  # D07c Rank1（Baihua 冠军环内）
 
 
 def main() -> None:

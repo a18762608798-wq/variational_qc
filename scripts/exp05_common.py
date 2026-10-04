@@ -53,7 +53,7 @@ def canonical_ring(ring: list[int]) -> tuple[int, ...]:
 
 
 def subchain_windows(ring: list[int], length: int = 8) -> list[list[int]]:
-    """冠军环内连续子链滑窗（含跨接缝闭合段），共 len(ring) 条（spec D09）。"""
+    """冠军环内连续子链滑窗（含跨接缝闭合段），共 len(ring) 条（spec D07c）。"""
     n = len(ring)
     return [ring[i:i + length] if i + length <= n
             else ring[i:] + ring[:i + length - n]

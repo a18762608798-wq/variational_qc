@@ -49,7 +49,7 @@ function check_line(d10, tag::String, delta::Real, stag_tol::Real)
 end
 
 function main()
-    d10 = NPZ.npzread(joinpath(DATA_DIR, "exp04_D10.npz"))
+    d10 = NPZ.npzread(joinpath(DATA_DIR, "exp04_S06.npz"))
     s03 = NPZ.npzread(joinpath(DATA_DIR, "exp04_S03.npz"))
     manifest = open(JSON3.read, joinpath(DATA_DIR, "exp04_manifest.json"))
     stag_tol = manifest["stag_tol"]  # single source: same threshold as production gate
@@ -59,7 +59,7 @@ function main()
     check_line(d10, "d0", 0.0, stag_tol)
     check_line(d10, "d085", 0.85, stag_tol)
 
-    # S03: 594 groups reference the same D10 values.
+    # S03: 594 groups reference the same S06 values.
     th, meta = s03["theta"], s03["meta"]
     @assert size(th) == (594, THETA_MAX) && size(meta) == (594, 4)
     r = 0

@@ -29,7 +29,7 @@ $$
 
 * $H$ 及其分量 $H_{o},H_{e}$ 均与 $Z_{\rm tot}=\sum_{m=1}^{L}Z_{m}$、$\prod_{m=1}^{L}X_{m}$ 和全链反射 $R$（$m\leftrightarrow L+1-m$）对易。
 * 由它们构成的演化算符保持这三个对称性(这关系到拟设的构建)，不发生对称性扇区跃迁，$P$ 守恒。
-* $\delta\neq0$：$U(1)$ 对称（$Z_{\rm tot}$ 守恒）；$\delta=0$：$U(1)\to SU(2)$，增加总自旋平方 $S^{2}=\sum_{a=x,y,z}S_{a}^{2}$（$S_{a}=\frac12\sum_{m}A_{m}$，$A=X,Y,Z$）守恒，键内各向同性，与 ansatz 中 $\theta_{1}=\theta_{2}$ 对应。
+* $\delta\neq0$：$U(1)$ 对称（$Z_{\rm tot}$ 守恒）；$\delta=0$：$U(1)\to SU(2)$，增加总自旋平方 $S^{2}=\sum_{a=x,y,z}S_{a}^{2}$（$S_{a}=\frac12\sum_{m}A_{m}$，$A=X,Y,Z$）守恒，键内各向同性，与 ansatz 中 $\theta=\varphi$ 对应。
 
 ## 对称性惩罚的 H'
 

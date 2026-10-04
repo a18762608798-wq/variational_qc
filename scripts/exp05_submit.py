@@ -3,7 +3,7 @@
 必须用 qmeas env python 运行，且 bill.json confirmed=true（人工确认）后才执行：
   $QPY scripts/exp05_submit.py [--supp]
 
---supp：只补跑 D09 缺失子链（读 supp_chain.json，独立 ckpt 命名空间 exp05_supp）。
+--supp：只补跑 D07c 缺失子链（读 supp_chain.json，独立 ckpt 命名空间 exp05_supp）。
 对账层（exp05 侧，不改 qmeas）：ckpt 扫描 → 缺失补跑（≤2 轮）→ 仍缺失判 invalid。
 中断续跑只补缺失：已有 tid 只轮询不重提（内核保证），已收回永不重提。
 """
@@ -134,7 +134,7 @@ def run_shape(shape: str, length: int, chains: dict[str, list],
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--supp", action="store_true", help="只补跑 D09 缺失子链")
+    ap.add_argument("--supp", action="store_true", help="只补跑 D07c 缺失子链")
     ap.add_argument("--reuse-shenglian-from", default=None,
                     help="拷贝上轮 Shenglian 链 checkpoints，免重提交 "
                          "(如 data/exp05_run1_20261003)")

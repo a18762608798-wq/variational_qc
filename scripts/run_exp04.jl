@@ -16,7 +16,7 @@ using Exp04
 using Exp04.InitStates: LEG_LABELS, psi_init
 using Exp04.Ansatz: build_meta, nparams, apply_circuit!
 using Exp04.VQELoop: run_point, expect_ztot, overlap_xbar, overlap_reflect
-using Exp04.Store: save_line, completed_lines, assemble_D10_S03,
+using Exp04.Store: save_line, completed_lines, assemble_S06_S03,
                     DELTAS, S_GRID, THETA_MAX, LINE_ID
 
 const OUT_DIR = joinpath(@__DIR__, "..", "data", "exp04")
@@ -104,8 +104,8 @@ function main()
         println("δ=$delta done in $(round(time() - t0, digits=1))s")
         flush(stdout)
     end
-    d10, s03, manifest = assemble_D10_S03(OUT_DIR)
-    println("wrote: $d10")
+    s06, s03, manifest = assemble_S06_S03(OUT_DIR)
+    println("wrote: $s06")
     println("wrote: $s03")
     println("wrote: $manifest")
 end

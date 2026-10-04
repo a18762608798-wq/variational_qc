@@ -1,4 +1,4 @@
-"""D02 appendix plots (exp03 T006): three separate figures (a)/(b)/(c).
+"""D02 appendix plots (exp03 T006): three separate figures (a)=D02a / (b)=D02b / (c)=D02c.
 
 Reads data/exp03/exp03_D02.npz only; no physics recomputed.
 (a) Delta vs s + per-curve minima (same simple marker),

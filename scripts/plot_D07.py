@@ -66,23 +66,23 @@ def stacked_rank_fig(scores, stabs, fros, chips, title, out) -> None:
 
 
 def main() -> None:
-    d07 = np.load(DATA_DIR / "exp05_D07.npz", allow_pickle=True)
+    d07 = np.load(DATA_DIR / "exp05_D07a.npz", allow_pickle=True)
     i7 = np.argsort(-d07["score"])[:10]
     stacked_rank_fig(d07["score"][i7], d07["stab_mean"][i7],
                      d07["readout_fid"][i7], d07["chip"][i7],
-                     r"$8$-chain ranking top 10", "exp05_D07")
+                     r"$8$-chain ranking top 10", "exp05_D07a")
 
-    d08 = np.load(DATA_DIR / "exp05_D08.npz", allow_pickle=True)
+    d08 = np.load(DATA_DIR / "exp05_D07b.npz", allow_pickle=True)
     i8 = np.argsort(-d08["score"])[:10]
     stacked_rank_fig(d08["score"][i8], d08["stab_mean"][i8],
                      d08["readout_fid"][i8], d08["chip"][i8],
-                     r"$10$-ring ranking top 10", "exp05_D08")
+                     r"$10$-ring ranking top 10", "exp05_D07b")
 
-    d09 = np.load(DATA_DIR / "exp05_D09.npz", allow_pickle=True)
+    d09 = np.load(DATA_DIR / "exp05_D07c.npz", allow_pickle=True)
     i9 = np.argsort(-d09["score"])
     stacked_rank_fig(d09["score"][i9], d09["stab_mean"][i9],
                      d09["readout_fid"][i9], d09["chip"][i9],
-                     r"$8$-subchains in champion ring", "exp05_D09")
+                     r"$8$-subchains in champion ring", "exp05_D07c")
     print("出图完成 figs/exp05/")
 
 

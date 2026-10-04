@@ -21,14 +21,14 @@
   `linear_fit(xs, ys)`（一次最小二乘）；纯内核。
   完成条件：合成数据（已知交点直线、共线三点）精确恢复（由 T007 锁定）。
 - [x] T004 实现 `src/Exp03/Store.jl`：按 `L` 分块 `.npz` + 完成表续算；
-  组装 `exp03_D02.npz`（(i) `Δ[3,99]`、(ii) `A[3,99]`、交点表、
-  (iii) 三点 + `(a,b)`）+ `exp03_manifest.json`（schema `exp03/v1`）。
+  组装 `exp03_D02.npz`（三合一包：(i) `Δ[3,99]`→D02a、(ii) `A[3,99]`→D02b、交点表、
+  (iii) 三点 + `(a,b)`→D02c）+ `exp03_manifest.json`（schema `exp03/v1`）。
   完成条件：中断续算一致（删块重跑组装不变）。
 - [x] T005 编写 `scripts/run_exp03.jl`（模块 API → 分块落盘 → 组装）
   并执行全点生产（`3 × 194` 扇区对角化；顺序 `L=8`、`12`、`16`）。
   完成条件：`exp03_D02.npz` + manifest 落盘，形状与网格定义一致。
-- [x] T006 出图（`scripts/plot_D02.py`）：三联图 `(a) Δ–s` / `(b) A–s` + 交点 /
-  `(c) Δ–1/L` + 拟合直线与 `(a,b)` 标注（mathtext 标签，`figure_style.py`
+- [x] T006 出图（`scripts/plot_D02.py`）：三联图 `(a) Δ–s`→D02a / `(b) A–s` + 交点→D02b /
+  `(c) Δ–1/L` + 拟合直线与 `(a,b)` 标注→D02c（mathtext 标签，`figure_style.py`
   风格，矢量 PDF + 300dpi PNG 落 `figs/exp03/`）。
   完成条件：坐标系自检通过，三联顺序正确，交点 marker 与存档交点表一致，
   附 skill 风格检查报告块。
@@ -48,7 +48,7 @@
 - [x] T009 代码：`MAX_L 20→26`；`Store` 增 `extra_iii` chunk（存 `L=20/24` 单点、
   进度位续算）+ 组装合并（`fit_x/fit_y` 五点、拟合仅用后两点）+ manifest 字段；
   `run_exp03.jl` 增 extra 步骤；`verify_exp03.jl` 按新口径（五点形状、两点拟合重算、
-  仅前三点与 (i) 一致）；`plot_D02.py` 仅重出 `(c)`（五点 + 两点拟合线）；
+  仅前三点与 (i) 一致）；`plot_D02.py` 仅重出 `(c)`→D02c（五点 + 两点拟合线）；
   单元测试追加两点拟合合成小例。
   完成条件：`runtests.jl` 全绿。
 - [x] T010 生产：执行 extra 两点（约 3 分钟）→ 重组装 → `verify_exp03.jl` 全量通过

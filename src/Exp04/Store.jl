@@ -1,5 +1,5 @@
 # Incremental persistence for exp04 (constitution IV).
-# Chunks: one .npz per δ line + progress manifest + D10/S03 assembly.
+# Chunks: one .npz per δ line + progress manifest + S06/S03 assembly.
 # I/O only; physics lives in InitStates/Ansatz/VQELoop (+ read-only Exp02 kernels).
 
 module Store
@@ -9,9 +9,9 @@ using Shared01.Hamiltonian: H_DEF_ID  # provenance only; load Shared01 first
 using ..VQELoop: PointResult, MASTER_SEED, N_GLOBAL, TOP_K, G_TOL, X_TOL, F_TOL,
                   MAX_ITERS, SAMPLE_RANGE, STAG_WINDOW, STAG_TOL, STAG_E_TOL
 
-export save_line, completed_lines, assemble_D10_S03,
+export save_line, completed_lines, assemble_S06_S03,
        SCHEMA, DELTAS, S_GRID, THETA_MAX,
-       LINE_ID, D10_NPZ_NAME, S03_NPZ_NAME, MANIFEST_NAME
+       LINE_ID, S06_NPZ_NAME, S03_NPZ_NAME, MANIFEST_NAME
 
 const SCHEMA = "exp04/v1"
 const DELTAS = (0.0, 0.85)
@@ -19,7 +19,7 @@ const S_GRID = [i / 100 for i in 1:99]  # spec §3: same convention as S01
 const THETA_MAX = 24                     # max Nθ (δ≠0, p=3); shorter padded with NaN
 const CHUNKS_DIRNAME = "chunks"
 const PROGRESS_NAME = "progress.json"
-const D10_NPZ_NAME = "exp04_D10.npz"
+const S06_NPZ_NAME = "exp04_S06.npz"
 const S03_NPZ_NAME = "exp04_S03.npz"
 const MANIFEST_NAME = "exp04_manifest.json"
 
@@ -61,8 +61,8 @@ function save_line(dir::AbstractString, delta::Real, payload::Dict)
     return path
 end
 
-"""Assemble both line chunks into D10 + S03 products + manifest (hard asserts inside)."""
-function assemble_D10_S03(dir::AbstractString)
+"""Assemble both line chunks into S06 + S03 products + manifest (hard asserts inside)."""
+function assemble_S06_S03(dir::AbstractString)
     done = _read_progress(dir)
     length(done) == length(DELTAS) ||
         throw(ErrorException("only $(length(done))/$(length(DELTAS)) lines complete"))
@@ -81,8 +81,8 @@ function assemble_D10_S03(dir::AbstractString)
         minimum(vec(c["E_star"]) - vec(repeat(vec(c["e0"]), 1, 3))) ≥ -1e-8 ||
             throw(ErrorException("variational violation line $delta"))
     end
-    d10_path = joinpath(dir, D10_NPZ_NAME)
-    tmp = d10_path * ".tmp"
+    s06_path = joinpath(dir, S06_NPZ_NAME)
+    tmp = s06_path * ".tmp"
     flat = Dict{String,Any}("s_grid" => S_GRID, "deltas" => collect(DELTAS))
     for (delta, tag) in [(0.0, "d0"), (0.85, "d085")]
         for k in ("theta_star", "E_star", "a_star", "spi", "ostr", "e0",
@@ -91,8 +91,8 @@ function assemble_D10_S03(dir::AbstractString)
         end
     end
     NPZ.npzwrite(tmp, flat)
-    mv(tmp, d10_path; force=true)
-    # S03: flat 594 groups (δ,s,p,θ*,a*) referencing the same D10 values.
+    mv(tmp, s06_path; force=true)
+    # S03: flat 594 groups (δ,s,p,θ*,a*) referencing the same S06 values.
     th = zeros(2 * 99 * 3, THETA_MAX) .* NaN
     meta_rows = zeros(Int, 2 * 99 * 3, 4)  # (δ_idx, s_idx, p, a*)
     r = 0
@@ -135,7 +135,7 @@ function assemble_D10_S03(dir::AbstractString)
     open(manifest_path, "w") do io
         JSON3.write(io, manifest)
     end
-    return d10_path, s03_path, manifest_path
+    return s06_path, s03_path, manifest_path
 end
 
 end # module

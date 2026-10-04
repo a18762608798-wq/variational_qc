@@ -187,6 +187,37 @@ def test_minmax_normalize():
     assert np.allclose(minmax_norm(x), [0.0, 1.0, 0.5])
 
 
+def test_obs_basis_agrees_with_loop():
+    from exp06_assemble import (  # noqa: E402
+        obs_basis_arrays,
+        obs_from_probs,
+    )
+    o_spi, o_ostr = obs_basis_arrays()
+    rng = np.random.default_rng(1)
+    p = rng.random(256)
+    p /= p.sum()
+    a, b = obs_from_probs(p)
+    assert a == pytest.approx(float(p @ o_spi))
+    assert b == pytest.approx(float(p @ o_ostr))
+
+
+def test_pooled_shot_se_closed_forms():
+    from exp06_assemble import obs_basis_arrays, pooled_shot_se  # noqa: E402
+    o_spi, _ = obs_basis_arrays()
+    # δ 分布 → 均值为该点值，SE=0（sum_p 为 5 批累加）。
+    d = np.zeros(256)
+    d[17] = 5.0
+    mu, se = pooled_shot_se(d, 5, o_spi, 2048)
+    assert mu == pytest.approx(o_spi[17])
+    assert se == pytest.approx(0.0)
+    # 均匀分布 → 闭式均值/方差，N=5×2048。
+    u = np.full(256, 5 / 256)
+    mu, se = pooled_shot_se(u, 5, o_spi, 2048)
+    assert mu == pytest.approx(float(np.mean(o_spi)))
+    var = float(np.mean(o_spi * o_spi)) - float(np.mean(o_spi)) ** 2
+    assert se == pytest.approx((var / (5 * 2048)) ** 0.5)
+
+
 def test_pick_pstar_same_p():
     from exp06_assemble import pick_pstar  # noqa: E402
     s_idx = np.tile(np.arange(1, 34), 3)

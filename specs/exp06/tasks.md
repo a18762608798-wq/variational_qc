@@ -37,7 +37,7 @@
   转译门执行待 H1 解决（见文件头）。
 - [ ] T004 编写 `scripts/exp06_assemble.py` 并组装产品：S05 矩阵 →
   Kronecker-`M⁻¹` 缓解 + 非负约束 → `S(π)`/string（公式只读复刻 Exp02）→
-  写 `data/exp06/exp06_D08.npz`（全量 198 组缓解后均值/std/每重复三件套/
+  写 `data/exp06/exp06_D08.npz`（全量 198 组缓解后均值/全并解析 SE/每重复三件套/
   S03 与 S05 引用 + 每面板 `p*` 选取（规则见 spec §4：归一化后同层对标）+
   S06 快照引用与归一化区间）+
   `exp06_manifest.json`（schema `exp06/v1`，含 `p*` 与归一化区间记录）。

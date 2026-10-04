@@ -14,6 +14,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from exp06_common import (  # noqa: E402
     DATA_DIR,
+    REPS,
+    SHOTS,
     read_json,
 )
 from exp06_submit import allowed_edges  # noqa: E402
@@ -55,6 +57,55 @@ def main() -> None:
             print(f"  θ 不一致组 {key}", flush=True)
     hard(ok_th, "θ 与 S03 同组逐元一致")
 
+    # 全并解析 SE 重算锁定（spec 口径）：逐组用 batch counts + S05 独立重算，
+    # 与 npz 存档比对（容限内）；三件套 counts 由上条覆盖。
+    from exp06_assemble import (  # noqa: E402
+        group_Ms,
+        mitigate_counts,
+        obs_basis_arrays,
+        pooled_shot_se,
+    )
+    _REPS, _SHOTS = REPS, SHOTS
+    O_SPI, O_OSTR = obs_basis_arrays()
+    info = read_json(DATA_DIR / "batches.json")
+    phys_of = {1: info["chain_top1"], 3: info["chain_top1"],
+               2: info["subchain_top1"]}
+    se_ok = True
+    for bid, batch in enumerate(batches):
+        st = read_json(DATA_DIR / "batches" / f"{bid:03d}" / "state.json")
+        Ms = group_Ms({k: st["counts"][k] for k in ("cal_zero", "cal_one")},
+                      phys_of[batch[0]["a_star"]])
+        for gi, g in enumerate(batch):
+            idx = None
+            for i in range(G):
+                if (int(d08["delta_idx"][i]) == g["delta_idx"]
+                        and int(d08["s_idx"][i]) == g["s_idx"]
+                        and int(d08["p"][i]) == g["p"]):
+                    idx = i
+            if idx is None:
+                se_ok = False
+                continue
+            dists = [mitigate_counts(st["counts"][f"g{gi}_rep{r}"], Ms)
+                     for r in range(_REPS)]
+            mu_s, se_s = pooled_shot_se(sum(dists), len(dists), O_SPI,
+                                        _SHOTS)
+            mu_o, se_o = pooled_shot_se(sum(dists), len(dists), O_OSTR,
+                                        _SHOTS)
+            if not (np.isclose(mu_s, d08["spi_mean"][idx], rtol=1e-9,
+                               atol=1e-12)
+                    and np.isclose(se_s, d08["spi_std"][idx], rtol=1e-9,
+                                   atol=1e-12)
+                    and np.isclose(mu_o, d08["ostr_mean"][idx], rtol=1e-9,
+                                   atol=1e-12)
+                    and np.isclose(se_o, d08["ostr_std"][idx], rtol=1e-9,
+                                   atol=1e-12)):
+                se_ok = False
+                print(f"  全并 SE 不一致组 {(g['delta_idx'], g['s_idx'], g['p'])}",
+                      flush=True)
+    hard(se_ok, "全并解析 SE（均值+棒）重算一致")
+    hard(manifest.get("stderr_def") == "pooled-multinomial-analytic",
+         "manifest 误差棒口径记录")
+
     # 三件套：counts + 缓解前 + 缓解后（H3）。
     pre_ok = bool(np.all(np.isfinite(d08["spi_pre"]))) and bool(
         np.all(np.isfinite(d08["ostr_pre"])))
@@ -66,7 +117,7 @@ def main() -> None:
     for bid, batch in enumerate(batches):
         st = read_json(DATA_DIR / "batches" / f"{bid:03d}" / "state.json")
         for gi in range(len(batch)):
-            for r in range(5):
+            for r in range(REPS):
                 c = st["counts"].get(f"g{gi}_rep{r}", {})
                 if not c or sum(c.values()) == 0:
                     counts_ok = False
@@ -88,7 +139,7 @@ def main() -> None:
                     idx = i
             if idx is None or int(d08["batch_id"][idx]) != bid:
                 batch_ok = False
-            for r in range(5):
+            for r in range(REPS):
                 key = f"g{gi}_rep{r}"
                 sp = st["submit_params"].get(key, {})
                 if sp.get("correct") is not False:

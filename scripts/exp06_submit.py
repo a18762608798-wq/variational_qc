@@ -1,7 +1,7 @@
 """exp06 T003 真机提交（烧机时）：转译 → 逐批提交 → 对账补跑。
 
 必须用 qmeas env python 运行，且 bill.json confirmed=true 后才执行。
-逐批任务 = 3 组 × 15 重复 VQE + 2 标定（同批）；correct=False 参数留存。
+逐批任务 = 3 组 × 5 重复 VQE + 2 标定（同批）；correct=False 参数留存。
 转译用逻辑 coupling_map（开链 7 边 / 环 8 边含 0–7），qasm qubit i ↔
 target_qubits[i]；物理侧 0–7 跳由平台路由（spec link 语义）。
 转译后 CZ 边集随 batch 落盘，供 verify 验路断言（须 ⊆ 允许集）。

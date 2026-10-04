@@ -1,7 +1,7 @@
 """exp06 T002 离线预览（零机时）：S03 点位映射 → 批量划分 → 打印账单。
 
 198 组 = 2δ × 33 点(s_idx=1,4,…,97) × 3p；每 3 组一批 → 66 批；
-每批任务 = 3 组 × 15 重复 VQE + 2 标定。
+每批任务 = 3 组 × 5 重复 VQE + 2 标定。
 产物：data/exp06/batches.json + data/exp06/bill.json（confirmed=false）。
 """
 

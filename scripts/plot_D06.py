@@ -11,9 +11,11 @@ Faithful to doc/theory/psi0.md + doc/theory/ansatz.md for L = 8 only:
 - D06a trivial: odd-bond singlet pairs; F = even (U_o U_e).
 - D06b topo: |s>_{1,8} link + even-bond singlet pairs; F = odd (U_e U_o).
 - D06c AFM: GHZ adjacent-link chain; F = even (U_o U_e).
-Orbit-pair labels (same label + color = shared parameters):
-odd O1 on bonds (1,2)&(7,8), O2 on (3,4)&(5,6);
-even E1 on bonds (2,3)&(6,7), E2 on (4,5) self-mirror.
+Orbit colors/groups (same color = shared parameters):
+group 1 = odd-outer pair bonds (1,2)&(7,8), group 2 = odd-inner pair
+(3,4)&(5,6), group 3 = even-outer pair (2,3)&(6,7), group 4 = even-central
+bond (4,5) self-mirror. Box text only carries indexed thetas, no orbit
+letters: theta^{(l)}_{g1} / theta^{(l)}_{g2} with g = group, l = layer.
 No gate types beyond ansatz.md are drawn.
 
 Project Python: .CondaPkg/.pixi/envs/default/bin/python.
@@ -60,16 +62,16 @@ def link_bar(ax, a, b, x):
     ax.plot([x, x], [yb, ya], color=GRAY, linewidth=3.0, solid_capstyle="round")
 
 
-def gate_box(ax, a, b, x, color, orbit):
+def gate_box(ax, a, b, x, color, group, layer):
     """One orbit bond gate box spanning two wires."""
     ya, yb = y_of(a), y_of(b)
     box = FancyBboxPatch((x - 0.42, yb - 0.32), 0.84, ya - yb + 0.64,
                          boxstyle="round,pad=0.02", facecolor="white",
                          edgecolor=color, linewidth=1.6)
     ax.add_patch(box)
-    ax.text(x, (ya + yb) / 2, f"${orbit}$\n"
-            r"$(\theta_1,\theta_2)$", ha="center", va="center",
-            fontsize=6, color=color, linespacing=0.9)
+    ax.text(x, (ya + yb) / 2, f"$\\theta^{{({layer})}}_{{{group}1}}$" + "\n"
+            f"$\\theta^{{({layer})}}_{{{group}2}}$", ha="center",
+            va="center", fontsize=5.5, color=color, linespacing=1.7)
 
 
 def layer_frame(ax, x0, x1):
@@ -80,9 +82,9 @@ def layer_frame(ax, x0, x1):
     ax.add_patch(frame)
 
 
-def draw_sublayer(ax, bonds, x, colors):
-    for (a, b), orb in bonds:
-        gate_box(ax, a, b, x, colors[orb], orb)
+def draw_sublayer(ax, bonds, x, layer):
+    for (a, b), g in bonds:
+        gate_box(ax, a, b, x, GROUP_COLORS[g], g, layer)
 
 
 def finish(ax):
@@ -92,11 +94,12 @@ def finish(ax):
     ax.axis("off")
 
 
-# Orbit-pair labels: same label + color = one shared (theta1, theta2).
-ODD_BONDS = [((1, 2), "O_1"), ((7, 8), "O_1"),
-             ((3, 4), "O_2"), ((5, 6), "O_2")]
-EVEN_BONDS = [((2, 3), "E_1"), ((6, 7), "E_1"),
-              ((4, 5), "E_2")]
+# Orbit groups: same group + color = one shared (theta1, theta2).
+ODD_BONDS = [((1, 2), 1), ((7, 8), 1),
+             ((3, 4), 2), ((5, 6), 2)]
+EVEN_BONDS = [((2, 3), 3), ((6, 7), 3),
+              ((4, 5), 4)]
+GROUP_COLORS: dict = {}
 
 # Column x positions: init | U^(1): F, S | dots | U^(k): F, S.
 X_INIT, X_F1, X_S1, X_DOTS, X_FK, X_SK = 0.55, 2.2, 4.0, 5.1, 6.2, 8.0
@@ -106,8 +109,9 @@ def main():
     from figure_style import apply_figure_style, finalize_figure
 
     palette = apply_figure_style()
-    cO = {"O_1": palette[0], "O_2": palette[1]}
-    cE = {"E_1": palette[2], "E_2": palette[3]}
+    global GROUP_COLORS
+    GROUP_COLORS = {1: palette[0], 2: palette[1],
+                    3: palette[2], 4: palette[3]}
 
     os.makedirs(FIGDIR, exist_ok=True)
 
@@ -118,15 +122,15 @@ def main():
         link_bar(ax, a, b, X_INIT)
     ax.text(X_INIT, 8.0, r"$|\psi_{\rm triv}\rangle$", ha="center",
             va="bottom", fontsize=8)
-    draw_sublayer(ax, EVEN_BONDS, X_F1, cE)
-    draw_sublayer(ax, ODD_BONDS, X_S1, cO)
+    draw_sublayer(ax, EVEN_BONDS, X_F1, "1")
+    draw_sublayer(ax, ODD_BONDS, X_S1, "1")
     layer_frame(ax, X_F1 - 0.75, X_S1 + 0.75)
     ax.text((X_F1 + X_S1) / 2, 8.35, r"$U^{(1)}$", ha="center",
             va="bottom", fontsize=7)
     ax.text(X_DOTS, 3.5, r"$\vdots$", ha="center", va="center",
             fontsize=22)
-    draw_sublayer(ax, EVEN_BONDS, X_FK, cE)
-    draw_sublayer(ax, ODD_BONDS, X_SK, cO)
+    draw_sublayer(ax, EVEN_BONDS, X_FK, "k")
+    draw_sublayer(ax, ODD_BONDS, X_SK, "k")
     layer_frame(ax, X_FK - 0.75, X_SK + 0.75)
     ax.text((X_FK + X_SK) / 2, 8.35, r"$U^{(k)}$", ha="center",
             va="bottom", fontsize=7)
@@ -145,15 +149,15 @@ def main():
     link_bar(ax, 1, 8, X_INIT + 0.35)
     ax.text(X_INIT, 8.0, r"$|\psi_{\rm topo}\rangle$", ha="center",
             va="bottom", fontsize=8)
-    draw_sublayer(ax, ODD_BONDS, X_F1, cO)
-    draw_sublayer(ax, EVEN_BONDS, X_S1, cE)
+    draw_sublayer(ax, ODD_BONDS, X_F1, "1")
+    draw_sublayer(ax, EVEN_BONDS, X_S1, "1")
     layer_frame(ax, X_F1 - 0.75, X_S1 + 0.75)
     ax.text((X_F1 + X_S1) / 2, 8.35, r"$U^{(1)}$", ha="center",
             va="bottom", fontsize=7)
     ax.text(X_DOTS, 3.5, r"$\vdots$", ha="center", va="center",
             fontsize=22)
-    draw_sublayer(ax, ODD_BONDS, X_FK, cO)
-    draw_sublayer(ax, EVEN_BONDS, X_SK, cE)
+    draw_sublayer(ax, ODD_BONDS, X_FK, "k")
+    draw_sublayer(ax, EVEN_BONDS, X_SK, "k")
     layer_frame(ax, X_FK - 0.75, X_SK + 0.75)
     ax.text((X_FK + X_SK) / 2, 8.35, r"$U^{(k)}$", ha="center",
             va="bottom", fontsize=7)
@@ -180,15 +184,15 @@ def main():
             link_bar(ax, a, b, x)
     ax.text(X_INIT, 8.0, r"$|\psi_{\rm AFM}\rangle$", ha="center",
             va="bottom", fontsize=8)
-    draw_sublayer(ax, EVEN_BONDS, X_F1, cE)
-    draw_sublayer(ax, ODD_BONDS, X_S1, cO)
+    draw_sublayer(ax, EVEN_BONDS, X_F1, "1")
+    draw_sublayer(ax, ODD_BONDS, X_S1, "1")
     layer_frame(ax, X_F1 - 0.75, X_S1 + 0.75)
     ax.text((X_F1 + X_S1) / 2, 8.35, r"$U^{(1)}$", ha="center",
             va="bottom", fontsize=7)
     ax.text(X_DOTS, 3.5, r"$\vdots$", ha="center", va="center",
             fontsize=22)
-    draw_sublayer(ax, EVEN_BONDS, X_FK, cE)
-    draw_sublayer(ax, ODD_BONDS, X_SK, cO)
+    draw_sublayer(ax, EVEN_BONDS, X_FK, "k")
+    draw_sublayer(ax, ODD_BONDS, X_SK, "k")
     layer_frame(ax, X_FK - 0.75, X_SK + 0.75)
     ax.text((X_FK + X_SK) / 2, 8.35, r"$U^{(k)}$", ha="center",
             va="bottom", fontsize=7)

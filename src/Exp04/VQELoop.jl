@@ -31,7 +31,7 @@ const STAG_WINDOW = 200       # ratchet gate: trailing window for ΔE
 const STAG_TOL = 1e-4         # ratchet gate: ΔE threshold over the window
                               # (calibration, plan §6: observed valley crawl is
                               # ~1e-6/200iters; 1e-4 sits 100× above the crawl yet
-                              # 10×+ below the finest D10 feature ~1e-3 and far
+                              # 10×+ below the finest S06 feature ~1e-3 and far
                               # below hardware noise; spec leaves the value to plan)
 const STAG_E_TOL = 1e-8       # ratchet gate: E ≤ prev-level E* + this
 const SAMPLE_RANGE = 4pi      # uniform [0, 4π): full period of primitive rotations

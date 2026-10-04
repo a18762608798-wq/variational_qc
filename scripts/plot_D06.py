@@ -72,7 +72,7 @@ def gate_box(ax, a, b, x, color, group, layer):
     ax.add_patch(box)
     ax.text(x, (ya + yb) / 2, f"$\\theta^{{({layer})}}_{{{group}}}$" + "\n"
             f"$\\varphi^{{({layer})}}_{{{group}}}$", ha="center",
-            va="center", fontsize=7, color=color, linespacing=1.4)
+            va="center", fontsize=8, color=color, linespacing=1.8)
 
 
 def layer_frame(ax, x0, x1):

@@ -14,6 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from exp06_common import (  # noqa: E402
     DATA_DIR,
+    REPS,
     read_json,
 )
 from exp06_submit import allowed_edges  # noqa: E402
@@ -66,14 +67,14 @@ def main() -> None:
     for bid, batch in enumerate(batches):
         st = read_json(DATA_DIR / "batches" / f"{bid:03d}" / "state.json")
         for gi in range(len(batch)):
-            for r in range(5):
+            for r in range(REPS):
                 c = st["counts"].get(f"g{gi}_rep{r}", {})
                 if not c or sum(c.values()) == 0:
                     counts_ok = False
         for k in ("cal_zero", "cal_one"):
             if not st["counts"].get(k):
                 counts_ok = False
-    hard(counts_ok, "三件套：原始 counts 全存档（990 VQE + 132 标定）")
+    hard(counts_ok, f"三件套：原始 counts 全存档（{198 * REPS} VQE + 132 标定）")
 
     # S05 同批 + correct 留存 + 转译验路。
     batch_ok, s05_ok, route_ok = True, True, True
@@ -88,7 +89,7 @@ def main() -> None:
                     idx = i
             if idx is None or int(d08["batch_id"][idx]) != bid:
                 batch_ok = False
-            for r in range(5):
+            for r in range(REPS):
                 key = f"g{gi}_rep{r}"
                 sp = st["submit_params"].get(key, {})
                 if sp.get("correct") is not False:

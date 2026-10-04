@@ -9,8 +9,8 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data" / "exp06"
 FIGS_DIR = Path(__file__).resolve().parent.parent / "figs" / "exp06"
 
 MASTER_SEED = 20261004
-SHOTS = 2048
-REPS = 5
+SHOTS = 1024
+REPS = 15
 BATCH_GROUPS = 3
 
 

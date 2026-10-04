@@ -68,16 +68,16 @@ def minmax_norm(x: np.ndarray) -> np.ndarray:
 
 def pick_pstar(hw_n: np.ndarray, ref_n: np.ndarray, s_idx: np.ndarray,
                p_arr: np.ndarray, panel: np.ndarray) -> int:
-    """p*（spec §4）：归一化后真机 p 层 vs 归一化模拟机 p=3 曲线（B），
-    33 点平均 |A−B| 最小；按 s_idx 对齐；并列取小 p。
+    """p*（spec §4）：归一化后真机 p 层 vs 归一化模拟机同层 p 曲线，
+    33 点平均 |A_p−B_p| 最小；按 s_idx 对齐；并列取小 p。
     输入须为同面板归一化数组（含 NaN padding 区，掩码内须有限）。
     """
-    mp3 = panel & (p_arr == 3)
-    b = ref_n[mp3][np.argsort(s_idx[mp3])]
     best, best_v = 1, float("inf")
     for p in (1, 2, 3):
         mp = panel & (p_arr == p)
-        a = hw_n[mp][np.argsort(s_idx[mp])]
+        o = np.argsort(s_idx[mp])
+        a = hw_n[mp][o]
+        b = ref_n[mp][o]
         v = float(np.mean(np.abs(a - b)))
         if v < best_v:
             best, best_v = p, v

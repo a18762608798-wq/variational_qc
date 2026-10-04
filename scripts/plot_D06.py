@@ -175,8 +175,10 @@ def main():
                                   [(3, 4), (6, 7)],
                                   [(2, 3), (7, 8)],
                                   [(1, 2)]]):
-        for a, b in pairs:
-            link_bar(ax, a, b, 0.30 + 0.32 * step)
+        x0 = 0.30 + 0.32 * step
+        xs = [x0 - 0.09, x0 + 0.09] if len(pairs) == 2 else [x0]
+        for (a, b), x in zip(pairs, xs):
+            link_bar(ax, a, b, x)
     ax.text(X_INIT, 8.0, r"$|\psi_{\rm AFM}\rangle$", ha="center",
             va="bottom", fontsize=8)
     draw_sublayer(ax, EVEN_BONDS, X_F1, cE, r"$F$")

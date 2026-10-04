@@ -42,14 +42,23 @@ def y_of(site):
     return N - site
 
 
+GAP_L, GAP_R = 4.75, 5.45  # 与两侧 layer_frame 内边对齐
+
+
 def draw_wires(ax, x0=0.0, x1=10.6):
     xs = np.arange(N)
     for i in range(N):
-        ax.plot([x0, x1], [y_of(i + 1)] * 2, color="black", linewidth=0.8,
+        y = y_of(i + 1)
+        ax.plot([x0, GAP_L], [y] * 2, color="black", linewidth=0.8,
                 zorder=1)
-        ax.scatter([x0], [y_of(i + 1)], s=36, color="white",
+        ax.plot([GAP_R, x1], [y] * 2, color="black", linewidth=0.8,
+                zorder=1)
+        # 间隙内每线一根横虚线（省略的中间层），代替竖省略号。
+        ax.plot([GAP_L, GAP_R], [y] * 2, color="black", linewidth=0.8,
+                linestyle=(0, (2, 2)), zorder=1)
+        ax.scatter([x0], [y], s=36, color="white",
                    edgecolors="black", linewidths=0.8, zorder=3)
-        ax.text(x0 - 0.25, y_of(i + 1), rf"${i + 1}$", ha="right",
+        ax.text(x0 - 0.25, y, rf"${i + 1}$", ha="right",
                 va="center", fontsize=7)
     ax.arrow(x1 + 0.1, -1.3, 0.6, 0, head_width=0.18, head_length=0.18,
              fc="black", ec="black")
@@ -103,7 +112,7 @@ EVEN_BONDS = [((2, 3), 3), ((6, 7), 3),
 GROUP_COLORS: dict = {}
 
 # Column x positions: init | U^(1): F, S | dots | U^(k): F, S.
-X_INIT, X_F1, X_S1, X_DOTS, X_FK, X_SK = 0.55, 2.2, 4.0, 5.1, 6.2, 8.0
+X_INIT, X_F1, X_S1, X_FK, X_SK = 0.55, 2.2, 4.0, 6.2, 8.0
 
 
 def main():
@@ -128,8 +137,6 @@ def main():
     layer_frame(ax, X_F1 - 0.75, X_S1 + 0.75)
     ax.text((X_F1 + X_S1) / 2, 8.0, r"$U^{(1)}$", ha="center",
             va="bottom", fontsize=7)
-    ax.text(X_DOTS, 3.5, r"$\vdots$", ha="center", va="center",
-            fontsize=22)
     draw_sublayer(ax, EVEN_BONDS, X_FK, "k")
     draw_sublayer(ax, ODD_BONDS, X_SK, "k")
     layer_frame(ax, X_FK - 0.75, X_SK + 0.75)
@@ -155,8 +162,6 @@ def main():
     layer_frame(ax, X_F1 - 0.75, X_S1 + 0.75)
     ax.text((X_F1 + X_S1) / 2, 8.0, r"$U^{(1)}$", ha="center",
             va="bottom", fontsize=7)
-    ax.text(X_DOTS, 3.5, r"$\vdots$", ha="center", va="center",
-            fontsize=22)
     draw_sublayer(ax, ODD_BONDS, X_FK, "k")
     draw_sublayer(ax, EVEN_BONDS, X_SK, "k")
     layer_frame(ax, X_FK - 0.75, X_SK + 0.75)
@@ -190,8 +195,6 @@ def main():
     layer_frame(ax, X_F1 - 0.75, X_S1 + 0.75)
     ax.text((X_F1 + X_S1) / 2, 8.0, r"$U^{(1)}$", ha="center",
             va="bottom", fontsize=7)
-    ax.text(X_DOTS, 3.5, r"$\vdots$", ha="center", va="center",
-            fontsize=22)
     draw_sublayer(ax, EVEN_BONDS, X_FK, "k")
     draw_sublayer(ax, ODD_BONDS, X_SK, "k")
     layer_frame(ax, X_FK - 0.75, X_SK + 0.75)

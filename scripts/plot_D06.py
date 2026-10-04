@@ -62,7 +62,7 @@ def draw_wires(ax, x0=0.0, x1=10.4):
                 va="center", fontsize=7)
     ax.arrow(5.5, -1.3, 0.8, 0, head_width=0.18, head_length=0.18,
              fc="black", ec="black")
-    ax.text(5.9, -1.65, "time steps", ha="center", va="top", fontsize=7)
+    ax.text(5.9, -1.0, "time steps", ha="center", va="bottom", fontsize=7)
 
 
 def link_bar(ax, a, b, x):

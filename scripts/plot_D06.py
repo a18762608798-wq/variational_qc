@@ -169,8 +169,14 @@ def main():
     # F = even. ---
     fig, ax = plt.subplots(figsize=(9.5, 5.0))
     draw_wires(ax)
-    for a in range(1, N):
-        link_bar(ax, a, a + 1, X_INIT + (0.16 if a % 2 else -0.16))
+    # GHZ cascade moments (qmeas xxz pidx=0 middle-out fan-out):
+    # middle pair first, outward pairs in later moments, staggered in x.
+    for step, pairs in enumerate([[(4, 5), (5, 6)],
+                                  [(3, 4), (6, 7)],
+                                  [(2, 3), (7, 8)],
+                                  [(1, 2)]]):
+        for a, b in pairs:
+            link_bar(ax, a, b, 0.30 + 0.32 * step)
     ax.text(X_INIT, 8.0, r"$|\psi_{\rm AFM}\rangle$", ha="center",
             va="bottom", fontsize=8)
     draw_sublayer(ax, EVEN_BONDS, X_F1, cE, r"$F$")

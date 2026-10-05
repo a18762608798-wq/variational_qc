@@ -194,14 +194,14 @@ runner 不直接复用（其按 Pauli 分组提交多电路；本实验全 `Z` �
   `correct=False`；spec/plan/tasks 内旧称 `mitigation=False` 一律改
   `correct=False`（术语修正，语义不变）。
 
-## 4. 验证方案（覆盖 spec §5）
+## 4. 验证方案（覆盖 spec Contract F）
 
 - `test_exp06_local.py` 先行全绿（含 Aer 黄金交叉门），否则不得提交。
 - `verify_exp06.py` 对正式输出全量执行：
   - 每点 5 重复齐全；缓解前后双存档；`θ` 与 S03 同点逐元一致
     （`NaN`-pad 区除外）；S05 批次 id 与 VQE 同批（3 点一批）；
     提交参数 `correct=False` 留存可查。
-  - 转译验路断言（spec §5 新增条目）：转译后电路的 `CZ` 边集须落入
+  - 转译验路断言（spec `VAL-008` 条目）：转译后电路的 `CZ` 边集须落入
     允许集（链：子链相邻 `7` 边；topo：子链 `7` 边 + `0–7` 绕行
     `0-10-9-7`），边集由 checkpoints 留存的转译摘要重算比对；
     未落入即相关点 invalid。

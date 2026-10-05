@@ -42,7 +42,7 @@ N_TASKS_PER_BATCH = 3 * REPS + 2
 
 def logical_edges(a_star: int) -> list:
     edges = [[i, i + 1] for i in range(L - 1)]
-    if a_star == 2:  # topo：0–7 闭合边（link 语义，spec §3）
+    if a_star == 2:  # topo：0–7 闭合边（link 语义，spec INV-003）
         edges.append([0, L - 1])
     return edges
 

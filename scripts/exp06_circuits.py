@@ -125,7 +125,7 @@ def build_estimator_circuit(theta, a_star: int, p: int,
 
 
 def build_calib_circuits() -> dict[str, QuantumCircuit]:
-    """S05 标定：全 0 制备 / 全 X 制备（8 比特同时，spec §3）。"""
+    """S05 标定：全 0 制备 / 全 X 制备（8 比特同时，spec POST-004）。"""
     q0 = QuantumCircuit(L)
     q0.measure_all()
     q1 = QuantumCircuit(L)

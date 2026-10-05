@@ -84,7 +84,7 @@ def pooled_shot_se(sum_p: np.ndarray, n: int, obs: np.ndarray,
 
 def pick_pstar(hw_n: np.ndarray, ref_n: np.ndarray, s_idx: np.ndarray,
                p_arr: np.ndarray, panel: np.ndarray) -> int:
-    """p*（spec §4）：归一化后真机 p 层 vs 归一化模拟机同层 p 曲线，
+    """p*（spec POST-002）：归一化后真机 p 层 vs 归一化模拟机同层 p 曲线，
     33 点平均 |A_p−B_p| 最小；按 s_idx 对齐；并列取小 p。
     输入须为同面板归一化数组（含 NaN padding 区，掩码内须有限）。
     """

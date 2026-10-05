@@ -3,7 +3,7 @@
 每面板 (2δ × {S(π), string})：模拟机 p=1,2,3 三线（读 D08 存档的 S06
 归一化引用值）+ 真机 p* 散点及误差棒（归一化值 + 归一化 std），各自
 min-max 归一化后同图（区间见 manifest，可复算）。
-p* 取自 manifest（assemble 已按 spec §4 选取并记录）。
+p* 取自 manifest（assemble 已按 spec POST-002 选取并记录）。
 风格：figure_style.py，mathtext，矢量 PDF + 300dpi PNG → figs/exp06/。
 """
 

@@ -327,7 +327,7 @@ end
 end
 
 @testset "exp04 init states" begin
-    using Exp04.InitStates
+    using Exp04
     for (f, label) in [(psi_triv, "triv"), (psi_topo, "topo"), (psi_afm, "afm")]
         psi = f(8)
         @test length(psi) == 256 && norm(psi) ≈ 1.0
@@ -338,7 +338,7 @@ end
         @test psi_init(label, 8) ≈ psi
     end
     # Xbar / R parity +1 by direct overlap
-    using Exp04.VQELoop: overlap_xbar, overlap_reflect, expect_ztot
+    using Exp04: overlap_xbar, overlap_reflect, expect_ztot
     for f in (psi_triv, psi_topo, psi_afm)
         psi = f(8)
         @test abs(expect_ztot(psi, 8)) < 1e-12
@@ -350,7 +350,7 @@ end
 end
 
 @testset "exp04 ansatz structure" begin
-    using Exp04.Ansatz
+    using Exp04
     mt = build_meta(8, "triv")
     @test mt.odd_orbits == [[(1, 2), (7, 8)], [(3, 4), (5, 6)]]
     @test mt.even_orbits == [[(2, 3), (6, 7)], [(4, 5)]]
@@ -365,8 +365,8 @@ end
 end
 
 @testset "exp04 bond unitary vs kron" begin
-    using Exp04.Ansatz
-    using Exp04.InitStates: psi_triv
+    using Exp04
+    using Exp04: psi_triv
     X = ComplexF64[0 1; 1 0]
     Y = ComplexF64[0 -im; im 0]
     Z = ComplexF64[1 0; 0 -1]
@@ -404,8 +404,8 @@ end
 end
 
 @testset "exp04 circuit paths agree + zero identity" begin
-    using Exp04.Ansatz
-    using Exp04.InitStates: psi_init
+    using Exp04
+    using Exp04: psi_init
     using Random
     rng = MersenneTwister(11)
     for (delta, p) in [(0.85, 1), (0.85, 3), (0.0, 2)]
@@ -428,9 +428,9 @@ end
 end
 
 @testset "exp04 adjoint equals shift" begin
-    using Exp04.Ansatz: build_meta
-    using Exp04.InitStates: psi_init
-    using Exp04.VQELoop: energy_of, pshift_gradient, adjoint_gradient!,
+    using Exp04: build_meta
+    using Exp04: psi_init
+    using Exp04: energy_of, pshift_gradient, adjoint_gradient!,
                           bond_schedule, make_gradwork
     using Shared01.Hamiltonian: build_hamiltonian
     using Random
@@ -449,9 +449,9 @@ end
 end
 
 @testset "exp04 warm chain smoke" begin
-    using Exp04.Ansatz: build_meta
-    using Exp04.InitStates: psi_init
-    using Exp04.VQELoop: run_leg
+    using Exp04: build_meta
+    using Exp04: psi_init
+    using Exp04: run_leg
     using Shared01.Hamiltonian: build_hamiltonian
     H = build_hamiltonian(8, 0.5, 0.85)
     meta = build_meta(8, "triv")

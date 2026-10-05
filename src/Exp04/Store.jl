@@ -1,17 +1,7 @@
 # Incremental persistence for exp04 (constitution IV).
 # Chunks: one .npz per δ line + progress manifest + S06/S03 assembly.
-# I/O only; physics lives in InitStates/Ansatz/VQELoop (+ read-only Exp02 kernels).
-
-module Store
-
-using NPZ, JSON3
-using Shared01.Hamiltonian: H_DEF_ID  # provenance only; load Shared01 first
-using ..VQELoop: PointResult, MASTER_SEED, N_GLOBAL, TOP_K, G_TOL, X_TOL, F_TOL,
-                  MAX_ITERS, SAMPLE_RANGE, STAG_WINDOW, STAG_TOL, STAG_E_TOL
-
-export save_line, completed_lines, assemble_S06_S03,
-       SCHEMA, DELTAS, S_GRID, THETA_MAX,
-       LINE_ID, S06_NPZ_NAME, S03_NPZ_NAME, MANIFEST_NAME
+# I/O only; physics lives in the InitStates/Ansatz/VQELoop implementation files
+# (+ read-only Exp02 kernels).
 
 const SCHEMA = "exp04/v1"
 const DELTAS = (0.0, 0.85)
@@ -137,5 +127,3 @@ function assemble_S06_S03(dir::AbstractString)
     end
     return s06_path, s03_path, manifest_path
 end
-
-end # module

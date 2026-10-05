@@ -3,10 +3,6 @@
 # site m (1-indexed) <-> bit (m-1), LSB = site 1, |0> = Z+1.
 # Pure kernels, no I/O.
 
-module InitStates
-
-export psi_triv, psi_topo, psi_afm, LEG_LABELS, psi_init
-
 const LEG_LABELS = ["triv", "topo", "afm"]
 
 """Odd-bond singlet product (trivial s=0 reference). L even."""
@@ -74,5 +70,3 @@ function psi_init(leg::AbstractString, L::Integer)
     leg == "afm" && return psi_afm(L)
     throw(ArgumentError("unknown leg label: $leg"))
 end
-
-end # module

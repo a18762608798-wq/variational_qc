@@ -13,11 +13,11 @@ using Exp02
 using Exp02.Correlators: zz_correlators, structure_factor
 using Exp02.StringOrder: string_order
 using Exp04
-using Exp04.InitStates: LEG_LABELS, psi_init
-using Exp04.Ansatz: build_meta, nparams, apply_circuit!
-using Exp04.VQELoop: run_point, expect_ztot, overlap_xbar, overlap_reflect
-using Exp04.Store: save_line, completed_lines, assemble_S06_S03,
-                    DELTAS, S_GRID, THETA_MAX, LINE_ID
+using Exp04: LEG_LABELS, psi_init
+using Exp04: build_meta, nparams, apply_circuit!
+using Exp04: run_point, expect_ztot, overlap_xbar, overlap_reflect
+using Exp04: save_line, completed_lines, assemble_S06_S03,
+              DELTAS, S_GRID, THETA_MAX, LINE_ID
 
 const OUT_DIR = joinpath(@__DIR__, "..", "data", "exp04")
 

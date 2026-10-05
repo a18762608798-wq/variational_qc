@@ -5,21 +5,6 @@
 # Winner leg by min energy. Gradients by the parameter-shift rule (exact).
 # Pure kernels (no I/O); threading lives in the run script (one point per task).
 
-module VQELoop
-
-using LinearAlgebra
-using Random
-using Optim
-using ..InitStates: LEG_LABELS, psi_init
-using ..Ansatz: AnsatzMeta, build_meta, nparams, apply_circuit!, apply_occ!, occ_layout,
-                prim_unitary, apply_bond_vec!
-
-export LegStep, PointResult, run_point, energy_of, pshift_gradient, adjoint_gradient!,
-       GradWork, make_gradwork, bond_schedule,
-       expect_ztot, overlap_xbar, overlap_reflect,
-       MASTER_SEED, N_GLOBAL, TOP_K, G_TOL, X_TOL, F_TOL, MAX_ITERS,
-       STAG_WINDOW, STAG_TOL, STAG_E_TOL
-
 const MASTER_SEED = 20261004  # recorded in manifest (plan §3)
 const N_GLOBAL = 64           # random samples per (p=1) leg, plus the zero vector
 const TOP_K = 4               # refined samples per (p=1) leg
@@ -381,5 +366,3 @@ function overlap_reflect(psi::AbstractVector, L::Integer)
     end
     return acc
 end
-
-end # module

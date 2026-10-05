@@ -8,13 +8,6 @@
 # Basis convention identical to Shared01.Hamiltonian (LSB = site 1).
 # Pure kernel, no I/O.
 
-module Ansatz
-
-using LinearAlgebra
-
-export AnsatzMeta, build_meta, nparams, apply_circuit!, apply_occ!, occ_layout,
-       bond_bases, apply_bond_vec!, prim_unitary
-
 struct AnsatzMeta
     L::Int
     leg::String
@@ -224,5 +217,3 @@ function apply_occ!(psi::Vector{ComplexF64}, psi_init::Vector{ComplexF64},
     end
     return psi
 end
-
-end # module

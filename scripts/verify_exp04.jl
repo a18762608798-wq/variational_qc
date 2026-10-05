@@ -11,7 +11,7 @@ using Shared01.Hamiltonian: H_DEF_ID
 using Exp01
 using Exp02
 using Exp04
-using Exp04.Store: SCHEMA, DELTAS, S_GRID, THETA_MAX
+using Exp04: SCHEMA, DELTAS, S_GRID, THETA_MAX
 using NPZ, JSON3
 
 const DATA_DIR = joinpath(@__DIR__, "..", "data", "exp04")

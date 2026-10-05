@@ -1,14 +1,8 @@
 # Per-point D04 panel assembly for exp02 (spec POST-002).
 # Q = 4/3 + 2 O_str − S(π)/6 (doc/theory/topological_op.md).
-# ~Z_R reuses Exp01.ZTilde read-only (definitional identity with D01).
+# ~Z_R reuses Exp01 read-only (definitional identity with D01).
 
-module Panels
-
-using ..Correlators: zz_correlators, structure_factor
-using ..StringOrder: string_order
 using Exp01: z_tilde  # top-level reuse (read-only); load Exp01 before Exp02
-
-export panel_point, PanelPoint
 
 struct PanelPoint
     s_pi::Float64
@@ -27,4 +21,3 @@ function panel_point(psi::AbstractVector)
     return PanelPoint(s_pi, o_str, q_val, zt)
 end
 
-end # module

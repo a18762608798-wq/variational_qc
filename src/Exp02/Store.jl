@@ -3,15 +3,6 @@
 # D03: three small curves, written directly (computed alongside rows).
 # I/O only.
 
-module Store
-
-using NPZ, JSON3
-using ..Panels: PanelPoint
-
-export save_row, completed_rows, save_d03, assemble_D04,
-       CHUNKS_DIRNAME, ROW_PREFIX, PROGRESS_NAME,
-       D03_NAME, D04_NPZ_NAME, MANIFEST_NAME, SCHEMA
-
 const SCHEMA = "exp02/v1"
 const CHUNKS_DIRNAME = "chunks"
 const ROW_PREFIX = "row_"
@@ -118,4 +109,3 @@ function assemble_D04(dir::AbstractString, s_grid::Vector{Float64}, delta_grid::
     return npz_path, manifest_path
 end
 
-end # module

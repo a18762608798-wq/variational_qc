@@ -10,8 +10,8 @@ using Shared01  # load order: Exp04 reuses Shared01.Hamiltonian read-only
 using Shared01: build_hamiltonian
 using Exp01  # load order: Exp02 reuses Exp01 read-only
 using Exp02
-using Exp02.Correlators: zz_correlators, structure_factor
-using Exp02.StringOrder: string_order
+using Exp02: zz_correlators, structure_factor
+using Exp02: string_order
 using Exp04
 using Exp04: LEG_LABELS, psi_init
 using Exp04: build_meta, nparams, apply_circuit!

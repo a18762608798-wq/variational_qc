@@ -2,12 +2,6 @@
 # Basis convention: site m (1-indexed) <-> bit (m-1), LSB = site 1 (asserted
 # against the S01 manifest by the runner). Pure kernel: no I/O.
 
-module Correlators
-
-using LinearAlgebra
-
-export zz_correlators, structure_factor
-
 """8×8 real symmetric C_ij = <Z_i Z_j>; diagonal is 1 by construction."""
 function zz_correlators(psi::AbstractVector, L::Integer = 8)
     n = length(psi)
@@ -38,4 +32,3 @@ function structure_factor(C::AbstractMatrix, q::Real)
     return real(acc) / L
 end
 
-end # module

@@ -10,9 +10,9 @@ using Exp01
 using Exp01: assert_s01_gate
 using Exp01: EXPECTED_BASIS_CONVENTION
 using Exp02
-using Exp02.Correlators: zz_correlators, structure_factor
-using Exp02.Panels: panel_point
-using Exp02.Store: save_row, completed_rows, save_d03, assemble_D04
+using Exp02: zz_correlators, structure_factor
+using Exp02: panel_point
+using Exp02: save_row, completed_rows, save_d03, assemble_D04
 
 const S01_DIR = joinpath(@__DIR__, "..", "data", "shared01")
 const OUT_DIR = joinpath(@__DIR__, "..", "data", "exp02")

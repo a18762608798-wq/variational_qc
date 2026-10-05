@@ -5,10 +5,6 @@
 # Diagonal in the Z basis: expectation = Σ_basis |ψ|² × eigenvalue.
 # Pure kernel: no I/O.
 
-module StringOrder
-
-export string_order
-
 function string_order(psi::AbstractVector, L::Integer = 8)
     n = length(psi)
     1 << L == n || throw(ArgumentError("length $(n) is not 2^L"))
@@ -23,4 +19,3 @@ function string_order(psi::AbstractVector, L::Integer = 8)
     return acc
 end
 
-end # module

@@ -123,7 +123,7 @@ end
 end
 
 @testset "exp02 correlators" begin
-    using Exp02.Correlators
+    using Exp02
     psi0 = zeros(ComplexF64, 256)
     psi0[1] = 1.0
     C = zz_correlators(psi0)
@@ -141,7 +141,7 @@ end
 end
 
 @testset "exp02 string order" begin
-    using Exp02.StringOrder
+    using Exp02
     psi0 = zeros(ComplexF64, 256)
     psi0[1] = 1.0
     @test string_order(psi0) ≈ 4.0
@@ -153,7 +153,7 @@ end
 end
 
 @testset "exp02 panels Q identity" begin
-    using Exp02.Panels
+    using Exp02
     using Shared01
     arrays, _ = load_shared01(joinpath(@__DIR__, "..", "data", "shared01"))
     for (s, d) in [(0.01, 0.02), (0.5, 1.0), (0.99, 0.02)]

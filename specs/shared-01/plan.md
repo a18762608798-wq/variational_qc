@@ -2,7 +2,7 @@
 
 ## 1. 实现思路
 
-- 主要模块：`Hamiltonian`（`H(s,δ)` 构造，`L=8` OBC）、`GroundStates`
+- 主要模块（单 `Shared01` 命名空间下文件）：`Hamiltonian`（`H(s,δ)` 构造，`L=8` OBC）、`GroundStates`
   （网格定义、ED 求解内核、简并标记）、`Store`（落盘与 manifest）、
   薄编排脚本 `scripts/run_shared01.jl`（组装网格 → 求解 → 存储）。
 - 数据流：`(s,δ)` 网格 → 逐点构造稠密 `H`（256 维）→ 全对角化取最低两本征对
@@ -21,8 +21,8 @@
   奇键 `(2j-1,2j)`、偶键 `(2j,2j+1)`；基矢约定采用 `site m ↔ bit (m-1)`、
   `LSB = site 1`（与 v0.2.0 一致，便于交叉验证；约定同时写入 manifest）。
 - `src/Shared01/GroundStates.jl`：网格常量（`s = i/100`，`δ = j/50`，
-  `i,j = 1,…,99`）与三代表点坐标；`solve_point(H)` 返回 `(E0, ψ0, E1)`；
-  简并标记规则（见第 3 节）；多线程网格循环（顺序确定性输出）。
+  `i,j = 1,…,99`）与三代表点坐标；`solve_point(s, delta)` 返回
+  `PointSolution`（`E0`、`E1`、`ψ0`、简并旗）；简并标记规则（见第 3 节）；多线程网格循环（顺序确定性输出）。
 - `src/Shared01/Store.jl`：写单个 `.npz`（数组：`s_grid[99]`、`delta_grid[99]`、
   `E0[99,99]`、`E1[99,99]`、`psi[99,99,256]` 复数）与同名 `.json` manifest
   （`L`、网格定义、基矢约定、`H` 定义标识、求解器与精度、简并点表、schema 版本）；

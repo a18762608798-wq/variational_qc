@@ -1,5 +1,5 @@
 # Persistence for S01/S02: one .npz (numpy-readable arrays) plus a JSON manifest
-# carrying all provenance needed for reproducibility (spec §4).
+# carrying all provenance needed for reproducibility (shared-01 POST-001, POST-003).
 # I/O lives here only; numerical kernels never touch files.
 
 const SCHEMA = "shared01/v1"

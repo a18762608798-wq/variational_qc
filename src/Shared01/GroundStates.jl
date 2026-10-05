@@ -1,6 +1,5 @@
 # S01/S02 ground-state grid and dense-ED solve kernel.
-# Spec: specs/shared-01/spec.md §3. Grid and sector are experiment definitions
-# owned by the spec; this file only executes them.
+# Grids owned by shared-01 spec PRE-002; this file only executes them.
 
 const L_SYS = 8
 

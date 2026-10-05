@@ -2,7 +2,7 @@
 
 ## 1. 实现思路
 
-- 主要模块：`ReducedDensity`（约化密度矩阵内核）、`ZTilde`（`Z_R` 与归一化）、
+- 主要模块（单 `Exp01` 命名空间下文件）：`ReducedDensity`（约化密度矩阵内核）、`ZTilde`（`Z_R` 与归一化）、
   `Store`（分块增量落盘 + 断点续算 + D01 组装）、薄编排脚本 `scripts/run_exp01.jl`、
   出图脚本 `scripts/plot_D01D05.py`（D01 裸图 + 三对标记与配对箭头叠加得 D05）。
 - 数据流：S01（`data/shared01`，经 `Shared01.Store.load_shared01` 读取，

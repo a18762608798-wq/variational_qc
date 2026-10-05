@@ -1,4 +1,4 @@
-# VQE loop for exp04 (spec §3; doc/theory/cost_fun.md).
+# VQE loop for exp04 (spec PRE-001..PRE-003, INV-001..INV-002; doc/theory/cost_fun.md).
 #
 # Per (δ,s) point and init leg: p=1 global random sampling (+ zero vector) with
 # top-K L-BFGS refinement; p=2,3 same-leg chained warm start + L-BFGS refine.
@@ -322,7 +322,7 @@ function run_leg(H::Matrix{ComplexF64}, psi_init::Vector{ComplexF64},
         npl = nparams(meta, delta, 1)
         θ0 = [prev; zeros(npl)]
         st = _refine(θ0, H, psi_init, meta, p, delta, seed1)
-        # Ratchet gate (spec §5, p>1 only): exhausted but stagnant and no worse.
+        # Ratchet gate (spec INV-002, p>1 only): exhausted but stagnant and no worse.
         stagn = (!st.converged) && st.iters >= MAX_ITERS &&
                 st.dtail < STAG_TOL && st.energy <= prevE + STAG_E_TOL
         push!(steps, LegStep(st.theta, st.energy, st.converged, stagn,

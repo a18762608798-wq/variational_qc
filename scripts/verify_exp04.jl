@@ -1,5 +1,5 @@
 # Production assertions for exp04 (T008): full-output checks on data/exp04/.
-# Locks every spec §5 condition; failure => invalid run.
+# Locks every spec Contract F condition (VAL-001..VAL-008); failure => invalid run.
 # Prints VERIFY-EXP04-OK plus diagnostics on success.
 
 push!(LOAD_PATH, joinpath(@__DIR__, "..", "src"))
@@ -72,7 +72,7 @@ function main()
         end
     end
 
-    # Diagnostics (recorded only, no pass thresholds per spec §5).
+    # Diagnostics (recorded only, no pass thresholds per spec VAL-007).
     for (tag, delta) in [("d0", 0.0), ("d085", 0.85)]
         c = Dict(k => d10["$(tag)_$(k)"] for k in FIELDS)
         mono = sum(c["E_star"][i, p + 1] > c["E_star"][i, p] + 1e-8

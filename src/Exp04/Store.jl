@@ -15,7 +15,7 @@ export save_line, completed_lines, assemble_S06_S03,
 
 const SCHEMA = "exp04/v1"
 const DELTAS = (0.0, 0.85)
-const S_GRID = [i / 100 for i in 1:99]  # spec §3: same convention as S01
+const S_GRID = [i / 100 for i in 1:99]  # spec PRE-001: same convention as S01
 const THETA_MAX = 24                     # max Nθ (δ≠0, p=3); shorter padded with NaN
 const CHUNKS_DIRNAME = "chunks"
 const PROGRESS_NAME = "progress.json"

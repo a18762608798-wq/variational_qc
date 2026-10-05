@@ -38,7 +38,7 @@
 - [x] T007 单元测试（`test/runtests.jl` 追加，全绿）：初态三性；
   单键酉 kron 一致；零参数恒等；参数移位梯度 vs 有限差分；
   `δ=0` 参数计数；warm 链 smoke 单调；非法输入拒绝路径。
-- [x] T008 生产断言（`scripts/verify_exp04.jl`，对正式输出全量执行）：
+- [x] T008 生产断言 [VAL-001..VAL-008]（`scripts/verify_exp04.jl`，对正式输出全量执行）：
   `E* ≤ E_init + 1e-8`；守恒量三项容限内；收敛旗全真或棘轮接受
   （`stagnant` 仅 `p>1`，且 `dE_tail` 与棘轮不等式由存档值重算锁定）；
   `a*` 为最小路；

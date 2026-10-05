@@ -3,12 +3,6 @@
 # asserted at runtime against the S01 manifest (see ZTilde/runner).
 # Pure kernel: no I/O, no globals.
 
-module ReducedDensity
-
-using LinearAlgebra
-
-export reduced_density_matrix
-
 """
     reduced_density_matrix(psi, keep_sites) -> Matrix{ComplexF64}
 
@@ -29,4 +23,3 @@ function reduced_density_matrix(psi::AbstractVector, keep_sites::Vector{Int})
     return Hermitian(Matrix(m * m'))
 end
 
-end # module

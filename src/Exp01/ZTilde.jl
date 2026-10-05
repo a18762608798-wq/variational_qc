@@ -2,14 +2,6 @@
 # I = sites (3,4,5,6); I1 = (3,4); I2 = (5,6); R_I = mirror about the central bond.
 # Pure kernel: no I/O. Keep-site ordering matches ReducedDensity (ascending).
 
-module ZTilde
-
-using LinearAlgebra
-using ..ReducedDensity: reduced_density_matrix
-
-export I_SITES, I1_SITES, I2_SITES, EXPECTED_BASIS_CONVENTION,
-       mirror_operator, z_tilde
-
 const I_SITES = [3, 4, 5, 6]
 const I1_SITES = [3, 4]
 const I2_SITES = [5, 6]
@@ -56,4 +48,3 @@ function z_tilde(psi::AbstractVector)
                         real(tr(rho_I)), minimum(real(eigvals(Hermitian(rho_I)))), denom)
 end
 
-end # module

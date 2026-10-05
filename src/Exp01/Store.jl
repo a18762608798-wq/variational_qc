@@ -1,14 +1,6 @@
 # Incremental persistence for exp01 (constitution IV: no all-in-memory + single-file finish).
 # One chunk per δ row; resume skips completed rows; assembly is pure concatenation.
-# I/O only; numerics live in ReducedDensity/ZTilde.
-
-module Store
-
-using NPZ, JSON3
-using ..ZTilde: ZTildeResult
-
-export save_row, completed_rows, assemble_D01, assert_s01_gate,
-       CHUNKS_DIRNAME, ROW_PREFIX, PROGRESS_NAME, D01_NPZ_NAME, MANIFEST_NAME, SCHEMA
+# I/O only; numerics live in the ReducedDensity/ZTilde implementation files.
 
 const SCHEMA = "exp01/v1"
 const CHUNKS_DIRNAME = "chunks"
@@ -128,4 +120,3 @@ function assemble_D01(dir::AbstractString, s_grid::Vector{Float64}, delta_grid::
     return npz_path, manifest_path
 end
 
-end # module

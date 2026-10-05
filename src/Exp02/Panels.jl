@@ -6,7 +6,7 @@ module Panels
 
 using ..Correlators: zz_correlators, structure_factor
 using ..StringOrder: string_order
-using Exp01.ZTilde: z_tilde  # top-level reuse (read-only); load Exp01 before Exp02
+using Exp01: z_tilde  # top-level reuse (read-only); load Exp01 before Exp02
 
 export panel_point, PanelPoint
 

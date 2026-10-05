@@ -7,8 +7,8 @@ using LinearAlgebra
 BLAS.set_num_threads(1)  # grid-level threading only (constitution V)
 using Shared01: S_GRID, DELTA_GRID, load_shared01
 using Exp01
-using Exp01.Store: assert_s01_gate
-using Exp01.ZTilde: EXPECTED_BASIS_CONVENTION
+using Exp01: assert_s01_gate
+using Exp01: EXPECTED_BASIS_CONVENTION
 using Exp02
 using Exp02.Correlators: zz_correlators, structure_factor
 using Exp02.Panels: panel_point

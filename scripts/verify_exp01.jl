@@ -7,7 +7,7 @@ using Shared01
 using Shared01: S_GRID, DELTA_GRID
 using Shared01: load_shared01
 using Exp01
-using Exp01.Store: CHUNKS_DIRNAME, ROW_PREFIX, PROGRESS_NAME
+using Exp01: CHUNKS_DIRNAME, ROW_PREFIX, PROGRESS_NAME
 using NPZ, JSON3
 
 const DATA = joinpath(@__DIR__, "..", "data", "exp01")

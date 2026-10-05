@@ -9,8 +9,8 @@ using Shared01
 using Shared01: S_GRID, DELTA_GRID
 using Shared01: load_shared01
 using Exp01
-using Exp01.ZTilde: z_tilde, EXPECTED_BASIS_CONVENTION
-using Exp01.Store: save_row, completed_rows, assemble_D01, assert_s01_gate
+using Exp01: z_tilde, EXPECTED_BASIS_CONVENTION
+using Exp01: save_row, completed_rows, assemble_D01, assert_s01_gate
 
 const S01_DIR = joinpath(@__DIR__, "..", "data", "shared01")
 const OUT_DIR = joinpath(@__DIR__, "..", "data", "exp01")

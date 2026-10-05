@@ -68,7 +68,7 @@ end
 end
 
 @testset "exp01 partial trace" begin
-    using Exp01.ReducedDensity
+    using Exp01
     # Product |0>^8 -> rho on any subsystem is the pure |0..0> projector.
     psi0 = zeros(ComplexF64, 256)
     psi0[1] = 1.0
@@ -89,14 +89,14 @@ end
 end
 
 @testset "exp01 mirror involution" begin
-    using Exp01.ZTilde
+    using Exp01
     R = mirror_operator()
     @test R * R == I(16)
     @test R == adjoint(R)
 end
 
 @testset "exp01 z_tilde sanity (S02)" begin
-    using Exp01.ZTilde
+    using Exp01
     arrays, _ = load_shared01(joinpath(@__DIR__, "..", "data", "shared01"))
     for (s, d) in [(0.01, 0.02), (0.99, 0.02), (0.50, 1.98)]
         i, j = round(Int, 100 * s), round(Int, 50 * d)
@@ -107,8 +107,8 @@ end
 end
 
 @testset "exp01 S01 input gate" begin
-    using Exp01.Store
-    using Exp01.ZTilde
+    using Exp01
+    using Exp01
     good = Dict("schema" => "shared01/v1",
                 "basis_convention" => EXPECTED_BASIS_CONVENTION,
                 "degenerate_points" => [])

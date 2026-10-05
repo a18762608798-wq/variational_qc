@@ -6,7 +6,6 @@ push!(LOAD_PATH, joinpath(@__DIR__, "..", "src"))
 using Shared01
 using Exp01
 using Exp03
-using Shared01.Hamiltonian, Shared01.GroundStates, Shared01.Store
 using LinearAlgebra, Test, NPZ, JSON3
 
 @testset "bonds" begin
@@ -155,7 +154,7 @@ end
 
 @testset "exp02 panels Q identity" begin
     using Exp02.Panels
-    using Shared01.Store
+    using Shared01
     arrays, _ = load_shared01(joinpath(@__DIR__, "..", "data", "shared01"))
     for (s, d) in [(0.01, 0.02), (0.5, 1.0), (0.99, 0.02)]
         i, j = round(Int, 100 * s), round(Int, 50 * d)
@@ -432,7 +431,7 @@ end
     using Exp04: psi_init
     using Exp04: energy_of, pshift_gradient, adjoint_gradient!,
                           bond_schedule, make_gradwork
-    using Shared01.Hamiltonian: build_hamiltonian
+    using Shared01: build_hamiltonian
     using Random
     H = build_hamiltonian(8, 0.5, 0.85)
     psi0 = psi_init("topo", 8)
@@ -452,7 +451,7 @@ end
     using Exp04: build_meta
     using Exp04: psi_init
     using Exp04: run_leg
-    using Shared01.Hamiltonian: build_hamiltonian
+    using Shared01: build_hamiltonian
     H = build_hamiltonian(8, 0.5, 0.85)
     meta = build_meta(8, "triv")
     steps = run_leg(H, psi_init("triv", 8), meta, 0.85, 85, 50, 1)

@@ -2,15 +2,6 @@
 # carrying all provenance needed for reproducibility (spec §4).
 # I/O lives here only; numerical kernels never touch files.
 
-module Store
-
-using NPZ, JSON3, Dates
-using ..GroundStates: PointSolution, S_GRID, DELTA_GRID, REP_POINTS, REP_LABELS,
-                      L_SYS, DEGENERACY_TOL
-using ..Hamiltonian: H_DEF_ID
-
-export save_shared01, load_shared01, point_at, NPZ_NAME, MANIFEST_NAME, SCHEMA
-
 const SCHEMA = "shared01/v1"
 const NPZ_NAME = "shared01_S01.npz"
 const MANIFEST_NAME = "shared01_manifest.json"
@@ -101,5 +92,3 @@ function point_at(arrays::Dict, s::Real, delta::Real)
     i, j = _grid_index(s, delta)
     return arrays["E0"][i, j], arrays["E1"][i, j], Vector{ComplexF64}(arrays["psi"][i, j, :])
 end
-
-end # module

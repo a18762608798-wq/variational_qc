@@ -8,7 +8,7 @@ using LinearAlgebra
 using Random
 using Optim
 using NPZ, JSON3
-using Shared01.Hamiltonian: H_DEF_ID  # provenance only; load Shared01 first
+using Shared01: H_DEF_ID  # provenance only; load Shared01 first
 
 export psi_triv, psi_topo, psi_afm, LEG_LABELS, psi_init,
        AnsatzMeta, build_meta, nparams, apply_circuit!, apply_occ!, occ_layout,

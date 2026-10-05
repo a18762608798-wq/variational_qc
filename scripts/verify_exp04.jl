@@ -7,7 +7,7 @@ using LinearAlgebra
 using Statistics
 BLAS.set_num_threads(1)
 using Shared01  # load order for Exp04
-using Shared01.Hamiltonian: H_DEF_ID
+using Shared01: H_DEF_ID
 using Exp01
 using Exp02
 using Exp04

@@ -7,7 +7,7 @@ push!(LOAD_PATH, joinpath(@__DIR__, "..", "src"))
 using LinearAlgebra
 BLAS.set_num_threads(1)  # parallelism is over grid points (Julia threads)
 using Shared01
-using Shared01.GroundStates, Shared01.Store
+using Shared01: solve_grid, save_shared01
 
 const OUT_DIR = joinpath(@__DIR__, "..", "data", "shared01")
 

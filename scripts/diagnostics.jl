@@ -6,7 +6,7 @@
 
 push!(LOAD_PATH, joinpath(@__DIR__, "..", "src"))
 using Shared01
-using Shared01.GroundStates, Shared01.Store
+using Shared01: load_shared01
 using LinearAlgebra, JSON3
 
 const DATA = joinpath(@__DIR__, "..", "data", "shared01")

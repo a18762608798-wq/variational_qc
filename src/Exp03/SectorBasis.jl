@@ -13,7 +13,7 @@ module SectorBasis
 
 using LinearAlgebra
 using SparseArrays
-using Shared01.Hamiltonian: odd_bonds, even_bonds, H_DEF_ID  # read-only; load Shared01 first
+using Shared01: odd_bonds, even_bonds, H_DEF_ID  # read-only; load Shared01 first
 
 export SectorBasisData, sector_basis, sector_hamiltonian,
        flip_all, reflect_bits, canonical_key,

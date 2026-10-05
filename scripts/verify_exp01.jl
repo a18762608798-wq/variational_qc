@@ -4,8 +4,8 @@
 push!(LOAD_PATH, joinpath(@__DIR__, "..", "src"))
 using LinearAlgebra
 using Shared01
-using Shared01.GroundStates: S_GRID, DELTA_GRID
-using Shared01.Store: load_shared01
+using Shared01: S_GRID, DELTA_GRID
+using Shared01: load_shared01
 using Exp01
 using Exp01.Store: CHUNKS_DIRNAME, ROW_PREFIX, PROGRESS_NAME
 using NPZ, JSON3

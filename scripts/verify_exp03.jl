@@ -6,7 +6,7 @@ push!(LOAD_PATH, joinpath(@__DIR__, "..", "src"))
 using LinearAlgebra
 BLAS.set_num_threads(1)
 using Shared01  # load order for Exp03
-using Shared01.Hamiltonian: H_DEF_ID
+using Shared01: H_DEF_ID
 using Exp03
 using Exp03.SectorBasis: sector_basis, sector_hamiltonian
 using Exp03.GapSolver: key_wide, key_narrow

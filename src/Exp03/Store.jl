@@ -5,7 +5,7 @@
 module Store
 
 using NPZ, JSON3, Dates
-using Shared01.Hamiltonian: H_DEF_ID  # provenance only; load Shared01 first
+using Shared01: H_DEF_ID  # provenance only; load Shared01 first
 using ..SectorBasis: sector_basis
 using ..GapSolver: GapResult, union_points, key_wide, key_narrow, DELTA_FIXED,
                     ARPACK_TOL, RESID_TOL, ARPACK_NCV

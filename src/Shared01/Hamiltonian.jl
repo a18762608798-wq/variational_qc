@@ -7,12 +7,6 @@
 # site m (1-indexed) <-> bit (m-1) of the basis index, LSB = site 1.
 # |0> is the Z=+1 state. Achieved by kron(P_L, ..., P_1): site 1 varies fastest.
 
-module Hamiltonian
-
-using LinearAlgebra
-
-export build_hamiltonian, odd_bonds, even_bonds, H_DEF_ID
-
 # Physics-definition identity for the manifest. MUST be bumped if and only if
 # the Hamiltonian definition above changes.
 const H_DEF_ID = "ssh-xxz-OBC-H-v1"
@@ -72,5 +66,3 @@ function build_hamiltonian(L::Integer, s::Real, delta::Real)
     end
     return (1 - s) * Ho + s * He
 end
-
-end # module

@@ -6,8 +6,8 @@ push!(LOAD_PATH, joinpath(@__DIR__, "..", "src"))
 using LinearAlgebra
 BLAS.set_num_threads(1)  # grid-level threading only (constitution V)
 using Shared01
-using Shared01.GroundStates: S_GRID, DELTA_GRID
-using Shared01.Store: load_shared01
+using Shared01: S_GRID, DELTA_GRID
+using Shared01: load_shared01
 using Exp01
 using Exp01.ZTilde: z_tilde, EXPECTED_BASIS_CONVENTION
 using Exp01.Store: save_row, completed_rows, assemble_D01, assert_s01_gate

@@ -7,7 +7,7 @@ push!(LOAD_PATH, joinpath(@__DIR__, "..", "src"))
 using LinearAlgebra
 BLAS.set_num_threads(1)  # point-level threading only (constitution V)
 using Shared01  # load order: Exp04 reuses Shared01.Hamiltonian read-only
-using Shared01.Hamiltonian: build_hamiltonian
+using Shared01: build_hamiltonian
 using Exp01  # load order: Exp02 reuses Exp01 read-only
 using Exp02
 using Exp02.Correlators: zz_correlators, structure_factor

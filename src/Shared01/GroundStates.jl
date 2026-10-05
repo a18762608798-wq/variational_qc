@@ -1,14 +1,6 @@
 # S01/S02 ground-state grid and dense-ED solve kernel.
 # Spec: specs/shared-01/spec.md §3. Grid and sector are experiment definitions
-# owned by the spec; this module only executes them.
-
-module GroundStates
-
-using LinearAlgebra
-using ..Hamiltonian: build_hamiltonian
-
-export L_SYS, S_GRID, DELTA_GRID, REP_POINTS, REP_LABELS,
-       solve_point, solve_grid, DEGENERACY_TOL
+# owned by the spec; this file only executes them.
 
 const L_SYS = 8
 
@@ -69,5 +61,3 @@ function solve_grid()
     end
     return out
 end
-
-end # module

@@ -2,8 +2,8 @@
 description: 根据当前 feature specification 生成实现计划。
 ---
 
-<!-- Source: scientific-computing -->
 
+<!-- Source: scientific-computing -->
 # Plan
 
 ## Workflow

@@ -2,8 +2,8 @@
 description: 澄清当前 feature specification 中影响科学语义、边界、输出或验证的关键歧义。
 ---
 
-<!-- Source: scientific-computing -->
 
+<!-- Source: scientific-computing -->
 # Clarify
 
 ## Workflow

@@ -1,9 +1,9 @@
-schema_version: "1.1.0"
+schema_version: "1.0"
 
 preset:
   id: "scientific-computing"
   name: "Scientific Computing"
-  version: "0.1.0"
+  version: "0.2.0"
   description: "面向科学计算与数值实验的精简 Spec-Driven Development 工作流。"
   author: "YOUR_NAME"
 

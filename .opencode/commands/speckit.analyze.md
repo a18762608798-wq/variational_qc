@@ -2,8 +2,8 @@
 description: 只读检查当前 feature 的 spec、plan 和 tasks 是否完整、一致并符合 constitution。
 ---
 
-<!-- Source: scientific-computing -->
 
+<!-- Source: scientific-computing -->
 # Analyze
 
 ## Workflow

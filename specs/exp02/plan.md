@@ -7,7 +7,7 @@
   断点续算 + D03/D04 组装）、薄编排 `scripts/run_exp02.jl`、出图
   `scripts/plot_D03D04.py`（D03 三线图 + D04 四联热力图）。
 - 数据流：S01（经 `Shared01.Store` 读取）→ 逐点求关联矩阵 → `S(π)`、string、
-  `Q` 代数组合；`~Z_R` 复用 `Exp01.ZTilde` 内核独立重算（定义同一，数值必一致）；
+  `Q` 代数组合；`~Z_R` 复用 `Exp01` 内核独立重算（定义同一，数值必一致）；
   D03 取 S02 三坐标条目在 q 网格上求值 → 分块落盘 → 组装 → Python 出图。
 - 核心算法：`Z` 型算符在计算基下对角，期望化为振幅模方加权求和——
   `C_ij` 为 64 个 `±1` 加权和，`S(q)` 为 `C` 的离散傅里叶加权，
@@ -25,7 +25,7 @@
 - `src/Exp02/StringOrder.jl`：`string_order(psi)`，`d = L/2−1 = 3`，
   按 `O_str` 定理对角本征值加权求和；纯内核。
 - `src/Exp02/Panels.jl`：逐点组装 `(Sπ, Ostr, Q, Zt)` 四元组；
-  `Q = 4/3 + 2 O_str − S(π)/6`；`~Z_R` 调用 `Exp01.ZTilde.z_tilde`（只读复用，
+  `Q = 4/3 + 2 O_str − S(π)/6`；`~Z_R` 调用 `Exp01.z_tilde`（只读复用，
   不修改 exp01 代码；定义同一保证 D04(d) 与 D01 数值一致）。
 - `src/Exp02/Store.jl`：D04 按 `δ` 行分块 `.npz` + 完成表（同 exp01 模式，
   任务内实现）；D03 三曲线独立小文件；组装 `exp02_D03.npz`、`exp02_D04.npz` +

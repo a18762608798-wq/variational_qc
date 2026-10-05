@@ -17,7 +17,7 @@ using Exp02.Store: save_row, completed_rows, save_d03, assemble_D04
 const S01_DIR = joinpath(@__DIR__, "..", "data", "shared01")
 const OUT_DIR = joinpath(@__DIR__, "..", "data", "exp02")
 
-const Q_GRID = collect(1:99) .* (2pi / 100)  # spec §3: 101-partition minus boundaries
+const Q_GRID = collect(1:99) .* (2pi / 100)  # spec PRE-002: 101-partition minus boundaries
 const REP_LABELS = ["trivial", "topological", "afm"]
 const REP_COORDS = Dict("trivial" => (0.01, 0.02),
                         "topological" => (0.99, 0.02),

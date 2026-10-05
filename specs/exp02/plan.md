@@ -2,7 +2,7 @@
 
 ## 1. 实现思路
 
-- 主要模块：`Correlators`（`ZZ` 关联矩阵 + `S(q)`）、`StringOrder`（`O_str` 对角期望）、
+- 主要模块（单 `Exp02` 命名空间下文件）：`Correlators`（`ZZ` 关联矩阵 + `S(q)`）、`StringOrder`（`O_str` 对角期望）、
   `Panels`（四联组装：`S(π)` / string / `Q` / `~Z_R`）、`Store`（分块增量落盘 +
   断点续算 + D03/D04 组装）、薄编排 `scripts/run_exp02.jl`、出图
   `scripts/plot_D03D04.py`（D03 三线图 + D04 四联热力图）。

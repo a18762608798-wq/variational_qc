@@ -2,7 +2,7 @@
 
 ## 1. 实现思路
 
-- 主要模块：`InitStates`（三初态构造）、`Ansatz`（orbit 电路态矢量作用）、
+- 主要模块（单 `Exp04` 命名空间下文件）：`InitStates`（三初态构造）、`Ansatz`（orbit 电路态矢量作用）、
   `VQELoop`（代价 + 参数移位梯度 + 全局采样 + L-BFGS + 同路链式 warm start）、
   `Store`（按 `δ` 分块增量落盘 + 断点续算 + S06/S03 组装）、
   薄编排 `scripts/run_exp04.jl`、生产断言 `scripts/verify_exp04.jl`、

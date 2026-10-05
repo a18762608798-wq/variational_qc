@@ -1,4 +1,4 @@
-# Per-point symmetric-gap solver for exp03 (spec §3).
+# Per-point symmetric-gap solver for exp03 (spec INV-001, INV-003).
 # Δ_sec(L,s) = E1^{(P=-2)} - E0^{(P=-2)} at delta = 0 (Heisenberg point).
 # Dense exact diagonalization of the small sector matrix: no iterative solver,
 # no convergence parameters. Pure kernel, no I/O.
@@ -12,9 +12,9 @@ using ..SectorBasis: sector_hamiltonian
 export GapResult, solve_gap, union_points, key_wide, key_narrow, S_WIDE, S_NARROW,
        ARPACK_TOL, RESID_TOL, ARPACK_MAXITER, ARPACK_NCV
 
-const DELTA_FIXED = 0.0  # spec §3: all three D02 parts at δ = 0
+const DELTA_FIXED = 0.0  # spec PRE-001: all three D02 parts at δ = 0
 
-# spec §3 grids (same convention as S01: 101-partition minus boundaries).
+# spec PRE-002 grids (same convention as S01: 101-partition minus boundaries).
 const S_WIDE = [i / 100 for i in 1:99]                    # (i) s ∈ [0,1]
 const S_NARROW = [0.45 + 0.15k / 100 for k in 1:99]       # (ii) s ∈ [0.45,0.6]
 

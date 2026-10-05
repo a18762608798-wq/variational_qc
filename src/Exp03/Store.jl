@@ -134,7 +134,7 @@ function assemble_D02(dir::AbstractString)
     all(isfinite, D_wide) || throw(ErrorException("non-finite Δ in D_wide"))
     all(isfinite, A_narr) || throw(ErrorException("non-finite A in D_narrow"))
     minimum(D_wide) ≥ GAP_MIN_TOL || throw(ErrorException("Δ below tolerance: $(minimum(D_wide))"))
-    # (ii) crossings per pair (spec §3 + Q5); each pair must bracket at least once.
+    # (ii) crossings per pair (spec PRE-003 + Q5); each pair must bracket at least once.
     pairs = [(1, 2), (1, 3), (2, 3)]
     cross_s = zeros(length(pairs))
     cross_A = zeros(length(pairs))
@@ -143,7 +143,7 @@ function assemble_D02(dir::AbstractString)
         isempty(cs) && throw(ErrorException("no bracketing for pair $(LS[r1])-$(LS[r2]): invalid run"))
         cross_s[p], cross_A[p] = cs[1][1], cs[1][2]
     end
-    # (iii) Δ vs 1/L at s = 0.5 over five L; fit uses L=20,24 only (spec §3).
+    # (iii) Δ vs 1/L at s = 0.5 over five L; fit uses L=20,24 only (spec PRE-004).
     # L=8/12/16 reuse the (i) i = 50 point; L=20/24 come from the extra chunk.
     isfile(_extrapath(dir)) || throw(ErrorException("extra_iii chunk missing: invalid run"))
     e = NPZ.npzread(_extrapath(dir))

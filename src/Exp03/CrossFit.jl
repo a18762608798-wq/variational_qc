@@ -1,4 +1,4 @@
-# Crossing localization + linear fit for exp03 D02 (spec §3).
+# Crossing localization + linear fit for exp03 D02 (spec PRE-003, PRE-004).
 # Crossings: strict sign-change bracketings of A1-A2 on the shared (ii) grid,
 # s-coordinate by linear interpolation between the bracketing neighbors (Q5).
 # Fit: least squares line Δ = a·(1/L) + b (Q4). Pure kernels, no I/O.

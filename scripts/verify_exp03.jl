@@ -1,5 +1,5 @@
 # Production assertions for exp03 (T008): full-output checks on data/exp03/.
-# Re-derives crossings/fit from the archived arrays and locks every spec §5 condition.
+# Re-derives crossings/fit from the archived arrays and locks every spec Contract F condition (VAL-001..VAL-005).
 # Failure => invalid run. Prints VERIFY-EXP03-OK plus diagnostics on success.
 
 push!(LOAD_PATH, joinpath(@__DIR__, "..", "src"))
@@ -47,7 +47,7 @@ function main()
         @assert abs(cs[1][2] - d["cross_A"][p]) == 0.0
     end
 
-    # (iii): five points over L=8/12/16/20/24; fit uses L=20,24 only (spec §3).
+    # (iii): five points over L=8/12/16/20/24; fit uses L=20,24 only (spec PRE-004).
     # L=8/12/16 reuse the (i) s = 0.5 (i = 50) values.
     fit_Ls = [8, 12, 16, 20, 24]
     @assert vec(d["fit_Ls"]) == fit_Ls
@@ -58,7 +58,7 @@ function main()
     @assert abs(fit.a - d["fit_a"][]) < FIT_TOL
     @assert abs(fit.b - d["fit_b"][]) < FIT_TOL
 
-    # Diagnostics (recorded only, no pass thresholds per spec §5).
+    # Diagnostics (recorded only, no pass thresholds per spec VAL-004).
     println("fit: a = $(d["fit_a"][]), b = $(d["fit_b"][])")
     for (r, L) in enumerate(LS)
         m, i = findmin(D_wide[r, :])

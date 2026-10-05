@@ -44,7 +44,7 @@ function main()
         println("L=$L done in $(round(time() - t0, digits=1))s")
         flush(stdout)
     end
-    # (iii) extra points at (δ=0, s=0.5) for L=20,24 (spec §3; serial, L=24 ~2min).
+    # (iii) extra points at (δ=0, s=0.5) for L=20,24 (spec PRE-004; serial, L=24 ~2min).
     if EXTRA_ID ∉ completed_chunks(OUT_DIR)
         t0 = time()
         res = [solve_gap(L, 0.5) for L in EXTRA_LS]

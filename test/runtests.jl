@@ -291,7 +291,7 @@ end
     @test_throws ArgumentError linear_fit([1.0], [2.0])
 end
 
-@testset "exp03 union grid (spec §3)" begin
+@testset "exp03 union grid (spec PRE-002)" begin
     using Exp03.GapSolver: union_points, key_wide, key_narrow, S_WIDE
     pts = union_points()
     @test length(pts) == 194  # 99 + 99 - 4 overlaps
@@ -319,7 +319,7 @@ end
 
 @testset "exp03 two-point fit exactness" begin
     using Exp03.CrossFit
-    # Two points determine the line (spec §3 fit subset: L=20,24).
+    # Two points determine the line (spec PRE-004 fit subset: L=20,24).
     fit = linear_fit([1 / 20, 1 / 24], [0.92, 0.774])
     @test fit.a * (1 / 20) + fit.b ≈ 0.92
     @test fit.a * (1 / 24) + fit.b ≈ 0.774

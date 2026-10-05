@@ -1,4 +1,4 @@
-# Partial-trace kernel for exp01 (spec §3).
+# Partial-trace kernel for exp01 (spec PRE-003).
 # Basis convention: site m (1-indexed) <-> bit (m-1), LSB = site 1,
 # asserted at runtime against the S01 manifest (see ZTilde/runner).
 # Pure kernel: no I/O, no globals.

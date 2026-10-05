@@ -22,7 +22,7 @@ end
     end
 end
 
-@testset "grid definition (spec §3)" begin
+@testset "grid definition (spec PRE-002)" begin
     @test length(S_GRID) == 99 && length(DELTA_GRID) == 99
     @test S_GRID[1] == 0.01 && S_GRID[end] == 0.99
     @test DELTA_GRID[1] == 0.02 && DELTA_GRID[end] == 1.98

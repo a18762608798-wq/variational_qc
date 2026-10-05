@@ -97,7 +97,7 @@ def main() -> None:
               flush=True)
 
     # --- 链：sample 枚举 + 无向去重（内核 sample_chains 只做 tuple 级去重，
-    # 反转元组视为不同，故此处按 min(链,反转) 二次去重，spec §3）→ 截断 ---
+    # 反转元组视为不同，故此处按 min(链,反转) 二次去重，spec PRE-001）→ 截断 ---
     cand_chain: dict[str, list] = {}
     for chip in CHIPS:
         if reuse_dir is not None and chip == "Shenglian":

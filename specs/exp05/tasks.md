@@ -46,8 +46,8 @@
   零真机调用，建议 T001 前先行）：链无向去重、环旋转/翻转去重、
   `score_chain` 手算对照、D07c 滑窗（含闭合段）与反转匹配、
   并列边界（`0.0199` 并列 / `0.0201` 不并列）、manifest 必填字段。
-- [x] T007 生产断言（`scripts/verify_exp05.py`，对正式输出全量执行，
-  逐条映射 spec §5）：每候选 4 电路齐全，无缺失/NaN；
+- [x] T007 生产断言 [VAL-001..VAL-008]（`scripts/verify_exp05.py`，对正式输出全量执行，
+  逐条映射 spec Contract F）：每候选 4 电路齐全，无缺失/NaN；
   `S̄ ∈ [-1,1]`，`F_ro ∈ [0,1]`；快照含 `calibration_time`；
   tid 清单 == 收回成功集 + 明确标记集；checkpoints 与 npz evidence
   逐候选一致（复算比对）；转译门（CZ 数与比特集）留存可查；

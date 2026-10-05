@@ -12,10 +12,10 @@ from pathlib import Path
 # 与项目其他实验保持一致的种子根（见 exp04 manifest MASTER_SEED）。
 MASTER_SEED = 20261004
 
-# spec §3：冠军并列阈值（clarify Q5 用户确认）。
+# spec POST-005：冠军并列阈值（clarify Q5 用户确认）。
 TIE_TOL = 0.02
 
-# spec §3 / plan §3：静态边保真度卫生过滤阈值。
+# spec INV-002 / plan §3：静态边保真度卫生过滤阈值。
 EDGE_FID_CUTOFF = 0.9
 
 # plan §3：采样排序聚合函数（边保真度和；定长链下与均值排序等价）。
@@ -25,7 +25,7 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data" / "exp05"
 
 
 def canonical_chain(chain: list[int]) -> tuple[int, ...]:
-    """无向去重范式：链与其反转视为同一候选（spec §3）。"""
+    """无向去重范式：链与其反转视为同一候选（spec PRE-001）。"""
     t = tuple(chain)
     return min(t, t[::-1])
 
@@ -73,7 +73,7 @@ def match_subchain(sub: list[int], chip: str, evidence: list[dict]) -> dict | No
 
 
 def tie_group(ranked: list[dict], tol: float = TIE_TOL) -> list[dict]:
-    """首名并列组：score 与第 1 名分差 < tol 者全部记入（spec §3 S04）。"""
+    """首名并列组：score 与第 1 名分差 < tol 者全部记入（spec POST-005 S04）。"""
     if not ranked:
         return []
     top = ranked[0]["score"]

@@ -43,7 +43,7 @@ manifest schema；零真机调用）
 **Performance Goals**: N/A（机时由账单决定，不追求吞吐；预览账单链约
 `2×3000×4 = 24000` 任务、`≈ 4.9×10⁷` shots，环待预览枚举后确定）
 
-**Constraints**: 未人工确认账单不得提交（spec 两步闸门）；单候选 `4` 电路缺一不可；
+**Constraints**: 未人工确认账单不得提交（spec `INV-003` 两步闸门）；单候选 `4` 电路缺一不可；
 转译不得引入候选子图之外的纠缠门（正确性门，非性能项）
 
 **Scale/Scope**: 链候选 ≤ `6000` 条、环候选全枚举（量级十余）、D07c 子链 `10` 条
@@ -138,7 +138,7 @@ test/
   `run_benchmark` → 对账层（§3）→ checkpoints；支持中断续跑（只补缺失）。
 - `scripts/exp05_assemble.py`：读 checkpoints → `score_chain` 复算
   （与落盘值比对，不一致报错）→ 链 / 环各自排序 → 前十 + 全量 evidence →
-  并列判定（`0.02`，spec）→ D07c join/补测清单 → 写
+  并列判定（`0.02`，spec `POST-005`）→ D07c join/补测清单 → 写
   `exp05_{D07a,D07b,D07c,S04}.npz` + `exp05_manifest.json`
  （含芯片、快照标识、`rng_seed`、过滤阈值、shots、`w_stab/w_ro`、
   工具栈名与版本、schema `exp05/v1`）。
@@ -161,7 +161,7 @@ test/
 - 采样排序聚合函数：链按其 7 条边静态保真度的**均值**降序（plan 级细则；
   备选最小值过于保守，均值与旧经验一致，记入 manifest 以保可重复）。
   `sample_chains` 的 `rng_seed` 固定（具体值 implement 定，记入 manifest）；
-  先去重后截断（spec：去重后计数）。
+  先去重后截断（spec `PRE-001`：去重后计数）。
 - 卫生过滤阈值：静态边保真度 `< 0.9` 的边所在候选剔除（plan 级细则；
   spec 授权 plan 定；阈值与剔除数记入 prescreen 清单 + manifest）。
   过滤后不足 3000 即有多少测多少，不降阈凑数。
@@ -180,9 +180,9 @@ test/
 - D07c 闭合段：环滑窗 10 条含跨接缝段（如比特 `[138,125,...]`），匹配时同样
   适用反转等价；补测候选同样先过转译 pin 断言。
 
-## 4. 验证方案（覆盖 spec §5）
+## 4. 验证方案（覆盖 spec Contract F）
 
-- `verify_exp05.py` 对正式输出全量执行，逐条映射 spec §5：
+- `verify_exp05.py` 对正式输出全量执行，逐条映射 spec `VAL-001..VAL-008`：
   - 每候选 4 电路齐全，无缺失/NaN；`S̄ ∈ [-1,1]`，`F_ro ∈ [0,1]`；
     快照含 `calibration_time`。
   - 提交/收回对账：tid 清单 == 收回成功集 + 明确标记集；无静默丢弃；

@@ -72,7 +72,7 @@ def transpile_audit(chains: dict[str, list], cset, ring: bool,
             edges = [[i, i + 1] for i in range(n - 1)]
             if ring:
                 edges.append([n - 1, 0])
-            # 只断言含 CZ 的 stab 电路；allzero/allone 依定义不含 CZ（spec §3）。
+            # 只断言含 CZ 的 stab 电路；allzero/allone 依定义不含 CZ（spec POST-002）。
             for key in ("stab_g0", "stab_g1"):
                 t = transpile(cset.circuits[key],
                               basis_gates=["rz", "rx", "ry", "cz"],

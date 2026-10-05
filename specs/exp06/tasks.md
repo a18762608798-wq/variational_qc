@@ -34,7 +34,6 @@
   逐批（VQE ×5 独立 tid + 标定 2，`correct=False` 参数留存），
   增量落盘 `data/exp06/batches/<bid>/`，中断续跑只补缺失。
   完成条件：66 批全收回（或明确标记），无静默丢弃，无已收回重提。
-  转译门执行待 H1 解决（见文件头）。
 - [ ] T004 编写 `scripts/exp06_assemble.py` 并组装产品：S05 矩阵 →
   Kronecker-`M⁻¹` 缓解 + 非负约束 → `S(π)`/string（公式只读复刻 Exp02）→
   写 `data/exp06/exp06_D08.npz`（全量 198 组缓解后均值/全并解析 SE/每重复三件套/
@@ -67,7 +66,7 @@
 
 ## Follow-up (exp05 重跑后：S04 刷新)
 
-- [ ] T008 新 S04 落盘后刷新本 feature 的 S04 硬编码引用（spec `PRE-003` 目标比特、
+- [ ] T008 新 S04 落盘后刷新本 feature 的 S04 引用（plan §3 映射表、
   `exp06_preview.py` 的 `SUBCHAIN_TOP1` 与映射表打印、Q3 问答取值）并重跑
   T002 预览出新账单（旧 `bill.json`/`batches.json` 作废，不沿用 run1 值）。
   完成条件：账单快照与新 S04 一致，经人工确认后才可进 T003。

@@ -18,7 +18,7 @@ GHZ (|0101…⟩+|1010…⟩)/√2：中间发起手写版（逻辑同
 qmeas.models.xxz.get_initial_state(8, pidx=0)，但不依赖 qmeas：
 三初态构造器保持零外部依赖，单源可审计。H 打中间比特、两路 CNOT
 向左右散开、翻奇位；纠缠级联深度 ~n/2。已逐振幅比对
-doc/theory/psi0.md 解析式一致。
+docs/theory/psi0.md 解析式一致。
 """
 
 from __future__ import annotations
@@ -45,7 +45,7 @@ def _singlet(qc: QuantumCircuit, a: int, c: int) -> None:
 
 
 def build_init(a_star: int) -> QuantumCircuit:
-    """三参考初态（doc/theory/psi0.md，L=8）。"""
+    """三参考初态（docs/theory/psi0.md，L=8）。"""
     if a_star not in A_LABELS:
         raise ValueError(f"a* 须为 1/2/3，当前 {a_star!r}")
     qc = QuantumCircuit(L)

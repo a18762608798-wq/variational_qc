@@ -1,4 +1,4 @@
-# SSH XXZ Hamiltonian, OBC. Physics definition: doc/theory/H.md.
+# SSH XXZ Hamiltonian, OBC. Physics definition: docs/theory/H.md.
 #
 # H(s,δ) = (1-s) * Σ_odd h + s * Σ_even h,
 # h_kl = e^{-δ} (XkXl + YkYl) + e^{+δ} ZkZl.
@@ -51,7 +51,7 @@ end
     build_hamiltonian(L, s, delta) -> Matrix{ComplexF64}
 
 Dense SSH XXZ Hamiltonian for even `L` with open boundaries.
-Site numbering and bond sets follow `doc/theory/H.md`.
+Site numbering and bond sets follow `docs/theory/H.md`.
 """
 function build_hamiltonian(L::Integer, s::Real, delta::Real)
     isodd(L) && throw(ArgumentError("L must be even, got $L"))

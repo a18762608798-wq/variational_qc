@@ -27,12 +27,12 @@ D07c（冠军环内十条 `8`-子链评分排名）与 S04（真机目标比特�
 - 基准电路：每候选 `4` 个——`stab_g0` / `stab_g1`（cluster 态制备 +
   奇偶分组单比特转基矢测量，得各 `⟨S_i⟩`）与 `allzero` / `allone`
   （裸测量 / 全 `X` 后测量，得读出保真度）。定义见
-  `doc/theory/premium_qubits.md`。每电路 shots 数 `2048`（`PRE-002`）。
+  `docs/theory/premium_qubits.md`。每电路 shots 数 `2048`（`PRE-002`）。
 - 稳定子均值 `S̄ = (1/n)Σ_i⟨S_i⟩`（`n=8` 链含端点二体项，`n=10` 环全三体、
   指标模 `10`）；读出保真度 `F_ro = [P(全0) + P(全1)] / 2`
   （`allzero` / `allone` 电路不含 `CZ`，`POST-002`）。
 - 打分 `score = 0.8·S̄ + 0.2·F_ro`（双比特门优先，读出只占辅助位；
-  见 `doc/paper-outline.md` 与 `doc/theory/premium_qubits.md`）。
+  见 `docs/paper-outline.md` 与 `docs/theory/premium_qubits.md`）。
   环分系统性低于链分，只各自内部排序，不混排比较（`POST-003`）。
 - 枚举范围（`PRE-001`）：`8` 链按静态边保真度排序采样截断、每芯片至多
   `3000` 条（去重后计数；采样排序与卫生过滤细则由 plan 定）；
@@ -60,12 +60,12 @@ D07c（冠军环内十条 `8`-子链评分排名）与 S04（真机目标比特�
 
 ### 4. Theory & References
 
-- `doc/expriment-map.md`（exp05 定义：产出 D07a、D07b、D07c 及 S04 供 exp06 消费）
-- `doc/theory/premium_qubits.md`（筛选方法、基准电路、打分公式）
-- `doc/paper-outline.md`（D07a–D07c 出场顺序与打分公式）
-- `doc/theory/readout_mitigation.md`（读出缓解归 exp06，本实验只测裸 `F_ro`）
+- `docs/expriment-map.md`（exp05 定义：产出 D07a、D07b、D07c 及 S04 供 exp06 消费）
+- `docs/theory/premium_qubits.md`（筛选方法、基准电路、打分公式）
+- `docs/paper-outline.md`（D07a–D07c 出场顺序与打分公式）
+- `docs/theory/readout_mitigation.md`（读出缓解归 exp06，本实验只测裸 `F_ro`）
 
-复杂推导和背景保留在 `doc/theory/`，不复制到 spec。
+复杂推导和背景保留在 `docs/theory/`，不复制到 spec。
 
 ### 5. Open Questions
 
@@ -105,7 +105,7 @@ D07c（冠军环内十条 `8`-子链评分排名）与 S04（真机目标比特�
 #### Dependencies
 
 - `DEP-001` 无外部数据依赖（自含；筛选方法见
-  `doc/theory/premium_qubits.md`）。真机提交经现有真机工具链
+  `docs/theory/premium_qubits.md`）。真机提交经现有真机工具链
   （拓扑拉取 / 转译 pin / 任务轮询），所用栈名与版本须记入 manifest
   （plan 落实记录方式）。
 

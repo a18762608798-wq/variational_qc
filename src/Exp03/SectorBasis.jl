@@ -1,4 +1,4 @@
-# P=-2 sector orbit basis for exp03 (spec INV-001; doc/theory/H.md, doc/theory/gap.md).
+# P=-2 sector orbit basis for exp03 (spec INV-001; docs/theory/H.md, docs/theory/gap.md).
 #
 # P = Z_tot^2 - Xbar - R = -2  <=>  Z_tot = 0, Xbar = +1, R = +1, where
 # Xbar = prod_m X_m (global spin flip) and R is chain reflection (m <-> L+1-m).

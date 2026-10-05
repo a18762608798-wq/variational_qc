@@ -1,4 +1,4 @@
-# Normalized topological reflector ~Z_R for exp01 (spec POST-001, doc/theory/topological_op.md).
+# Normalized topological reflector ~Z_R for exp01 (spec POST-001, docs/theory/topological_op.md).
 # I = sites (3,4,5,6); I1 = (3,4); I2 = (5,6); R_I = mirror about the central bond.
 # Pure kernel: no I/O. Keep-site ordering matches ReducedDensity (ascending).
 

@@ -1,4 +1,4 @@
-# VQE loop for exp04 (spec PRE-001..PRE-003, INV-001..INV-002; doc/theory/cost_fun.md).
+# VQE loop for exp04 (spec PRE-001..PRE-003, INV-001..INV-002; docs/theory/cost_fun.md).
 #
 # Per (δ,s) point and init leg: p=1 global random sampling (+ zero vector) with
 # top-K L-BFGS refinement; p=2,3 same-leg chained warm start + L-BFGS refine.

@@ -1,4 +1,4 @@
-# Three VQE reference states for exp04 (doc/theory/psi0.md).
+# Three VQE reference states for exp04 (docs/theory/psi0.md).
 # All lie in the P=-2 sector. Basis convention identical to Shared01.Hamiltonian:
 # site m (1-indexed) <-> bit (m-1), LSB = site 1, |0> = Z+1.
 # Pure kernels, no I/O.

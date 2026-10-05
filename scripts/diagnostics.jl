@@ -1,7 +1,7 @@
 # T007 diagnostics (record only, no pass/fail thresholds; physical
 # interpretation belongs to exp01/exp02).
 # 1. Overlap of the leftmost column (s=0.01) with the s=0 odd-bond singlet
-#    product state (doc/theory/psi0.md).
+#    product state (docs/theory/psi0.md).
 # 2. Writes data/shared01/diagnostics.json.
 
 push!(LOAD_PATH, joinpath(@__DIR__, "..", "src"))

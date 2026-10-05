@@ -19,10 +19,10 @@
 ### 2. Experiment / Computation Definition
 
 - 系统 / 模型：SSH XXZ 链，OBC，`L ∈ {8,12,16}`，
-  哈密顿量 `H(s,δ)` 定义见 `doc/theory/H.md`（`PRE-001`）。
+  哈密顿量 `H(s,δ)` 定义见 `docs/theory/H.md`（`PRE-001`）。
 - 能隙：对称性能隙 `Δ_sec(L,s) = E1^{(P=-2)} − E0^{(P=-2)}`
-  （见 `doc/theory/gap.md`），其中 `P` 定义与扇区筛选
-  （`H'=H+P`）见 `doc/theory/H.md`；
+  （见 `docs/theory/gap.md`），其中 `P` 定义与扇区筛选
+  （`H'=H+P`）见 `docs/theory/H.md`；
   `P=−2 ⇔ Z_tot=0、∏X=+1、R=+1`（由 `P` 定义直接得出）。
 - `δ` 固定：三部分均取 `δ=0`（Heisenberg 各向同性点；
   其中 (ii) 的 `δ=0` 已由 `paper-outline.md` 明确，`PRE-001`）。
@@ -37,7 +37,7 @@
   横轴 `1/L`，纵轴 `Δ`，五点全画；其中 `L=8/12/16` 复用 (i) 同点值，
   不另算，`L=20/24` 独立计算（同扇区求解路径、同残差门控）；
   线性拟合仅用 `L=20,24` 两点（两点定直线），`Δ = a·(1/L)+b`，
-  报告拟合系数 `a、b`（理论期待 `b=0`，见 `doc/theory/gap.md`
+  报告拟合系数 `a、b`（理论期待 `b=0`，见 `docs/theory/gap.md`
   有限尺寸标度一节）；拟合方法为最小二乘。
 - `L→∞` 交点趋于 `s=0.5` 系论文解释，不属计算定义（`VAL-004` 备注）。
 
@@ -55,12 +55,12 @@
 
 ### 4. Theory & References
 
-- `doc/expriment-map.md`（exp03 定义：自含 `L=8,12,16`，产出 D02a/b/c）
-- `doc/theory/gap.md`（对称能隙与有限尺寸标度定义）
-- `doc/theory/H.md`（模型、`P` 算符与 `H'` 扇区筛选）
-- `doc/paper-outline.md`（D02a/b/c 三项要求）
+- `docs/expriment-map.md`（exp03 定义：自含 `L=8,12,16`，产出 D02a/b/c）
+- `docs/theory/gap.md`（对称能隙与有限尺寸标度定义）
+- `docs/theory/H.md`（模型、`P` 算符与 `H'` 扇区筛选）
+- `docs/paper-outline.md`（D02a/b/c 三项要求）
 
-复杂推导和背景保留在 `doc/theory/`，不复制到 spec。
+复杂推导和背景保留在 `docs/theory/`，不复制到 spec。
 
 ### 5. Open Questions
 
@@ -98,8 +98,8 @@
 
 #### Dependencies
 
-- `DEP-001` 无外部数据依赖（自含；模型与对称性定义见 `doc/theory/H.md`，
-  能隙定义见 `doc/theory/gap.md`）。
+- `DEP-001` 无外部数据依赖（自含；模型与对称性定义见 `docs/theory/H.md`，
+  能隙定义见 `docs/theory/gap.md`）。
 
 ### B. Notation
 

@@ -21,7 +21,7 @@
 
 - 测点（`PRE-001`）：`δ=0` 与 `δ=0.85` 两线，每线 `33` 点
   （S01 网格每 `3` 点取 `1`）；每点 `p=1,2,3`
-  （见 `doc/paper-outline.md` D08）。
+  （见 `docs/paper-outline.md` D08）。
 - 电路参数：每 `(δ,s,p)` 取 S03 同点最优 `(θ*,a*)`（三路取最小的获胜路；
   S03 无此点则该点判 invalid，不另做优化，`PRE-002`）。
 - 目标比特（只用 top1，并列者不用；用户 2026-10-04 确认，`PRE-003`）：
@@ -36,13 +36,13 @@
 - 转译：`qiskit`，`optimization_level=3`，`coupling_map` 显式传入
   （上条），`basis_gates` 由 plan 定并记入 manifest（`PRE-004`）。
 - 观测量：`S(π)` 与 string 经 estimator 测（qubitwise 对易分组，
-  定义见 `doc/theory/topological_op.md`）；每 estimator 电路
+  定义见 `docs/theory/topological_op.md`）；每 estimator 电路
   shots `2048`、独立重复 `5` 次（5 片分批，各带当批 S05 矩阵，防漂移，
   `PRE-005`）；误差棒为全并 multinomial 解析标准误（5 批缓解后分布平均，
   `N=5×2048`，`POST-001`）。
 - 读出缓解（S05，`PRE-006` / `POST-004`）：逐需读出比特（`8` 计算比特）
   各标定 `2×2` 分配矩阵（制备 `|0⟩` / `|1⟩` 各一电路，定义见
-  `doc/theory/readout_mitigation.md`）；`8` 比特可同时测量，
+  `docs/theory/readout_mitigation.md`）；`8` 比特可同时测量，
   故每批只需 `2` 个标定电路（全 `0` 制备 + 全 `X` 制备，一次给出
   `8` 比特各自的两列），与正式电路同 shots；批量度为每 `3` 个
   `(δ,s,p)` 组一切批；quark 平台自带读出矫正必须关闭
@@ -67,14 +67,14 @@
 
 ### 4. Theory & References
 
-- `doc/expriment-map.md`（exp06 定义：依赖 S03、S04、S06，S05 自含，共建 D08）
-- `doc/paper-outline.md`（D08：模拟机曲线 + 真机 `p*` 散点、各自归一化比趋势）
-- `doc/theory/readout_mitigation.md`（逐比特 `2×2` 矩阵 + 求逆 + 非负约束）
-- `doc/theory/ansatz.md`（拟设结构，电路按 S03 参数实例化）
-- `doc/theory/psi0.md`（三参考初态，拓扑首尾单态需 `0–7` 连接）
-- `doc/theory/topological_op.md`（`S(π)`、string 定义）
+- `docs/expriment-map.md`（exp06 定义：依赖 S03、S04、S06，S05 自含，共建 D08）
+- `docs/paper-outline.md`（D08：模拟机曲线 + 真机 `p*` 散点、各自归一化比趋势）
+- `docs/theory/readout_mitigation.md`（逐比特 `2×2` 矩阵 + 求逆 + 非负约束）
+- `docs/theory/ansatz.md`（拟设结构，电路按 S03 参数实例化）
+- `docs/theory/psi0.md`（三参考初态，拓扑首尾单态需 `0–7` 连接）
+- `docs/theory/topological_op.md`（`S(π)`、string 定义）
 
-复杂推导和背景保留在 `doc/theory/`，不复制到 spec。
+复杂推导和背景保留在 `docs/theory/`，不复制到 spec。
 
 ### 5. Open Questions
 

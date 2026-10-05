@@ -1,4 +1,4 @@
-# Orbit ansatz circuit for exp04 (doc/theory/ansatz.md), fixed statevector action.
+# Orbit ansatz circuit for exp04 (docs/theory/ansatz.md), fixed statevector action.
 #
 # Odd bonds O_j=(2j-1,2j) pair as O_j <-> O_{M+1-j}; even bonds E_j=(2j,2j+1)
 # pair as E_j <-> E_{M-j} (at most one self-mirror bond). Per orbit one (tx,tz)

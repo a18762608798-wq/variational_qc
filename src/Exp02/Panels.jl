@@ -1,5 +1,5 @@
 # Per-point D04 panel assembly for exp02 (spec POST-002).
-# Q = 4/3 + 2 O_str − S(π)/6 (doc/theory/topological_op.md).
+# Q = 4/3 + 2 O_str − S(π)/6 (docs/theory/topological_op.md).
 # ~Z_R reuses Exp01 read-only (definitional identity with D01).
 
 using Exp01: z_tilde  # top-level reuse (read-only); load Exp01 before Exp02

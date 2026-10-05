@@ -20,13 +20,13 @@
 
 - 输入：S01 网格每点基态波函数 `ψ0`（`256` 分量，基矢约定见 S01 manifest）；
   D03 取其中 S02 三坐标条目（`PRE-001`）。
-- 结构因子（见 `doc/theory/topological_op.md`）：
+- 结构因子（见 `docs/theory/topological_op.md`）：
   `S(q) = (1/L) Σ_{i,j} e^{iq(i−j)} <Z_i Z_j>`，`L=8`，期望取自 `ψ0`。
 - D03 q 网格（`PRE-002`）：`q = 2πk/100`（`k = 1,…,99`），即 `[0,2π]` 作
   101 点均匀划分后去边界，共 99 点，显含 `q=π`（`k=50`）；三代表点共用此网格。
 - D04 网格（`PRE-003`）：与 S01 同网格（`s = i/100`、`δ = j/50`，
   `i,j = 1,…,99`），逐点计算，不插值、不平滑。
-- D04 各量（定义见 `doc/theory/topological_op.md`，`PRE-004`）：
+- D04 各量（定义见 `docs/theory/topological_op.md`，`PRE-004`）：
   - (a) `S(π)`：上式取 `q=π`；
   - (b) string：`O_str(d=L/2−1=3)`；
   - (c) `Q = 4/3 + 2 O_str − S(π)/6`；
@@ -48,11 +48,11 @@
 
 ### 4. Theory & References
 
-- `doc/expriment-map.md`（exp02 定义：依赖 S01、S02，产出 D03、D04）
-- `doc/theory/topological_op.md`（`S(q)`、string、`Q` 定义）
-- `doc/paper-outline.md`（D03 三线同图要求、D04 四联版式）
+- `docs/expriment-map.md`（exp02 定义：依赖 S01、S02，产出 D03、D04）
+- `docs/theory/topological_op.md`（`S(q)`、string、`Q` 定义）
+- `docs/paper-outline.md`（D03 三线同图要求、D04 四联版式）
 
-复杂推导和背景保留在 `doc/theory/`，不复制到 spec。
+复杂推导和背景保留在 `docs/theory/`，不复制到 spec。
 
 ---
 

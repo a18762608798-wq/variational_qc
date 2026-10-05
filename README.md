@@ -13,7 +13,7 @@
 - `scripts/`：`run_*.jl`（实验运行）、`verify_*.jl`（结果校验）、
   硬件任务提交（`exp05_*`、`exp06_*`）与论文绘图（`plot_*.py`）
 - `specs/`：exp01–exp06、shared-01 的 spec / plan / tasks
-- `doc/`：`paper-outline.md`、`expriment-map.md`、理论笔记（`doc/theory/`）
+- `docs/`：`paper-outline.md`、`expriment-map.md`、理论笔记（`docs/theory/`）
 - `figs/`：论文插图（`*.png`）
 - `test/`：`runtests.jl` 及相关测试
 - `PAPER_STATUS.html` / `EXPERIMENT_STATUS.html`：论文与实验进度总览

@@ -1,4 +1,4 @@
-# ZZ correlators and structure factor for exp02 (spec PRE-004, doc/theory/topological_op.md).
+# ZZ correlators and structure factor for exp02 (spec PRE-004, docs/theory/topological_op.md).
 # Basis convention: site m (1-indexed) <-> bit (m-1), LSB = site 1 (asserted
 # against the S01 manifest by the runner). Pure kernel: no I/O.
 

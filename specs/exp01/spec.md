@@ -21,7 +21,7 @@
 
 - 输入：S01 网格每点的基态波函数 `ψ0`（`256` 分量，基矢约定见 S01 manifest，
   `PRE-001`）。
-- 子系统取法（见 `doc/theory/topological_op.md`，`PRE-003`）：`L=8` 取中间
+- 子系统取法（见 `docs/theory/topological_op.md`，`PRE-003`）：`L=8` 取中间
   `2n=4` 格点为 `I`（即格点 `3,4,5,6`），左右连续块 `I1=(3,4)`、`I2=(5,6)`
   各 `n=2` 比特；`R_I` 为中央键镜像交换。
 - 观测量：`Z_R = Tr(ρ_I R_I)`，
@@ -57,12 +57,12 @@
 
 ### 4. Theory & References
 
-- `doc/expriment-map.md`（exp01 定义：依赖 S01，产出 D01、D05）
-- `doc/theory/topological_op.md`（`~Z_R` 定义与 `I` 取法）
-- `doc/theory/psi0.md`（演化起点参考态）
-- `doc/paper-outline.md`（D01 范围、D05 标记要求）
+- `docs/expriment-map.md`（exp01 定义：依赖 S01，产出 D01、D05）
+- `docs/theory/topological_op.md`（`~Z_R` 定义与 `I` 取法）
+- `docs/theory/psi0.md`（演化起点参考态）
+- `docs/paper-outline.md`（D01 范围、D05 标记要求）
 
-复杂推导和背景保留在 `doc/theory/`，不复制到 spec。
+复杂推导和背景保留在 `docs/theory/`，不复制到 spec。
 
 ---
 

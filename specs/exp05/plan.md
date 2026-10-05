@@ -56,7 +56,7 @@ manifest schema；零真机调用）
 - I（Spec 权威）：候选 / 电路 / 打分 / 截断 / 阈值 / 输出 / 验证全在 spec；
   本 plan 只定采样排序聚合函数、卫生过滤阈值、诊断阈值、记录方式等 spec
   明确授权 plan 的细则，不增删实验语义。PASS。
-- II（分离）：不碰 `doc/theory/`；plan 只含实现决策。PASS。
+- II（分离）：不碰 `docs/theory/`；plan 只含实现决策。PASS。
 - III（边界）：复用 `qmeas.benchmark` 而不在 exp05 内重实现枚举 / 电路 /
   打分；`qmeas` 侧轮询器 Failed 缺口不在本 feature 内修（见 §3 对账层），
   不建跨 feature 新共享框架。PASS。

@@ -73,7 +73,7 @@ MINOR 为新增原则或实质性扩展；PATCH 为澄清、措辞与非语义�
 合规要求：每次 `specify / plan / tasks / implement` 前检查是否符合
 I–VI 原则；复杂度须有明确理由；违反宪法须在 plan 或任务中显式说明。
 
-实验展开规则：以 `doc/expriment-map.md`（以仓库实际文件名为准）
+实验展开规则：以 `docs/expriment-map.md`（以仓库实际文件名为准）
 为实验划分依据；每个 `shared-xx` / `expXX` 为一个独立 feature；
 一次展开一个实验，每个实验走一轮完整 specify 流程
 （specify → clarify → plan → tasks → analyze → implement → converge）；

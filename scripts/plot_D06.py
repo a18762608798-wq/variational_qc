@@ -7,7 +7,7 @@ Circuit-leaning hybrid (not a literal qiskit circuit):
 - then two layer blocks U^(1) and U^(k) joined by vertical dots;
 - each block: F then S sublayer gate boxes (one rounded box per bond,
   orbit colors; same color = shared (theta, phi)).
-Faithful to doc/theory/psi0.md + doc/theory/ansatz.md for L = 8 only:
+Faithful to docs/theory/psi0.md + docs/theory/ansatz.md for L = 8 only:
 - D06a trivial: odd-bond singlet pairs; F = even (U_o U_e).
 - D06b topo: |s>_{1,8} link + even-bond singlet pairs; F = odd (U_e U_o).
 - D06c AFM: GHZ adjacent-link chain; F = even (U_o U_e).

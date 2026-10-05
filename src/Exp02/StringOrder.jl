@@ -1,4 +1,4 @@
-# String order parameter for exp02 (doc/theory/topological_op.md).
+# String order parameter for exp02 (docs/theory/topological_op.md).
 # L=8 -> d = L/2-1 = 3:
 #   O_str = <(Z1+Z2)(Z3Z4)(Z5Z6)(Z7+Z8)>
 # (the two minus signs in Π_{l=1}^{2}(−Z_{2l+1}Z_{2l+2}) cancel).

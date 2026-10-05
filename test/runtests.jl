@@ -108,7 +108,7 @@ end
 
 @testset "exp01 S01 input gate" begin
     using Exp01
-    using Exp01
+    using Exp01: EXPECTED_BASIS_CONVENTION
     good = Dict("schema" => "shared01/v1",
                 "basis_convention" => EXPECTED_BASIS_CONVENTION,
                 "degenerate_points" => [])
@@ -165,8 +165,8 @@ end
 end
 
 @testset "exp03 sector basis constructive" begin
-    using Exp03.SectorBasis
-    using Exp03.GapSolver: union_points, key_wide, key_narrow
+    using Exp03
+    using Exp03: union_points, key_wide, key_narrow
     for L in (8, 12, 16)
         b = sector_basis(L)
         @test length(b.members) > 0
@@ -201,8 +201,8 @@ end
 end
 
 @testset "exp03 sector hamiltonian vs independent kron path (L=8)" begin
-    using Exp03.SectorBasis
-    using Exp03.GapSolver
+    using Exp03
+    using Exp03
     # Independent operators via kron (site m <-> bit (m-1), LSB = site 1).
     Z = ComplexF64[1 0; 0 -1]
     X = ComplexF64[0 1; 1 0]
@@ -250,7 +250,7 @@ end
 end
 
 @testset "exp03 L=12 sector preservation via full H" begin
-    using Exp03.SectorBasis
+    using Exp03
     L = 12
     H = build_hamiltonian(L, 0.5, 0.0)
     b = sector_basis(L)
@@ -275,7 +275,7 @@ end
 end
 
 @testset "exp03 crossfit synthetic" begin
-    using Exp03.CrossFit
+    using Exp03
     s = collect(0.45:0.0015:0.6)[1:99]
     A1 = 2.0 .* s .- 0.9
     A2 = -1.0 .* s .+ 0.6
@@ -292,7 +292,7 @@ end
 end
 
 @testset "exp03 union grid (spec PRE-002)" begin
-    using Exp03.GapSolver: union_points, key_wide, key_narrow, S_WIDE
+    using Exp03: union_points, key_wide, key_narrow, S_WIDE
     pts = union_points()
     @test length(pts) == 194  # 99 + 99 - 4 overlaps
     keyset = Set(p.key for p in pts)
@@ -308,8 +308,8 @@ end
 end
 
 @testset "exp03 L=16 sparse vs dense spot check" begin
-    using Exp03.SectorBasis
-    using Exp03.GapSolver
+    using Exp03
+    using Exp03
     r = solve_gap(16, 0.5)
     Hd = Hermitian(Matrix(sector_hamiltonian(16, 0.5, 0.0)))
     F = eigen!(Hd)
@@ -318,7 +318,7 @@ end
 end
 
 @testset "exp03 two-point fit exactness" begin
-    using Exp03.CrossFit
+    using Exp03
     # Two points determine the line (spec PRE-004 fit subset: L=20,24).
     fit = linear_fit([1 / 20, 1 / 24], [0.92, 0.774])
     @test fit.a * (1 / 20) + fit.b ≈ 0.92

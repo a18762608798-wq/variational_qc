@@ -8,10 +8,10 @@ BLAS.set_num_threads(1)
 using Shared01  # load order for Exp03
 using Shared01: H_DEF_ID
 using Exp03
-using Exp03.SectorBasis: sector_basis, sector_hamiltonian
-using Exp03.GapSolver: key_wide, key_narrow
-using Exp03.CrossFit: crossings, linear_fit
-using Exp03.Store: SCHEMA, LS, GAP_MIN_TOL, FIT_TOL
+using Exp03: sector_basis, sector_hamiltonian
+using Exp03: key_wide, key_narrow
+using Exp03: crossings, linear_fit
+using Exp03: SCHEMA, LS, GAP_MIN_TOL, FIT_TOL
 using NPZ, JSON3
 
 const DATA_DIR = joinpath(@__DIR__, "..", "data", "exp03")

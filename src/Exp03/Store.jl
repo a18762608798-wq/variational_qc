@@ -1,20 +1,6 @@
 # Incremental persistence for exp03 (constitution IV).
 # Chunks: one .npz per (L, s-block) + progress manifest + D02 assembly.
-# I/O only; physics lives in GapSolver/CrossFit.
-
-module Store
-
-using NPZ, JSON3, Dates
-using Shared01: H_DEF_ID  # provenance only; load Shared01 first
-using ..SectorBasis: sector_basis
-using ..GapSolver: GapResult, union_points, key_wide, key_narrow, DELTA_FIXED,
-                    ARPACK_TOL, RESID_TOL, ARPACK_NCV
-using ..CrossFit: crossings, linear_fit
-
-export save_chunk, completed_chunks, assemble_D02, chunk_id,
-       save_extra, EXTRA_ID, EXTRA_LS,
-       SCHEMA, LS, BLOCK, D02_NPZ_NAME, MANIFEST_NAME,
-       GAP_MIN_TOL, FIT_TOL
+# I/O only; physics lives in the GapSolver/CrossFit implementation files.
 
 const SCHEMA = "exp03/v1"
 const LS = (8, 12, 16)
@@ -207,4 +193,3 @@ function assemble_D02(dir::AbstractString)
     return npz_path, manifest_path
 end
 
-end # module

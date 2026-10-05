@@ -8,9 +8,9 @@ using LinearAlgebra
 BLAS.set_num_threads(1)  # point-level threading only (constitution V)
 using Shared01  # load order: Exp03 reuses Shared01.Hamiltonian read-only
 using Exp03
-using Exp03.GapSolver: GapResult, solve_gap, union_points
-using Exp03.Store: save_chunk, completed_chunks, assemble_D02, chunk_id, LS, BLOCK,
-                    save_extra, EXTRA_ID, EXTRA_LS
+using Exp03: GapResult, solve_gap, union_points
+using Exp03: save_chunk, completed_chunks, assemble_D02, chunk_id, LS, BLOCK,
+              save_extra, EXTRA_ID, EXTRA_LS
 
 const OUT_DIR = joinpath(@__DIR__, "..", "data", "exp03")
 

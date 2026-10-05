@@ -3,15 +3,6 @@
 # Dense exact diagonalization of the small sector matrix: no iterative solver,
 # no convergence parameters. Pure kernel, no I/O.
 
-module GapSolver
-
-using LinearAlgebra
-using Arpack
-using ..SectorBasis: sector_hamiltonian
-
-export GapResult, solve_gap, union_points, key_wide, key_narrow, S_WIDE, S_NARROW,
-       ARPACK_TOL, RESID_TOL, ARPACK_MAXITER, ARPACK_NCV
-
 const DELTA_FIXED = 0.0  # spec PRE-001: all three D02 parts at δ = 0
 
 # spec PRE-002 grids (same convention as S01: 101-partition minus boundaries).
@@ -74,4 +65,3 @@ function solve_gap(L::Integer, s::Real, delta::Real=DELTA_FIXED)
     return GapResult(E[1], E[2], E[2] - E[1])
 end
 
-end # module

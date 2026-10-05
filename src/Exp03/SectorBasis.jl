@@ -9,16 +9,6 @@
 # site m (1-indexed) <-> bit (m-1), LSB = site 1, |0> = Z+1.
 # Hence Z_tot = (#0 - #1) = L - 2*popcount, and Z_tot = 0 <=> popcount = L/2.
 
-module SectorBasis
-
-using LinearAlgebra
-using SparseArrays
-using Shared01: odd_bonds, even_bonds, H_DEF_ID  # read-only; load Shared01 first
-
-export SectorBasisData, sector_basis, sector_hamiltonian,
-       flip_all, reflect_bits, canonical_key,
-       EXPECTED_BASIS_CONVENTION, H_DEF_ID, MAX_L
-
 const EXPECTED_BASIS_CONVENTION = "site m <-> bit (m-1), LSB = site 1, |0> = Z+1"
 
 # Orbit enumeration is O(2^L); spec needs L ≤ 24, cap above with margin.
@@ -123,4 +113,3 @@ function sector_hamiltonian(L::Integer, s::Real, delta::Real)
     return Hermitian(sparse(Is, Js, Vs, n, n))  # duplicate triplets sum: one entry per ⟨c|H|b⟩ term
 end
 
-end # module

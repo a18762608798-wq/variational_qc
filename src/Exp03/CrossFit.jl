@@ -3,10 +3,6 @@
 # s-coordinate by linear interpolation between the bracketing neighbors (Q5).
 # Fit: least squares line Δ = a·(1/L) + b (Q4). Pure kernels, no I/O.
 
-module CrossFit
-
-export crossings, linear_fit
-
 """All pairwise-curve crossings as (s_cross, A_cross) via neighbor interpolation."""
 function crossings(s::AbstractVector, A1::AbstractVector, A2::AbstractVector)
     n = length(s)
@@ -33,4 +29,3 @@ function linear_fit(xs::AbstractVector, ys::AbstractVector)
     return (a=c[1], b=c[2])
 end
 
-end # module

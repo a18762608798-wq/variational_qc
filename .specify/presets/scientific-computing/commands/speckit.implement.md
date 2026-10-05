@@ -44,10 +44,16 @@ description: 实现当前 feature，完成验证，并在验证通过后连续�
    - 稳定性检查
    - spec 定义的其他 validation
 
-6. 如果 Validation 失败：
+6. 如果 Validation 失败，先判断原因属于：
 
-   - 定位原因；
-   - 修复实现；
+   - implementation defect → 修复实现并重新验证；
+   - plan defect → 返回 plan；
+   - spec ambiguity / missing Contract → 返回 `specify` / `clarify`。
+
+   不得在 implement 阶段修改 Contract 来适配当前实现。
+
+   修复实现后：
+
    - 重新运行受影响测试；
    - 再运行必要的完整 Validation。
 
@@ -67,8 +73,7 @@ description: 实现当前 feature，完成验证，并在验证通过后连续�
 8. 当以下条件全部满足时：
 
    - Implementation 已完成；
-   - 所有必需测试通过；
-   - spec 中要求的 Validation 全部通过；
+   - spec 中全部适用的 `VAL-*` 已执行并通过；
    - 正式运行所需的实验条件和参数已经由 spec 明确定义；
    - 不存在阻塞性的 Open Questions；
 
@@ -78,7 +83,12 @@ description: 实现当前 feature，完成验证，并在验证通过后连续�
 
    不要在 Validation 通过后暂停、请求确认或等待下一条指令。
 
-9. 正式执行必须严格使用 spec 定义的实验 / 计算条件。
+9. 正式执行前，确认本次运行满足所有适用的 `PRE-*`。
+
+   若 Preconditions 不满足，则不得开始正式运行，
+   也不得通过修改输入或 Contract 静默绕过。
+
+   正式执行必须严格使用 spec 定义的实验 / 计算条件。
 
    不得为了方便自行修改：
 
@@ -134,8 +144,8 @@ description: 实现当前 feature，完成验证，并在验证通过后连续�
 完成后简要报告：
 
 - Implementation 状态
-- Validation 状态
-- 正式执行是否完成
+- Validation 状态（包括失败的 `VAL-*`，如有）
+- 正式执行状态
 - 主要输出位置
 - 是否存在 invalid run
 - 是否存在未完成的非阻塞 Follow-up

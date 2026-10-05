@@ -2,8 +2,8 @@
 description: 根据当前 feature specification 生成实现计划。
 ---
 
-
 <!-- Source: scientific-computing -->
+
 # Plan
 
 ## Workflow
@@ -17,8 +17,9 @@ description: 根据当前 feature specification 生成实现计划。
 4. 根据 `spec.md` 生成 `plan.md`。
    - 严格遵循 plan template。
    - 不重新定义实验语义。
-   - 不修改 spec 中的参数、边界、输出或验证条件。
-   - 如发现 spec 不足以支持实现计划，将问题记录为未解决问题，而不是自行补充实验定义。
+   - 不修改或补充 spec 中的 Boundary、Preconditions、Postconditions、Invariants、输出或 Validation。
+   - 不复制 spec 中已经定义的 Contract；需要引用时使用其稳定 ID。
+   - 如果存在阻塞实现的 Open Questions，或 spec 缺少必须先确定的科学定义，停止规划并报告应返回 `specify` / `clarify`。
 
 5. 规划代码与模块结构时：
    - 遵守项目指定的代码架构 Skill。
@@ -29,7 +30,7 @@ description: 根据当前 feature specification 生成实现计划。
 6. 数值与技术决策只记录实现层选择。
    如果某个决定会改变实验语义或科学结果，应回到 spec 修改，而不是仅写入 plan。
 
-7. 验证方案必须覆盖 spec 中定义的验证要求。
+7. 验证方案必须按 spec 中的 `VAL-*` 逐项落实覆盖，不重新定义验证标准。
 
 8. 删除无意义的占位内容和空章节。
 

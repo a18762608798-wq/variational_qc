@@ -36,10 +36,18 @@ Spec 是持续维护的活文档，而不是一次性交付物。
 - 优化、重构或并行化不得静默改变科学结果的含义；并行化不得引入嵌套 oversubscription。
 - 任何可能改变数值行为的修改都必须重新验证正确性。
 
-## VI. 项目技术与风格约定
+## VI. Spec 必须清晰且可验证
+
+- Spec 应区分面向研究者的科学描述与具有规范性的约束，并保持两者一致。
+- 规范性约束应采用足以消除歧义、支持验证的最低必要形式化程度。
+- 数学性质优先使用数学表达；行为性质可使用受控自然语言。
+- 不得用多个彼此独立的表述重复定义同一规范性约束。
+
+## VII. 项目技术与风格约定
 
 | 域 | Skill |
 | --- | --- |
-| 代码组织 | `scientific-code-architecture` |
+| 研究型计算（仿真 / 参数扫描 / 论文复现） | `julia-scientific-computing` |
+| 可复用 Julia 包 / 库开发 | `julia-package-development` |
 | 运行环境 | `scientific-project-environment` |
 | 出图风格 | `scientific-figure-style` |

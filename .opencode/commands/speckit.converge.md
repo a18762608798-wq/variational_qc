@@ -2,8 +2,8 @@
 description: 审计当前 feature 的实际实现与结果是否真正满足 spec、plan 和 tasks，并将剩余工作补回 tasks。
 ---
 
-
 <!-- Source: scientific-computing -->
+
 # Converge
 
 ## Workflow
@@ -35,14 +35,15 @@ description: 审计当前 feature 的实际实现与结果是否真正满足 spe
    * 测试代码
    * 正式实验结果
 
-5. 对照 spec 检查实际实现：
+5. 对照 spec 检查实际状态：
 
-   * feature 目标是否真正实现；
-   * feature 边界是否被遵守；
-   * 实验 / 计算定义是否被正确落实；
-   * spec 要求的输出是否真实产生；
-   * validation 是否真实执行并满足；
-   * 是否存在 invalid run 或未处理的失败。
+   * Scientific Description 中的目标和输出是否真正实现；
+   * feature Boundary 是否被遵守；
+   * 正式运行是否满足适用的 `PRE-*`；
+   * `POST-*` 是否有实际结果与 validation evidence 支持；
+   * `INV-*` 是否有足够证据表明在要求范围内成立；
+   * 全部适用的 `VAL-*` 是否真实执行并通过；
+   * 是否存在 invalid run 或未处理失败。
 
 6. 对照 plan 检查：
 
@@ -71,6 +72,15 @@ description: 审计当前 feature 的实际实现与结果是否真正满足 spe
    * 有明确完成条件；
    * 只描述真正缺失的工作；
    * 不引入新的实验定义或实现设计。
+
+   新增 Validation task 必须对应已有的 `VAL-*`。
+
+   如果实际审计发现某项 Contract 无法验证，
+   但 spec 中不存在相应 Validation 定义，
+   这属于 spec gap：
+
+   不得在 converge 中自行发明新的 validation requirement，
+   应返回 `specify` / `clarify`。
 
 10. 如果发现的问题实际属于上游定义错误，例如：
 

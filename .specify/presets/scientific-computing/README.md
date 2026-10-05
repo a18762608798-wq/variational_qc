@@ -34,5 +34,5 @@ specify preset resolve spec-template
 改完源目录后重装：
 
 ```bash
-specify preset update scientific-computing --dev ~/sync/computer/code/agent/specify/dev/scientific-computing
+specify preset update scientific-computing --dev ~/sync/computer/code/agent/specify/dev/scientific-computing --priority 5
 ```

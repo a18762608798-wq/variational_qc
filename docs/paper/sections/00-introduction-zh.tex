@@ -1,0 +1,46 @@
+\section{引言}
+\label{sec:intro}
+
+变分量子本征求解器已成为近期量子模拟的基石，用经典优化循环换取电路深度。
+但对拓扑相，标准变分流程多一道障碍：理论家偏好的序参量往往在真机上最难测量。
+
+真机上的拓扑相研究沿直接构造与变分优化两条线展开。超导处理器上，
+Satzinger 等人~\cite{satzinger2021realizing}制备了 toric code 基态并测得
+拓扑纠缠熵，以拓扑序本身为目标；这类直接构造保真度尚可，但只适用于严格可解
+定点态。变分方向上，Sun 等人~\cite{sun2023efficient}为对称保护拓扑相设计了
+初态层加变分层拟设，并在 IBM 设备上验证了 string 序与边缘模，但拟设结构
+很大程度上是对每个目标相试凑出来的。
+
+相匹配初态的主要思想虽简单，其在一般非可积模型上的全部潜力——用单一拟设族
+覆盖竞争序、标记经得起向真机迁移——尚未挖掘。
+我们借鉴的邻近文献都已成熟：一维对称保护相由射影表示与矩阵乘积态
+分类~\cite{chen2011classification,schuch2011classifying}；
+随机测量以很少的设置重构纠缠与多体不变量~\cite{huang2020predicting,elben2022toolbox}；
+变分算法及其可训练性极限已有综述~\cite{cerezo2021variational,tilly2022variational,mcclean2018barren}；
+误差缓解覆盖概率抵消与零噪声外推~\cite{temme2017error,kandala2019error}；
+变分真机实验从分子光谱做到自旋链~\cite{colless2018robust,yu2023simulating}。
+我们使用的两个诊断量各有专门文献。各向异性自旋-$1/2$ Heisenberg 链的动力学
+自旋结构因子已由 Pereira 等人算出~\cite{pereira2006dynamical}，其动量分辨
+响应的静态极限正是我们的 $S(\pi)$ AFM 标记的基础。string 序先为价键相引入
+~\cite{dennijs1989preroughening}，后在量子自旋格点中作对称性刻画
+~\cite{perezgarcia2008string}，并在低维 Mott 绝缘体中经关联粒子-空穴对观测到
+~\cite{endres2011observation}；我们的 string 算符是同一扫参下的可直接测量对应物。
+在真机侧，有限连通使 qubit 映射成为首要问题~\cite{li2019tackling}；
+我们的稳定子加读出筛选以测量优先回答同一问题，直接排出实验将用的子图名次。
+读出缓解覆盖关联展开~\cite{bravyi2021mitigating,nation2021scalable}与无模型
+期望值修正~\cite{vandenberg2022modelfree}；我们的逐比特 $2\times2$ 带非负约束
+展开按构造属于该张量积家族。有限尺寸能隙标度是自旋链数值的常规做法
+~\cite{sandvik2010computational}，Haldane 能隙问题是其经典情形
+~\cite{haldane1983nonlinear,affleck1987rigorous,affleck1989quantum}；
+我们的 $L=8$ 相划分加能隙标度检查沿用该规范，完整曲线见附录。
+本文把相匹配变分制备推广到二聚化 XXZ 链，其中平庸、拓扑与反铁磁三相竞争，
+并以可直接测量的标记（$S(\pi)$、string）连同反射不变量
+$\tilde{Z}_{\mathcal R}$ 刻画制备态。
+我们的方法把相匹配制备推广到三序竞争的单模型，同时从一开始就计入真机约束：
+优质比特筛选、读出缓解、标记只限可直接测量的关联子。
+制备态能否在真机上复现模拟机趋势，由第~\ref{sec:comparison}~节的比较裁决。
+
+本文组织如下。先引入模型及其对称性（第~\ref{sec:model}~节）并画出有限尺寸相图
+（第~\ref{sec:phasediagram}~节，能隙标度见附录），再定义可直接测量的相标记
+（第~\ref{sec:markers}~节）、制备变分态（第~\ref{sec:ansatz}~节），把协议搬上真机
+（第~\ref{sec:hardware}~节），最后比较真机与模拟机结果（第~\ref{sec:comparison}~节）。

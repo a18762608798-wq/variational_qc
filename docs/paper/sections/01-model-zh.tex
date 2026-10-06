@@ -1,0 +1,49 @@
+\section{模型的引入与对称性}
+\label{sec:model}
+
+我们考虑 $L$ 格点开边界二聚化 XXZ 链，格点编号 $1,\dots,L$。
+交替单双键的二聚化结构可追溯到 Su、Schrieffer 和
+Heeger~\cite{su1979solitons}。
+记第 $m$ 格点上的 Pauli 算符为 $X_m,Y_m,Z_m$，哈密顿量为
+\begin{equation}
+H(s,\delta)=H_o+H_e,
+\end{equation}
+其中 $H_o$（$H_e$）耦合奇（偶）键，$s$ 为二聚化参数，$\delta$ 控制各向异性：
+\begin{equation}
+H_o=(1-s)\sum_{j=1}^{L/2}h_{2j-1,2j},\qquad
+H_e=s\sum_{j=1}^{L/2-1}h_{2j,2j+1},
+\end{equation}
+\begin{equation}
+h_{kl}=e^{-\delta}(X_kX_l+Y_kY_l)+e^{+\delta}Z_kZ_l,
+\end{equation}
+其中 $h_{kl}$ 为双格点键算符，$J_{xx}=e^{-\delta}$，$J_{z}=e^{+\delta}$；
+$\delta=0$ 为 Heisenberg 各向同性点，$\delta>0$ 偏向 Ising。
+如无特别说明取 $L=8$。
+
+$H$ 与总磁化 $Z_{\rm tot}=\sum_m Z_m$、整体自旋翻转 $\prod_m X_m$ 及全链反射
+$R$（$m\leftrightarrow L+1-m$）对易，因此在 $H$ 下演化永不离开初态对称性扇区。
+$\delta\ne0$ 时对称性为 $U(1)$（$Z_{\rm tot}$ 守恒）；$\delta=0$ 时扩大为 $SU(2)$。
+
+这里的拓扑相属于一维对称保护家族，其研究始于 Haldane 关于整数自旋反铁磁链
+存在有限能隙的猜想~\cite{haldane1983nonlinear,dennijs1989preroughening}，
+以及自旋 $1$ 链相图中特殊点上严格价键固体基态的发现~\cite{affleck1987rigorous,dennijs1989preroughening}。
+如今这套唯象学已有分类：一维有隙对称相由二阶上同调群即对称性的射影表示
+标记~\cite{chen2011classification}，等价地可用矩阵乘积态表述~\cite{schuch2011classifying}，
+操作性指纹是纠缠谱简并~\cite{pollmann2010entanglement,li2008entanglement}。
+我们的二聚化 XXZ 链在单一可调模型内容纳平庸、拓扑、反铁磁三序竞争，
+正因如此才需要一个能同时分辨三者的标记。
+
+为区分各相，我们使用归一化拓扑反映标记，采用 Elben 等人的
+部分反射多体不变量~\cite{elben2020manybody}。记基态在中央块 $I$ 上
+（$L=8$ 时取格点 $3$--$6$）的约化密度矩阵为 $\rho_I$，
+${\mathcal R}_I$ 为关于中央键的镜像交换。以
+$Z_{\mathcal R}={\rm Tr}(\rho_I{\mathcal R}_I)$ 及 $I$ 左右两半
+对应的量 $\rho_{I_{1,2}}$，有
+\begin{equation}
+\tilde{Z}_{\mathcal R}=
+\frac{Z_{\mathcal R}}
+{\sqrt{[{\rm Tr}(\rho_{I_1}^2)+{\rm Tr}(\rho_{I_2}^2)]/2}},
+\end{equation}
+其中分母为两半的平均纯度。换言之，$\tilde{Z}_{\mathcal R}$ 是以局域混合度
+归一化的反射期望，在平庸（拓扑）相趋于 $+1$（$-1$）、磁有序相趋于 $0$，
+与整体纠缠水平无关。以此标记画出的有限尺寸相图见第~\ref{sec:phasediagram}~节。

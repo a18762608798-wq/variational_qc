@@ -1,0 +1,72 @@
+\documentclass[aps,pra,reprint,groupedaddress,floatfix]{revtex4-2}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{placeins}
+% Float tuning (reprint two-column carries two large figure*s: D04 2x2, D06 trio).
+% Legibility-first: keep panel sizes, relax placement fractions instead.
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.6}
+
+\graphicspath{{figures/}}
+
+\begin{document}
+
+\title{Model and finite-size properties of the SSH XXZ chain\\
+with a normalized topological reflection marker}
+
+\author{Xue Qiu}\thanks{These authors contributed equally.}
+\author{Yijie Han}\thanks{These authors contributed equally.}
+\author{Jinlong Yu}
+\affiliation{School of Physics and Optoelectronic Engineering, Hainan University, Haikou 570228, China}
+
+\date{\today}
+
+\begin{abstract}
+Variational eigensolvers have become a cornerstone of near-term quantum
+simulation, yet topological phases remain hard to certify on hardware
+because theorists' preferred markers are rarely directly measurable.
+In this work, we prepare the competing trivial, topological, and
+antiferromagnetic phases of the dimerized XXZ chain with
+symmetry-preserving orbit ansatzes built on phase-matched initial
+states. The finite-size phase diagram at $L=8$ is
+mapped with the normalized reflection marker $\tilde{Z}_{\mathcal R}$,
+resolving the three phases, with gap scaling
+confirming controlled finite-size effects. State preparation uses only
+directly measurable markers---the AFM structure factor $S(\pi)$ and the
+string operator---while premium-qubit screening and tensor-product
+readout mitigation bring the protocol to superconducting hardware.
+Hardware and simulator trends
+are compared on equal footing via internal $0$--$1$ normalization,
+across two dimerizations and both directly measurable markers.
+\end{abstract}
+
+\maketitle
+
+\input{sections/00-introduction}
+\FloatBarrier
+\input{sections/01-model}
+\FloatBarrier
+\input{sections/02-phasediagram}
+\FloatBarrier
+\input{sections/03-sq}
+\FloatBarrier
+\input{sections/04-heatmaps}
+\FloatBarrier
+\input{sections/06-ansatz}
+\FloatBarrier
+\input{sections/07-premium}
+\FloatBarrier
+\input{sections/08-readout}
+\FloatBarrier
+\input{sections/09-comparison}
+\FloatBarrier
+\input{sections/10-conclusion}
+\FloatBarrier
+\input{sections/A-appendix}
+
+\FloatBarrier
+\bibliography{references}
+
+\end{document}

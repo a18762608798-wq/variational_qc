@@ -1,0 +1,29 @@
+\section{Phase markers}
+\label{sec:markers}
+
+\subsection{Structure factor and the AFM label}
+\label{sec:sq}
+
+To identify the antiferromagnetic phase we use the structure factor
+\begin{equation}
+S(q)=\frac{1}{L}\sum_{i,j}e^{iq(i-j)}\langle Z_iZ_j\rangle,
+\end{equation}
+where $\langle Z_iZ_j\rangle$ is the ground-state correlator and $L=8$
+throughout this section.
+That is, $S(q)$ is the Fourier weight of N\'eel-type correlations, so
+long-range antiferromagnetic order appears as a Bragg-like peak at
+$q=\pi$. The $S(q)$ curves at one representative point in each
+of the three phases (labels trivial / topo / AFM, coordinates in the
+dataset) on the shared $q$ grid ($99$ points including $q=\pi$) are shown in
+Fig.~\ref{fig:D03}.
+The $q=\pi$ component is used as the AFM diagnostic throughout the
+hardware-facing protocol. Its empirical phase discrimination is reported
+with the results rather than assumed as part of the measurement method.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{exp02_D03.pdf}
+\caption{Structure factor $S(q)$ at three phase-representative points (one
+per phase) on the shared $q$ grid; only the AFM point peaks at $q=\pi$.
+\label{fig:D03}}
+\end{figure}

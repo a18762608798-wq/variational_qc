@@ -1,0 +1,72 @@
+\subsection{Topological heatmaps}
+\label{sec:heatmaps}
+
+Four heatmaps over the same $(s,\delta)$
+grid are collected in Fig.~\ref{fig:D04}: (a) the AFM structure factor $S(\pi)$; (b) the string operator,
+which distinguishes symmetry-protected topological order since the
+work of den Nijs and Rommelse~\cite{dennijs1989preroughening};
+(c) the ZR-like combination $Q=\frac{4}{3}+2O_{\rm str}-\frac{1}{6}S(\pi)$,
+where $O_{\rm str}$ is the string expectation; and
+(d) the normalized marker $\tilde{Z}_{\mathcal R}$ of
+Ref.~\cite{elben2020manybody}, recomputed here independently of Fig.~\ref{fig:D01}.
+The four quantities are evaluated on the same parameter grid so that
+their diagnostic roles can be compared consistently in the results.
+The string signal in panel (b) is the long-range limit of the correlator
+\begin{equation}
+O^z_{\rm str}(i,j)=\Big\langle S^z_i\exp\!\Big(i\pi\!\sum_{k=i+1}^{j-1}S^z_k\Big)S^z_j\Big\rangle,
+\end{equation}
+where $S^z_k$ is the spin-$z$ operator at site $k$: the phase string
+detects hidden antiferromagnetic order that no local two-point function
+sees, the order parameter introduced for valence-bond
+phases~\cite{dennijs1989preroughening} and now understood through the
+symmetry-protected degeneracy of the entanglement
+spectrum~\cite{pollmann2010entanglement}.
+Entanglement-based fingerprints of this kind began with the
+entanglement spectrum as a topological diagnostic~\cite{li2008entanglement}
+and the universal constant term $S=\alpha L-\gamma$ of the entanglement
+entropy~\cite{kitaev2006topological,levin2006detecting}; our panels (a)
+and (b) trade that full entanglement resolution for correlators
+measurable with single-qubit readouts.
+Indeed, randomized measurements now reconstruct such quantities from
+few settings: classical shadows predict $M$ linear properties from
+$N\ge{\cal O}(\log M\,\max\|O_i\|^2_{\rm shadow}/\epsilon^2)$
+shots~\cite{huang2020predicting}, derandomized into deterministic Pauli
+measurements~\cite{huang2021derandomization}, biased toward the target
+Hamiltonian~\cite{hadfield2022measurements}, extended to multi-shot
+estimators~\cite{zhou2023performance}, mutually unbiased
+bases~\cite{wang2023classical}, and even channel
+tomography~\cite{kunjummen2023shadow}, as
+surveyed in Ref.~\cite{elben2022toolbox}; second R\'enyi entropies and
+quantum Fisher information have been measured this
+way~\cite{brydges2019probing,vitale2024robust}.
+In contrast to $\tilde{Z}_{\mathcal R}$, panels (a) and (b) involve only
+standard Pauli correlators accessible to direct measurement.
+Since $\tilde{Z}_{\mathcal R}$ is not directly measurable on real
+hardware, the hardware-facing protocol uses state preparation together
+with the directly measurable quantities in panels (a) and (b).
+
+\begin{figure*}[p]
+\centering
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{exp02_D04a.pdf}\\(a)
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{exp02_D04b.pdf}\\(b)
+\end{minipage}
+\\
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{exp02_D04c.pdf}\\(c)
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{exp02_D04d.pdf}\\(d)
+\end{minipage}
+\caption{Topological heatmaps over the $(s,\delta)$ grid of Fig.~\ref{fig:D01}:
+(a) $S(\pi)$, (b) string operator,
+(c) $Q$, (d) $\tilde{Z}_{\mathcal R}$. \label{fig:D04}}
+\end{figure*}

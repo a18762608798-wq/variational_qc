@@ -1,0 +1,47 @@
+\section{真机实现}
+\label{sec:hardware}
+
+\subsection{真机优质比特选择}
+\label{sec:premium}
+
+为上真机，我们用两类量筛选候选链（环）：稳定子均值探双比特门质量，
+读出保真度探测量质量。理想输出是 cluster 态
+$|C\rangle=\prod_{\langle ij\rangle}CZ_{ij}|+\rangle^{\otimes n}$，
+其中 $\langle ij\rangle$ 取遍候选子图的边；其稳定子 $S_i$
+（开端点二体 $X_0Z_1$、$Z_{n-2}X_{n-1}$，其余三体 $Z_{i-1}X_iZ_{i+1}$）
+无误差时期望为 $+1$，故 $\langle S_i\rangle$ 偏离 $1$ 直接反映 $CZ$ 门误差。
+每条候选跑 $4$ 个基准电路：\texttt{stab\_g0} 与 \texttt{stab\_g1} 分测偶、奇
+指标稳定子（两组反对易，不能同时读出），\texttt{allzero} 与 \texttt{allone}
+不含 $CZ$ 门，以 $P(00\cdots0)$ 与 $P(11\cdots11)$ 的平均给出读出保真度
+$F_{\rm ro}$。按下式打分排序
+\begin{equation}
+{\rm score}=0.8\,\bar{S}+0.2\,F_{\rm ro},
+\end{equation}
+其中 $\bar{S}=n^{-1}\sum_i\langle S_i\rangle$ 为稳定子均值，
+双比特门质量权重高于读出。
+cluster 态~\cite{raussendorf2001oneway}是其稳定子所测的理想输出；
+基于这类态的测量型计算见综述~\cite{briegel2009measurement}。
+$8$ 链与 $10$ 环基准电路不同（环多一个闭合 $CZ$、稳定子全为三体），
+只各自内部比较，绝不跨几何比较。与通用随机基准不同，该筛选探的正是
+真机将要制备的态的稳定子。
+真机刻画还有若干互补手段：Pauli-frame 随机化已在超导比特上实现并以门集层析
+验证噪声 Pauli 化~\cite{ware2021experimental}；时间关联 dephasing 下随机基准的
+分析指出了标准 Markov 衰减模型失效之处~\cite{qi2021randomized}。
+基于阴影的哈密顿量测量是省测量的替代方案~\cite{hadfield2022measurements,huang2021derandomization}，
+阴影层析还可推广到量子信道~\cite{kunjummen2023shadow}。
+
+具体排名和选中的比特将在 Results and Discussion 中报告。
+本方法节只定义筛选协议以及同一几何内部的比较规则。
+
+\subsection{优质比特排名}
+\label{sec:rankings}
+
+筛选在百花芯片上报告三组排名：(a) $8$ 链前十；(b) $10$ 环前十；(c) 冠军环内十条 $8$-子链。具体比特表跟随最新 S04；在 D07 图落定前，下方仅保留空位，不做任何排名断言。
+
+\begin{figure}[htbp]
+\centering
+\fbox{\parbox{0.9\columnwidth}{\centering TODO(GAP-001)：D07a 排名图待出。}}\\(a)
+\fbox{\parbox{0.9\columnwidth}{\centering TODO(GAP-001)：D07b 排名图待出。}}\\(b)
+\fbox{\parbox{0.9\columnwidth}{\centering TODO(GAP-001)：D07c 排名图待出。}}\\(c)
+\caption{优质比特排名占位。\label{fig:D07}}
+\end{figure}

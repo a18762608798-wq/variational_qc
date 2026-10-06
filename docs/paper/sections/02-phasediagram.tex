@@ -1,0 +1,20 @@
+\section{Finite-size phase diagram}
+\label{sec:phasediagram}
+
+The normalized marker over the $99\times99$ grid $s=i/100$,
+$\delta=j/50$ ($i,j=1,\dots,99$) is reported in Fig.~\ref{fig:D01}.
+Each grid point is computed independently from the stored ground state,
+without interpolation or smoothing; degenerate points keep the solver's
+lowest eigenvector and carry a degeneracy flag in the dataset.
+The resulting map defines the parameter-space regions used to select
+representative points and to specify the variational start/end protocol.
+The marker is used here as a phase-labeling convention; the finite-size
+drift of the boundaries is analyzed separately in the Appendix.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{exp01_D01.pdf}
+\caption{Normalized marker $\tilde{Z}_{\mathcal R}(s,\delta)$ at $L=8$ on the
+$99\times99$ grid, computed point by point without interpolation.
+\label{fig:D01}}
+\end{figure}

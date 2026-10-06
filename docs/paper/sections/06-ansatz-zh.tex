@@ -1,0 +1,75 @@
+\section{变分态制备}
+\label{sec:ansatz}
+
+\subsection{示意起点与终点}
+\label{sec:points}
+
+三对示意起点/终点，每相一对，标在 $\tilde{Z}_{\mathcal R}$ 相图上，
+见图~\ref{fig:D05}：平庸相 $(0.01,0.02)\to(0.21,0.42)$，
+$\tilde{Z}_{\mathcal R}\approx0.996$；拓扑相 $(0.99,0.02)\to(0.90,0.20)$，
+$\tilde{Z}_{\mathcal R}\approx-0.98$；AFM 相 $(0.50,1.98)\to(0.61,1.44)$，
+$\tilde{Z}_{\mathcal R}\approx0.009$。
+终点是相深处的经典参考目标，待相图落定后选取——变分运行的示范终点，
+并非真实演化终点本身。终点置于相深处，使参考路径避开有限尺寸漂移最大的
+边界区。起点沿用三色圆点样式；终点标记形状颜色均区别于起点，
+箭头给出每对的参考方向。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{exp01_D05.pdf}
+\caption{图~\ref{fig:D01} $\tilde{Z}_{\mathcal R}$ 相图上的示意起点/终点对，
+每相一对、参考终点在相深处；颜色区分各对，箭头标参考方向。
+\label{fig:D05}}
+\end{figure}
+
+\subsection{变分电路结构}
+
+我们的变分电路遵循变分本征求解器范式~\cite{peruzzo2014variational}：
+制备初态，再作用参数化拟设。经典循环最小化
+\begin{equation}
+E(\theta)=\langle\psi(\theta)|H|\psi(\theta)\rangle,
+\end{equation}
+其中 $|\psi(\theta)\rangle$ 为参数 $\theta$ 下的电路输出。
+这类变分算法见综述~\cite{cerezo2021variational,tilly2022variational}，
+其中收集了代价函数设计、拟设族与最佳实践。
+实际瓶颈是优化景观而非表达能力：随机电路形成 $2$-design 时梯度随比特数
+指数消失~\cite{mcclean2018barren}；硬件高效电路随深度出现陡峭的可训练性
+转变~\cite{campos2021abrupt}；最优参数可以问题规模的逆多项式集中~\cite{akshay2021parameter}；
+光滑的哈密顿量变分解跨尺寸迁移且梯度不消失~\cite{mele2022avoiding}；
+贫瘠高原区还可藏指数多个陷阱~\cite{nemkov2025barren}。
+Krylov 型迭代求解器是到基态的另一条路~\cite{bharti2021iterative}。
+硬件高效变分优化最早在超导真机上对小分子与量子磁体实现~\cite{kandala2017hardware}，
+自旋链变分模拟随后在云超导设备上推到 $102$ 比特~\cite{yu2023simulating}。
+我们的 orbit 拟设与之都不同：以反射对称性绑定参数、初态定纠缠结构，详述如下。
+三初态（奇键单态乘积及其对应态，均在 $P=-2$ 扇区，$P$ 标记组合对称性本征值）
+配 orbit 拟设，镜面对映键对共享转角（奇键 $O_j\leftrightarrow O_{M+1-j}$，
+偶键 $E_j\leftrightarrow E_{M-j}$）。即拟设分两步构造：先以相匹配初态定下
+纠缠结构，再给所有键穿上由反射对称性绑定的转角，参数量随键 orbit 数而非键数增长。
+每相一个示意图见图~\ref{fig:D06}(a)--(c)：初态 + 所需拟设电路，分别为平庸、
+拓扑、AFM 相。
+该构造保证试探态永不离开目标对称性扇区；交叠是否足够，由第~\ref{sec:comparison}~节的
+真机-模拟机基准裁决。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{exp04_D06a.pdf}
+\caption{(a) 平庸初态 + 所需拟设电路。虚线框 $U^{(k)}$ 为第 $k$ 变分层；
+$\theta^{(k)}_j$（$\phi^{(k)}_j$）为第 $k$ 层第 $j$ 镜面对映键 orbit 共用的
+$XX{+}YY$（$ZZ$）转角（奇键 $O_j\leftrightarrow O_{M+1-j}$，偶键
+$E_j\leftrightarrow E_{M-j}$；$\delta=0$ 时 $\theta=\phi$）。偶键子层先作用。
+\label{fig:D06}}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\addtocounter{figure}{-1}
+\includegraphics[width=\columnwidth]{exp04_D06b.pdf}
+\caption{(b) 拓扑初态 + 所需拟设电路，记号同 (a)；奇键子层先作用。}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\addtocounter{figure}{-1}
+\includegraphics[width=\columnwidth]{exp04_D06c.pdf}
+\caption{(c) AFM 初态 + 所需拟设电路，记号同 (a)；偶键子层先作用。}
+\end{figure}

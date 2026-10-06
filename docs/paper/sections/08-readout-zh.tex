@@ -1,0 +1,31 @@
+\subsection{读出误差缓解}
+\label{sec:readout}
+
+读出误差把理想分布变成测量分布：
+\begin{equation}
+\vec{P}_{\rm meas}=M\vec{P}_{\rm ideal},
+\end{equation}
+其中 $M$ 为分配矩阵，$M_{ab}=P(a|b)$。
+其列由制备标定：制备 $|0\rangle$ 得第一列，制备 $|1\rangle$ 得第二列，
+\begin{equation}
+M=\begin{bmatrix} P(0|0) & P(0|1) \\ P(1|0) & P(1|1) \end{bmatrix},
+\end{equation}
+其中对角元为读对概率，非对角元为读错概率。矫正时求逆，
+\begin{equation}
+\vec{P}_{\rm mit}=M^{-1}\vec{P}_{\rm meas},
+\end{equation}
+其中 $\vec{P}_{\rm mit}$ 再经负值截零、重归一投影到单纯形。
+换言之，原始计数先以标定的混淆矩阵展开，再算观测量，采用
+Bravyi 等人的张量积读出缓解~\cite{bravyi2021mitigating}。
+假设各比特读出误差不关联，逐比特独立矫正，标定代价每比特 $2$ 个电路，
+随比特数线性；真机上按批次重标定防漂移，并关闭平台自带读出矫正。
+不关联假设保住线性开销，但吃不下串扰；若存在关联读出误差，缓解后仍有残留。
+该张量积求逆处于更大的缓解版图之中。概率误差抵消以准概率基展开含噪门并
+重采样~\cite{temme2017error}，现已推广到含中途测量的动态电路~\cite{gupta2024probabilistic}，
+并与噪声放缩统一~\cite{mari2021extending}；零噪声外推则在放大的噪声强度下拟合
+$E(\lambda)$ 并延拓到 $E(0)$——最早在超导真机上实现~\cite{kandala2019error}——
+有优化的 Richardson 协议~\cite{krebsbach2022optimization}、逆电路噪声
+估计~\cite{koenig2024inverted}，以及变分循环内以人工放大噪声主动压误差~\cite{li2017efficient}；
+但时间关联噪声系统性地更难外推掉~\cite{schultz2022analyzing}。
+无矩阵迭代展开把同一分配矩阵思想推到数十比特而不显式构造 $M$~\cite{nation2021scalable}；
+我们的逐比特求逆是其最简、抗漂移的端点。

@@ -1,0 +1,55 @@
+\subsection{拓扑热力图}
+\label{sec:heatmaps}
+
+同一 $(s,\delta)$ 网格上的四幅热力图见图~\ref{fig:D04}：(a) AFM 结构因子
+$S(\pi)$；(b) string 算符，自 den Nijs 和 Rommelse~\cite{dennijs1989preroughening}
+以来用于分辨对称保护拓扑序；(c) ZR-like 组合
+$Q=\frac{4}{3}+2O_{\rm str}-\frac{1}{6}S(\pi)$，其中 $O_{\rm str}$ 为 string
+期望；(d) 归一化标记 $\tilde{Z}_{\mathcal R}$（Ref.~\cite{elben2020manybody}，
+此处独立于图~\ref{fig:D01}重算）。四个量在同一参数网格上计算，
+以便在结果部分统一比较其诊断作用。
+图 (b) 的 string 信号是如下关联子的长程极限：
+\begin{equation}
+O^z_{\rm str}(i,j)=\Big\langle S^z_i\exp\!\Big(i\pi\!\sum_{k=i+1}^{j-1}S^z_k\Big)S^z_j\Big\rangle,
+\end{equation}
+其中 $S^z_k$ 为格点 $k$ 的自旋 $z$ 算符：相位 string 探测任何局域两点函数都
+看不见的隐藏反铁磁序，即为价键相引入的序参量~\cite{dennijs1989preroughening}，
+如今从对称保护的纠缠谱简并理解~\cite{pollmann2010entanglement}。
+这类纠缠指纹始于纠缠谱作为拓扑诊断~\cite{li2008entanglement}与纠缠熵的普适常数项
+$S=\alpha L-\gamma$~\cite{kitaev2006topological,levin2006detecting}；
+而我们的图 (a)(b) 以单比特读出可测的关联子换取了全纠缠分辨。
+随机测量如今以很少的设置重构这类量：classical shadow 以
+$N\ge{\cal O}(\log M\,\max\|O_i\|^2_{\rm shadow}/\epsilon^2)$ 次测量同时预言
+$M$ 个线性性质~\cite{huang2020predicting}，可去随机化为确定性 Pauli
+测量~\cite{huang2021derandomization}、向目标哈密顿量偏置~\cite{hadfield2022measurements}，
+推广到多 shot 估计~\cite{zhou2023performance}、互无偏基~\cite{wang2023classical}乃至
+信道层析~\cite{kunjummen2023shadow}，见综述~\cite{elben2022toolbox}；
+二阶 R\'enyi 熵与量子 Fisher 信息已如此测得~\cite{brydges2019probing,vitale2024robust}。
+与 $\tilde{Z}_{\mathcal R}$ 不同，图 (a)(b) 只含标准 Pauli 关联子，可直接测量。
+由于 $\tilde{Z}_{\mathcal R}$ 不易在真机上直接测量，面向真机的协议使用态制备，
+并结合图 (a)(b) 中可直接测量的量。
+
+\begin{figure*}[p]
+\centering
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{exp02_D04a.pdf}\\(a)
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{exp02_D04b.pdf}\\(b)
+\end{minipage}
+\\
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{exp02_D04c.pdf}\\(c)
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{exp02_D04d.pdf}\\(d)
+\end{minipage}
+\caption{图~\ref{fig:D01} $(s,\delta)$ 网格上的拓扑热力图：(a) $S(\pi)$，
+(b) string 算符，(c) $Q$，(d) $\tilde{Z}_{\mathcal R}$。\label{fig:D04}}
+\end{figure*}

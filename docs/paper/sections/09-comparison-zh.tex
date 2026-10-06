@@ -1,0 +1,43 @@
+\section{真机-模拟机对比}
+\label{sec:comparison}
+
+真机与模拟机置于同一图中比较：模拟机 $p=1,2,3$ 曲线叠放真机最优层 $p^*$
+散点，每个 estimator 带标准差误差棒。
+即每点给出各自 estimator 的采样不确定度，层间散布可对照 shot 噪声判断，
+而不读作物理。真机与模拟机各自内部作 $0$--$1$ 归一化，只比变化趋势，
+不比绝对数值。分别归一是刻意的：门误差压制与读出残差对两平台绝对标尺的
+平移不同，而 AFM 结构因子与 string 算符随 $s$ 的变化作为共同信号留存。
+真机变分实验构成背景：双 transmon 上 VQE 加子空间展开算全 H2
+能谱~\cite{colless2018robust}、囚禁离子上量子化学~\cite{hempel2018quantum}、
+硬件高效优化六比特分子与磁问题~\cite{kandala2017hardware}、超导十二比特上
+Hartree--Fock~\cite{google2020hartree}、云设备上 $102$ 比特自旋链基态~\cite{yu2023simulating}。
+我们的协议不同在：以可直接测量的拓扑标记、逐层对照真机与模拟机，而不只比能量。
+四图覆盖 $\delta=0$ 与 $\delta=0.85$ 乘两个可直接测量标记；图位预留如下，
+趋势论述待 D08 图落定前保持冻结。
+
+\begin{figure*}[htbp]
+\centering
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\fbox{\parbox{0.9\textwidth}{\centering TODO(GAP-002)：D08a 图待出（$\delta=0$ AFM）。}}\\(a)
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\fbox{\parbox{0.9\textwidth}{\centering TODO(GAP-002)：D08b 图待出（$\delta=0$ string）。}}\\(b)
+\end{minipage}
+\\
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\fbox{\parbox{0.9\textwidth}{\centering TODO(GAP-002)：D08c 图待出（$\delta=0.85$ AFM）。}}\\(c)
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\fbox{\parbox{0.9\textwidth}{\centering TODO(GAP-002)：D08d 图待出（$\delta=0.85$ string）。}}\\(d)
+\end{minipage}
+\caption{真机-模拟机对比四图（占位）：(a) $\delta=0$ AFM 结构因子，
+(b) $\delta=0$ string 算符，(c) $\delta=0.85$ AFM 结构因子，
+(d) $\delta=0.85$ string 算符。每图将叠放模拟机 $p=1,2,3$ 曲线与真机 $p^*$
+散点；归一化见正文。\label{fig:D08}}
+\end{figure*}

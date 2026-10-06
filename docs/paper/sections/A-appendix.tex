@@ -1,0 +1,50 @@
+\appendix
+
+\section{Finite-size gap analysis}
+\label{sec:gap}
+
+We take the gap in the $P=-2$ symmetry sector,
+\begin{equation}
+\Delta_{\rm sec}(L,s)=E_1^{(P=-2)}(L,s)-E_0^{(P=-2)}(L,s),
+\end{equation}
+where $E_0^{(P=-2)}$ ($E_1^{(P=-2)}$) is the ground-state (first-excited-state)
+energy in that sector.
+The sector gap at $\delta=0$ for $L=8,12,16$ is shown in
+Fig.~\ref{fig:D02a}. Near criticality finite-size scaling gives
+$\Delta_{\rm sec}L\approx A$; plotting $A$ versus $s$
+(Fig.~\ref{fig:D02b}) the crossings for increasing $L$ stabilize at
+$s=0.5$. Specifically, the drift of the crossing between successive sizes
+shrinks as $L$ grows, consistent with convergence to $s=0.5$ in the
+thermodynamic limit. The gap at $s=0.5$ versus $1/L$
+($L=8,12,16,20,24\ $) is shown in Fig.~\ref{fig:D02c}; the linear fit through $L=20,24$ (coefficients
+marked in the figure) has a small fitted intercept $b=0.05$, consistent with
+the gap-closing trend. Finite-size effects therefore shift only the
+phase boundaries slightly and leave the bulk phase structure
+unaffected.
+Ground states throughout are obtained by exact diagonalization
+(Lanczos), and the crossing analysis follows standard finite-size
+practice for quantum spin systems, for which we follow the lecture
+notes of Ref.~\cite{sandvik2010computational}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{exp03_D02a.pdf}
+\caption{Symmetry-sector gap $\Delta_{\rm sec}$ at $\delta=0$ for
+$L=8,12,16$. \label{fig:D02a}}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{exp03_D02b.pdf}
+\caption{$A=\Delta_{\rm sec}L$ versus $s$; crossings stabilize at
+$s=0.5$ as $L\to\infty$. \label{fig:D02b}}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{exp03_D02c.pdf}
+\caption{Gap at $s=0.5$ versus $1/L$ with linear fit through
+$L=20,24$ (small fitted intercept $b=0.05$). \label{fig:D02c}}
+\end{figure}
+
+% CIT-003 (optional): finite-size scaling direction (bind)

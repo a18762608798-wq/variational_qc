@@ -1,0 +1,66 @@
+\documentclass[aps,pra,reprint,groupedaddress,floatfix]{revtex4-2}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{placeins}
+% Float tuning (reprint two-column carries two large figure*s: D04 2x2, D06 trio).
+% Legibility-first: keep panel sizes, relax placement fractions instead.
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.6}
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK SC}
+
+\graphicspath{{figures/}}
+
+\begin{document}
+
+\title{SSH XXZ 链的模型与归一化拓扑反映标记的有限尺寸性质}
+
+\author{邱雪}\thanks{共同第一作者。}
+\author{韩懿杰}\thanks{共同第一作者。}
+\author{余金龙}
+\affiliation{海南大学物理与光电工程学院，海口 570228}
+
+\date{\today}
+
+\begin{abstract}
+变分本征求解器已成为近期量子模拟的基石，但拓扑相在真机上难以认证，
+因为理论家偏好的标记很少可直接测量。
+本文以保对称 orbit 拟设在相匹配初态上制备二聚化 XXZ 链中竞争的平庸、拓扑、
+反铁磁三相。以归一化反射标记 $\tilde{Z}_{\mathcal R}$ 画出 $L=8$ 有限尺寸相图，
+分辨三相，能隙标度确认有限尺寸效应可控。
+态制备只用可直接测量的标记——AFM 结构因子 $S(\pi)$ 与 string 算符，
+优质比特筛选与张量积读出缓解把协议搬上超导真机。
+真机与模拟机趋势以各自内部 $0$--$1$ 归一化在同等口径下比较，
+覆盖两个二聚化取值与两种可直接测量标记。
+\end{abstract}
+
+\maketitle
+
+\input{sections/00-introduction-zh}
+\FloatBarrier
+\input{sections/01-model-zh}
+\FloatBarrier
+\input{sections/02-phasediagram-zh}
+\FloatBarrier
+\input{sections/03-sq-zh}
+\FloatBarrier
+\input{sections/04-heatmaps-zh}
+\FloatBarrier
+\input{sections/06-ansatz-zh}
+\FloatBarrier
+\input{sections/07-premium-zh}
+\FloatBarrier
+\input{sections/08-readout-zh}
+\FloatBarrier
+\input{sections/09-comparison-zh}
+\FloatBarrier
+\input{sections/10-conclusion-zh}
+\FloatBarrier
+\input{sections/A-appendix-zh}
+
+\FloatBarrier
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,800 @@
+%apsrev4-2.bst 2019-01-14 (MD) hand-edited version of apsrev4-1.bst
+%Control: key (0)
+%Control: author (8) initials jnrlst
+%Control: editor formatted (1) identically to author
+%Control: production of article title (0) allowed
+%Control: page (0) single
+%Control: year (1) truncated
+%Control: production of eprint (0) enabled
+\begin{thebibliography}{57}%
+\makeatletter
+\providecommand \@ifxundefined [1]{%
+ \@ifx{#1\undefined}
+}%
+\providecommand \@ifnum [1]{%
+ \ifnum #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \@ifx [1]{%
+ \ifx #1\expandafter \@firstoftwo
+ \else \expandafter \@secondoftwo
+ \fi
+}%
+\providecommand \natexlab [1]{#1}%
+\providecommand \enquote  [1]{``#1''}%
+\providecommand \bibnamefont  [1]{#1}%
+\providecommand \bibfnamefont [1]{#1}%
+\providecommand \citenamefont [1]{#1}%
+\providecommand \href@noop [0]{\@secondoftwo}%
+\providecommand \href [0]{\begingroup \@sanitize@url \@href}%
+\providecommand \@href[1]{\@@startlink{#1}\@@href}%
+\providecommand \@@href[1]{\endgroup#1\@@endlink}%
+\providecommand \@sanitize@url [0]{\catcode `\\12\catcode `\$12\catcode
+  `\&12\catcode `\#12\catcode `\^12\catcode `\_12\catcode `\%12\relax}%
+\providecommand \@@startlink[1]{}%
+\providecommand \@@endlink[0]{}%
+\providecommand \url  [0]{\begingroup\@sanitize@url \@url }%
+\providecommand \@url [1]{\endgroup\@href {#1}{\urlprefix }}%
+\providecommand \urlprefix  [0]{URL }%
+\providecommand \Eprint [0]{\href }%
+\providecommand \doibase [0]{https://doi.org/}%
+\providecommand \selectlanguage [0]{\@gobble}%
+\providecommand \bibinfo  [0]{\@secondoftwo}%
+\providecommand \bibfield  [0]{\@secondoftwo}%
+\providecommand \translation [1]{[#1]}%
+\providecommand \BibitemOpen [0]{}%
+\providecommand \bibitemStop [0]{}%
+\providecommand \bibitemNoStop [0]{.\EOS\space}%
+\providecommand \EOS [0]{\spacefactor3000\relax}%
+\providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
+\let\auto@bib@innerbib\@empty
+%</preamble>
+\bibitem [{\citenamefont {Satzinger}\ \emph {et~al.}(2021)\citenamefont
+  {Satzinger} \emph {et~al.}}]{satzinger2021realizing}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {K.~J.}\ \bibnamefont
+  {Satzinger}} \emph {et~al.},\ }\bibfield  {title} {\bibinfo {title}
+  {Realizing topologically ordered states on a quantum processor},\ }\href
+  {https://doi.org/10.1126/science.abi8378} {\bibfield  {journal} {\bibinfo
+  {journal} {Science}\ }\textbf {\bibinfo {volume} {374}},\ \bibinfo {pages}
+  {1237} (\bibinfo {year} {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Sun}\ \emph {et~al.}(2023)\citenamefont {Sun},
+  \citenamefont {Shirakawa},\ and\ \citenamefont {Yunoki}}]{sun2023efficient}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.-Y.}\ \bibnamefont
+  {Sun}}, \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Shirakawa}},\
+  and\ \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Yunoki}},\
+  }\bibfield  {title} {\bibinfo {title} {Efficient variational quantum circuit
+  structure for correlated topological phases},\ }\href
+  {https://doi.org/10.1103/physrevb.108.075127} {\bibfield  {journal} {\bibinfo
+   {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume} {108}},\ \bibinfo
+  {pages} {075127} (\bibinfo {year} {2023})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Chen}\ \emph {et~al.}(2011)\citenamefont {Chen},
+  \citenamefont {Gu},\ and\ \citenamefont {Wen}}]{chen2011classification}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {X.}~\bibnamefont
+  {Chen}}, \bibinfo {author} {\bibfnamefont {Z.-C.}\ \bibnamefont {Gu}},\ and\
+  \bibinfo {author} {\bibfnamefont {X.-G.}\ \bibnamefont {Wen}},\ }\bibfield
+  {title} {\bibinfo {title} {Classification of gapped symmetric phases in
+  one-dimensional spin systems},\ }\href
+  {https://doi.org/10.1103/PhysRevB.83.035107} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume} {83}},\ \bibinfo
+  {pages} {035107} (\bibinfo {year} {2011})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Schuch}\ \emph {et~al.}(2011)\citenamefont {Schuch},
+  \citenamefont {P{\'e}rez-Garc{\'i}a},\ and\ \citenamefont
+  {Cirac}}]{schuch2011classifying}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {N.}~\bibnamefont
+  {Schuch}}, \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {P{\'e}rez-Garc{\'i}a}},\ and\ \bibinfo {author} {\bibfnamefont {J.~I.}\
+  \bibnamefont {Cirac}},\ }\bibfield  {title} {\bibinfo {title} {Classifying
+  quantum phases using matrix product states and projected entangled pair
+  states},\ }\href {https://doi.org/10.1103/PhysRevB.84.165139} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume}
+  {84}},\ \bibinfo {pages} {165139} (\bibinfo {year} {2011})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Huang}\ \emph {et~al.}(2020)\citenamefont {Huang},
+  \citenamefont {Kueng},\ and\ \citenamefont {Preskill}}]{huang2020predicting}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.-Y.}\ \bibnamefont
+  {Huang}}, \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Kueng}},\ and\
+  \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Preskill}},\ }\bibfield
+  {title} {\bibinfo {title} {Predicting many properties of a quantum system
+  from very few measurements},\ }\href
+  {https://doi.org/10.1038/s41567-020-0932-7} {\bibfield  {journal} {\bibinfo
+  {journal} {Nat. Phys.}\ }\textbf {\bibinfo {volume} {16}},\ \bibinfo {pages}
+  {1050} (\bibinfo {year} {2020})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Elben}\ \emph {et~al.}(2023)\citenamefont {Elben},
+  \citenamefont {Flammia}, \citenamefont {Huang}, \citenamefont {Kueng},
+  \citenamefont {Preskill}, \citenamefont {Vermersch},\ and\ \citenamefont
+  {Zoller}}]{elben2022toolbox}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Elben}}, \bibinfo {author} {\bibfnamefont {S.~T.}\ \bibnamefont {Flammia}},
+  \bibinfo {author} {\bibfnamefont {H.-Y.}\ \bibnamefont {Huang}}, \bibinfo
+  {author} {\bibfnamefont {R.}~\bibnamefont {Kueng}}, \bibinfo {author}
+  {\bibfnamefont {J.}~\bibnamefont {Preskill}}, \bibinfo {author}
+  {\bibfnamefont {B.}~\bibnamefont {Vermersch}},\ and\ \bibinfo {author}
+  {\bibfnamefont {P.}~\bibnamefont {Zoller}},\ }\bibfield  {title} {\bibinfo
+  {title} {The randomized measurement toolbox},\ }\href
+  {https://doi.org/10.1038/s42254-022-00535-2} {\bibfield  {journal} {\bibinfo
+  {journal} {Nat. Rev. Phys.}\ }\textbf {\bibinfo {volume} {5}},\ \bibinfo
+  {pages} {9} (\bibinfo {year} {2023})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Cerezo}\ \emph {et~al.}(2021)\citenamefont {Cerezo},
+  \citenamefont {Arrasmith}, \citenamefont {Babbush}, \citenamefont {Benjamin},
+  \citenamefont {Endo}, \citenamefont {Fujii}, \citenamefont {McClean},
+  \citenamefont {Mitarai}, \citenamefont {Yuan}, \citenamefont {Cincio},\ and\
+  \citenamefont {Coles}}]{cerezo2021variational}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Cerezo}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Arrasmith}},
+  \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Babbush}}, \bibinfo
+  {author} {\bibfnamefont {S.~C.}\ \bibnamefont {Benjamin}}, \bibinfo {author}
+  {\bibfnamefont {S.}~\bibnamefont {Endo}}, \bibinfo {author} {\bibfnamefont
+  {K.}~\bibnamefont {Fujii}}, \bibinfo {author} {\bibfnamefont {J.~R.}\
+  \bibnamefont {McClean}}, \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
+  {Mitarai}}, \bibinfo {author} {\bibfnamefont {X.}~\bibnamefont {Yuan}},
+  \bibinfo {author} {\bibfnamefont {L.}~\bibnamefont {Cincio}},\ and\ \bibinfo
+  {author} {\bibfnamefont {P.~J.}\ \bibnamefont {Coles}},\ }\bibfield  {title}
+  {\bibinfo {title} {Variational quantum algorithms},\ }\href
+  {https://doi.org/10.1038/s42254-021-00348-9} {\bibfield  {journal} {\bibinfo
+  {journal} {Nat. Rev. Phys.}\ }\textbf {\bibinfo {volume} {3}},\ \bibinfo
+  {pages} {625} (\bibinfo {year} {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Tilly}\ \emph {et~al.}(2022)\citenamefont {Tilly},
+  \citenamefont {Chen}, \citenamefont {Cao}, \citenamefont {Picozzi},
+  \citenamefont {Setia}, \citenamefont {Li}, \citenamefont {Grant},
+  \citenamefont {Wossnig}, \citenamefont {Rungger}, \citenamefont {Booth},\
+  and\ \citenamefont {Tennyson}}]{tilly2022variational}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Tilly}}, \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont {Chen}},
+  \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Cao}}, \bibinfo {author}
+  {\bibfnamefont {D.}~\bibnamefont {Picozzi}}, \bibinfo {author} {\bibfnamefont
+  {K.}~\bibnamefont {Setia}}, \bibinfo {author} {\bibfnamefont
+  {Y.}~\bibnamefont {Li}}, \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Grant}}, \bibinfo {author} {\bibfnamefont {L.}~\bibnamefont {Wossnig}},
+  \bibinfo {author} {\bibfnamefont {I.}~\bibnamefont {Rungger}}, \bibinfo
+  {author} {\bibfnamefont {G.~H.}\ \bibnamefont {Booth}},\ and\ \bibinfo
+  {author} {\bibfnamefont {J.}~\bibnamefont {Tennyson}},\ }\bibfield  {title}
+  {\bibinfo {title} {The variational quantum eigensolver: a review of methods
+  and best practices},\ }\href {https://doi.org/10.1016/j.physrep.2022.08.003}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rep.}\ }\textbf {\bibinfo
+  {volume} {986}},\ \bibinfo {pages} {1} (\bibinfo {year} {2022})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {McClean}\ \emph {et~al.}(2018)\citenamefont
+  {McClean}, \citenamefont {Boixo}, \citenamefont {Smelyanskiy}, \citenamefont
+  {Babbush},\ and\ \citenamefont {Neven}}]{mcclean2018barren}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~R.}\ \bibnamefont
+  {McClean}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Boixo}},
+  \bibinfo {author} {\bibfnamefont {V.~N.}\ \bibnamefont {Smelyanskiy}},
+  \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Babbush}},\ and\ \bibinfo
+  {author} {\bibfnamefont {H.}~\bibnamefont {Neven}},\ }\bibfield  {title}
+  {\bibinfo {title} {Barren plateaus in quantum neural network training
+  landscapes},\ }\href {https://doi.org/10.1038/s41467-018-07090-4} {\bibfield
+  {journal} {\bibinfo  {journal} {Nat. Commun.}\ }\textbf {\bibinfo {volume}
+  {9}},\ \bibinfo {pages} {4812} (\bibinfo {year} {2018})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Temme}\ \emph {et~al.}(2017)\citenamefont {Temme},
+  \citenamefont {Bravyi},\ and\ \citenamefont {Gambetta}}]{temme2017error}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
+  {Temme}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Bravyi}},\ and\
+  \bibinfo {author} {\bibfnamefont {J.~M.}\ \bibnamefont {Gambetta}},\
+  }\bibfield  {title} {\bibinfo {title} {Error mitigation for short-depth
+  quantum circuits},\ }\href {https://doi.org/10.1103/PhysRevLett.119.180509}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf
+  {\bibinfo {volume} {119}},\ \bibinfo {pages} {180509} (\bibinfo {year}
+  {2017})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Kandala}\ \emph {et~al.}(2019)\citenamefont
+  {Kandala}, \citenamefont {Temme}, \citenamefont {C{\'o}rcoles}, \citenamefont
+  {Mezzacapo}, \citenamefont {Chow},\ and\ \citenamefont
+  {Gambetta}}]{kandala2019error}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Kandala}}, \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Temme}},
+  \bibinfo {author} {\bibfnamefont {A.~D.}\ \bibnamefont {C{\'o}rcoles}},
+  \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Mezzacapo}}, \bibinfo
+  {author} {\bibfnamefont {J.~M.}\ \bibnamefont {Chow}},\ and\ \bibinfo
+  {author} {\bibfnamefont {J.~M.}\ \bibnamefont {Gambetta}},\ }\bibfield
+  {title} {\bibinfo {title} {Error mitigation extends the computational reach
+  of a noisy quantum processor},\ }\href
+  {https://doi.org/10.1038/s41586-019-1040-7} {\bibfield  {journal} {\bibinfo
+  {journal} {Nature}\ }\textbf {\bibinfo {volume} {567}},\ \bibinfo {pages}
+  {491} (\bibinfo {year} {2019})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Colless}\ \emph {et~al.}(2018)\citenamefont
+  {Colless}, \citenamefont {Ramasesh}, \citenamefont {Dahlen}, \citenamefont
+  {Blok}, \citenamefont {McClean}, \citenamefont {Carter}, \citenamefont
+  {de~Jong},\ and\ \citenamefont {Siddiqi}}]{colless2018robust}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~I.}\ \bibnamefont
+  {Colless}}, \bibinfo {author} {\bibfnamefont {V.~V.}\ \bibnamefont
+  {Ramasesh}}, \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Dahlen}},
+  \bibinfo {author} {\bibfnamefont {M.~S.}\ \bibnamefont {Blok}}, \bibinfo
+  {author} {\bibfnamefont {J.~R.}\ \bibnamefont {McClean}}, \bibinfo {author}
+  {\bibfnamefont {J.}~\bibnamefont {Carter}}, \bibinfo {author} {\bibfnamefont
+  {W.~A.}\ \bibnamefont {de~Jong}},\ and\ \bibinfo {author} {\bibfnamefont
+  {I.}~\bibnamefont {Siddiqi}},\ }\bibfield  {title} {\bibinfo {title} {Robust
+  determination of molecular spectra on a quantum processor},\ }\href
+  {https://doi.org/10.1103/PhysRevX.8.011021} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. X}\ }\textbf {\bibinfo {volume} {8}},\ \bibinfo {pages}
+  {011021} (\bibinfo {year} {2018})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Yu}\ \emph {et~al.}(2023)\citenamefont {Yu},
+  \citenamefont {Zhao},\ and\ \citenamefont {Wei}}]{yu2023simulating}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Yu}}, \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Zhao}},\ and\
+  \bibinfo {author} {\bibfnamefont {T.-C.}\ \bibnamefont {Wei}},\ }\bibfield
+  {title} {\bibinfo {title} {Simulating large-size quantum spin chains on
+  cloud-based superconducting quantum computers},\ }\href
+  {https://doi.org/10.1103/PhysRevResearch.5.013183} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. Research}\ }\textbf {\bibinfo {volume}
+  {5}},\ \bibinfo {pages} {013183} (\bibinfo {year} {2023})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Pereira}\ \emph {et~al.}(2006)\citenamefont
+  {Pereira}, \citenamefont {Sirker}, \citenamefont {Caux}, \citenamefont
+  {Hagemans}, \citenamefont {Maillet}, \citenamefont {White},\ and\
+  \citenamefont {Affleck}}]{pereira2006dynamical}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.~G.}\ \bibnamefont
+  {Pereira}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Sirker}},
+  \bibinfo {author} {\bibfnamefont {J.-S.}\ \bibnamefont {Caux}}, \bibinfo
+  {author} {\bibfnamefont {R.}~\bibnamefont {Hagemans}}, \bibinfo {author}
+  {\bibfnamefont {J.~M.}\ \bibnamefont {Maillet}}, \bibinfo {author}
+  {\bibfnamefont {S.~R.}\ \bibnamefont {White}},\ and\ \bibinfo {author}
+  {\bibfnamefont {I.}~\bibnamefont {Affleck}},\ }\bibfield  {title} {\bibinfo
+  {title} {Dynamical spin structure factor for the anisotropic spin-1/2
+  {Heisenberg} chain},\ }\href {https://doi.org/10.1103/PhysRevLett.96.257202}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf
+  {\bibinfo {volume} {96}},\ \bibinfo {pages} {257202} (\bibinfo {year}
+  {2006})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {den Nijs}\ and\ \citenamefont
+  {Rommelse}(1989)}]{dennijs1989preroughening}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {den
+  Nijs}}\ and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Rommelse}},\
+  }\bibfield  {title} {\bibinfo {title} {Preroughening transitions in crystal
+  surfaces and valence-bond phases in quantum spin chains},\ }\href
+  {https://doi.org/10.1103/PhysRevB.40.4709} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo {volume} {40}},\ \bibinfo
+  {pages} {4709} (\bibinfo {year} {1989})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {P{\'e}rez-Garc{\'i}a}\ \emph
+  {et~al.}(2008)\citenamefont {P{\'e}rez-Garc{\'i}a}, \citenamefont {Wolf},
+  \citenamefont {Sanz}, \citenamefont {Verstraete},\ and\ \citenamefont
+  {Cirac}}]{perezgarcia2008string}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {D.}~\bibnamefont
+  {P{\'e}rez-Garc{\'i}a}}, \bibinfo {author} {\bibfnamefont {M.~M.}\
+  \bibnamefont {Wolf}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Sanz}}, \bibinfo {author} {\bibfnamefont {F.}~\bibnamefont {Verstraete}},\
+  and\ \bibinfo {author} {\bibfnamefont {J.~I.}\ \bibnamefont {Cirac}},\
+  }\bibfield  {title} {\bibinfo {title} {String order and symmetries in quantum
+  spin lattices},\ }\href {https://doi.org/10.1103/PhysRevLett.100.167202}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf
+  {\bibinfo {volume} {100}},\ \bibinfo {pages} {167202} (\bibinfo {year}
+  {2008})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Endres}\ \emph {et~al.}(2011)\citenamefont {Endres},
+  \citenamefont {Cheneau}, \citenamefont {Fukuhara}, \citenamefont
+  {Weitenberg}, \citenamefont {Schau{\ss}}, \citenamefont {Gross},
+  \citenamefont {Mazza}, \citenamefont {Ba{\~n}uls}, \citenamefont {Pollet},
+  \citenamefont {Bloch},\ and\ \citenamefont {Kuhr}}]{endres2011observation}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Endres}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Cheneau}},
+  \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Fukuhara}}, \bibinfo
+  {author} {\bibfnamefont {C.}~\bibnamefont {Weitenberg}}, \bibinfo {author}
+  {\bibfnamefont {P.}~\bibnamefont {Schau{\ss}}}, \bibinfo {author}
+  {\bibfnamefont {C.}~\bibnamefont {Gross}}, \bibinfo {author} {\bibfnamefont
+  {L.}~\bibnamefont {Mazza}}, \bibinfo {author} {\bibfnamefont {M.~C.}\
+  \bibnamefont {Ba{\~n}uls}}, \bibinfo {author} {\bibfnamefont
+  {L.}~\bibnamefont {Pollet}}, \bibinfo {author} {\bibfnamefont
+  {I.}~\bibnamefont {Bloch}},\ and\ \bibinfo {author} {\bibfnamefont
+  {S.}~\bibnamefont {Kuhr}},\ }\bibfield  {title} {\bibinfo {title}
+  {Observation of correlated particle-hole pairs and string order in
+  low-dimensional {Mott} insulators},\ }\href
+  {https://doi.org/10.1126/science.1209284} {\bibfield  {journal} {\bibinfo
+  {journal} {Science}\ }\textbf {\bibinfo {volume} {334}},\ \bibinfo {pages}
+  {200} (\bibinfo {year} {2011})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Li}\ \emph {et~al.}(2019)\citenamefont {Li},
+  \citenamefont {Ding},\ and\ \citenamefont {Xie}}]{li2019tackling}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
+  {Li}}, \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Ding}},\ and\
+  \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Xie}},\ }\bibfield
+  {title} {\bibinfo {title} {Tackling the qubit mapping problem for {NISQ}-era
+  quantum devices},\ }in\ \href {https://doi.org/10.1145/3297858.3304023}
+  {\emph {\bibinfo {booktitle} {Proc. 24th Int. Conf. Archit. Support Program.
+  Lang. Oper. Syst. (ASPLOS)}}}\ (\bibinfo {year} {2019})\ pp.\ \bibinfo
+  {pages} {1001--1014}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Bravyi}\ \emph {et~al.}(2021)\citenamefont {Bravyi},
+  \citenamefont {Sheldon}, \citenamefont {Kandala}, \citenamefont {Mckay},\
+  and\ \citenamefont {Gambetta}}]{bravyi2021mitigating}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Bravyi}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Sheldon}},
+  \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Kandala}}, \bibinfo
+  {author} {\bibfnamefont {D.~C.}\ \bibnamefont {Mckay}},\ and\ \bibinfo
+  {author} {\bibfnamefont {J.~M.}\ \bibnamefont {Gambetta}},\ }\bibfield
+  {title} {\bibinfo {title} {Mitigating measurement errors in multiqubit
+  experiments},\ }\href {https://doi.org/10.1103/PhysRevA.103.042605}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo
+  {volume} {103}},\ \bibinfo {pages} {042605} (\bibinfo {year}
+  {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Nation}\ \emph {et~al.}(2021)\citenamefont {Nation},
+  \citenamefont {Kang}, \citenamefont {Sundaresan},\ and\ \citenamefont
+  {Gambetta}}]{nation2021scalable}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {P.~D.}\ \bibnamefont
+  {Nation}}, \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont {Kang}},
+  \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont {Sundaresan}},\ and\
+  \bibinfo {author} {\bibfnamefont {J.~M.}\ \bibnamefont {Gambetta}},\
+  }\bibfield  {title} {\bibinfo {title} {Scalable mitigation of measurement
+  errors on quantum computers},\ }\href
+  {https://doi.org/10.1103/PRXQuantum.2.040326} {\bibfield  {journal} {\bibinfo
+   {journal} {PRX Quantum}\ }\textbf {\bibinfo {volume} {2}},\ \bibinfo {pages}
+  {040326} (\bibinfo {year} {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {van~den Berg}\ \emph {et~al.}(2022)\citenamefont
+  {van~den Berg}, \citenamefont {Minev},\ and\ \citenamefont
+  {Temme}}]{vandenberg2022modelfree}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {van~den Berg}}, \bibinfo {author} {\bibfnamefont {Z.~K.}\ \bibnamefont
+  {Minev}},\ and\ \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Temme}},\
+  }\bibfield  {title} {\bibinfo {title} {Model-free readout-error mitigation
+  for quantum expectation values},\ }\href
+  {https://doi.org/10.1103/PhysRevA.105.032620} {\bibfield  {journal} {\bibinfo
+   {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {105}},\ \bibinfo
+  {pages} {032620} (\bibinfo {year} {2022})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Sandvik}(2010)}]{sandvik2010computational}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.~W.}\ \bibnamefont
+  {Sandvik}},\ }\bibfield  {title} {\bibinfo {title} {Computational studies of
+  quantum spin systems},\ }in\ \href {https://doi.org/10.1063/1.3518900} {\emph
+  {\bibinfo {booktitle} {AIP Conf. Proc.}}},\ Vol.\ \bibinfo {volume} {1297}\
+  (\bibinfo {year} {2010})\ pp.\ \bibinfo {pages} {135--338}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Haldane}(1983)}]{haldane1983nonlinear}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {F.~D.~M.}\
+  \bibnamefont {Haldane}},\ }\bibfield  {title} {\bibinfo {title} {Nonlinear
+  field theory of large-spin {Heisenberg} antiferromagnets: semiclassically
+  quantized solitons of the one-dimensional easy-axis {N\'eel} state},\ }\href
+  {https://doi.org/10.1103/PhysRevLett.50.1153} {\bibfield  {journal} {\bibinfo
+   {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {50}},\ \bibinfo
+  {pages} {1153} (\bibinfo {year} {1983})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Affleck}\ \emph {et~al.}(1987)\citenamefont
+  {Affleck}, \citenamefont {Kennedy}, \citenamefont {Lieb},\ and\ \citenamefont
+  {Tasaki}}]{affleck1987rigorous}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.}~\bibnamefont
+  {Affleck}}, \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Kennedy}},
+  \bibinfo {author} {\bibfnamefont {E.~H.}\ \bibnamefont {Lieb}},\ and\
+  \bibinfo {author} {\bibfnamefont {H.}~\bibnamefont {Tasaki}},\ }\bibfield
+  {title} {\bibinfo {title} {Rigorous results on valence-bond ground states in
+  antiferromagnets},\ }\href {https://doi.org/10.1103/PhysRevLett.59.799}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf
+  {\bibinfo {volume} {59}},\ \bibinfo {pages} {799} (\bibinfo {year}
+  {1987})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Affleck}(1989)}]{affleck1989quantum}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {I.}~\bibnamefont
+  {Affleck}},\ }\bibfield  {title} {\bibinfo {title} {Quantum spin chains and
+  the {Haldane} gap},\ }\href {https://doi.org/10.1088/0953-8984/1/19/001}
+  {\bibfield  {journal} {\bibinfo  {journal} {J. Phys.: Condens. Matter}\
+  }\textbf {\bibinfo {volume} {1}},\ \bibinfo {pages} {3047} (\bibinfo {year}
+  {1989})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Su}\ \emph {et~al.}(1979)\citenamefont {Su},
+  \citenamefont {Schrieffer},\ and\ \citenamefont {Heeger}}]{su1979solitons}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {W.~P.}\ \bibnamefont
+  {Su}}, \bibinfo {author} {\bibfnamefont {J.~R.}\ \bibnamefont {Schrieffer}},\
+  and\ \bibinfo {author} {\bibfnamefont {A.~J.}\ \bibnamefont {Heeger}},\
+  }\bibfield  {title} {\bibinfo {title} {Solitons in polyacetylene},\ }\href
+  {https://doi.org/10.1103/PhysRevLett.42.1698} {\bibfield  {journal} {\bibinfo
+   {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {42}},\ \bibinfo
+  {pages} {1698} (\bibinfo {year} {1979})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Pollmann}\ \emph {et~al.}(2010)\citenamefont
+  {Pollmann}, \citenamefont {Turner}, \citenamefont {Berg},\ and\ \citenamefont
+  {Oshikawa}}]{pollmann2010entanglement}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {F.}~\bibnamefont
+  {Pollmann}}, \bibinfo {author} {\bibfnamefont {A.~M.}\ \bibnamefont
+  {Turner}}, \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Berg}},\ and\
+  \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Oshikawa}},\ }\bibfield
+  {title} {\bibinfo {title} {Entanglement spectrum of a topological phase in
+  one dimension},\ }\href {https://doi.org/10.1103/PhysRevB.81.064439}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. B}\ }\textbf {\bibinfo
+  {volume} {81}},\ \bibinfo {pages} {064439} (\bibinfo {year}
+  {2010})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Li}\ and\ \citenamefont
+  {Haldane}(2008)}]{li2008entanglement}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Li}}\ and\ \bibinfo {author} {\bibfnamefont {F.~D.~M.}\ \bibnamefont
+  {Haldane}},\ }\bibfield  {title} {\bibinfo {title} {Entanglement spectrum as
+  a generalization of entanglement entropy: identification of topological order
+  in non-{Abelian} fractional quantum {Hall} effect states},\ }\href
+  {https://doi.org/10.1103/PhysRevLett.101.010504} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {101}},\
+  \bibinfo {pages} {010504} (\bibinfo {year} {2008})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Elben}\ \emph {et~al.}(2020)\citenamefont {Elben},
+  \citenamefont {Yu}, \citenamefont {Zhu}, \citenamefont {Hafezi},
+  \citenamefont {Pollmann}, \citenamefont {Zoller},\ and\ \citenamefont
+  {Vermersch}}]{elben2020manybody}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Elben}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Yu}}, \bibinfo
+  {author} {\bibfnamefont {G.}~\bibnamefont {Zhu}}, \bibinfo {author}
+  {\bibfnamefont {M.}~\bibnamefont {Hafezi}}, \bibinfo {author} {\bibfnamefont
+  {F.}~\bibnamefont {Pollmann}}, \bibinfo {author} {\bibfnamefont
+  {P.}~\bibnamefont {Zoller}},\ and\ \bibinfo {author} {\bibfnamefont
+  {B.}~\bibnamefont {Vermersch}},\ }\bibfield  {title} {\bibinfo {title}
+  {Many-body topological invariants from randomized measurements in synthetic
+  quantum matter},\ }\href {https://doi.org/10.1126/sciadv.aaz3666} {\bibfield
+  {journal} {\bibinfo  {journal} {Sci. Adv.}\ }\textbf {\bibinfo {volume}
+  {6}},\ \bibinfo {pages} {eaaz3666} (\bibinfo {year} {2020})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Kitaev}\ and\ \citenamefont
+  {Preskill}(2006)}]{kitaev2006topological}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Kitaev}}\ and\ \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Preskill}},\ }\bibfield  {title} {\bibinfo {title} {Topological entanglement
+  entropy},\ }\href {https://doi.org/10.1103/PhysRevLett.96.110404} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo
+  {volume} {96}},\ \bibinfo {pages} {110404} (\bibinfo {year}
+  {2006})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Levin}\ and\ \citenamefont
+  {Wen}(2006)}]{levin2006detecting}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Levin}}\ and\ \bibinfo {author} {\bibfnamefont {X.-G.}\ \bibnamefont
+  {Wen}},\ }\bibfield  {title} {\bibinfo {title} {Detecting topological order
+  in a ground state wave function},\ }\href
+  {https://doi.org/10.1103/PhysRevLett.96.110405} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo {volume} {96}},\
+  \bibinfo {pages} {110405} (\bibinfo {year} {2006})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Huang}\ \emph {et~al.}(2021)\citenamefont {Huang},
+  \citenamefont {Kueng},\ and\ \citenamefont
+  {Preskill}}]{huang2021derandomization}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.-Y.}\ \bibnamefont
+  {Huang}}, \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Kueng}},\ and\
+  \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Preskill}},\ }\bibfield
+  {title} {\bibinfo {title} {Efficient estimation of {Pauli} observables by
+  derandomization},\ }\href {https://doi.org/10.1103/PhysRevLett.127.030503}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf
+  {\bibinfo {volume} {127}},\ \bibinfo {pages} {030503} (\bibinfo {year}
+  {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Hadfield}\ \emph {et~al.}(2022)\citenamefont
+  {Hadfield}, \citenamefont {Bravyi}, \citenamefont {Raymond},\ and\
+  \citenamefont {Mezzacapo}}]{hadfield2022measurements}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Hadfield}}, \bibinfo {author} {\bibfnamefont {S.}~\bibnamefont {Bravyi}},
+  \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Raymond}},\ and\ \bibinfo
+  {author} {\bibfnamefont {A.}~\bibnamefont {Mezzacapo}},\ }\bibfield  {title}
+  {\bibinfo {title} {Measurements of quantum {Hamiltonians} with locally-biased
+  classical shadows},\ }\href {https://doi.org/10.1007/s00220-022-04343-8}
+  {\bibfield  {journal} {\bibinfo  {journal} {Commun. Math. Phys.}\ }\textbf
+  {\bibinfo {volume} {391}},\ \bibinfo {pages} {951} (\bibinfo {year}
+  {2022})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Zhou}\ and\ \citenamefont
+  {Liu}(2023)}]{zhou2023performance}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont
+  {Zhou}}\ and\ \bibinfo {author} {\bibfnamefont {Q.}~\bibnamefont {Liu}},\
+  }\bibfield  {title} {\bibinfo {title} {Performance analysis of multi-shot
+  shadow estimation},\ }\href {https://doi.org/10.22331/q-2023-06-29-1044}
+  {\bibfield  {journal} {\bibinfo  {journal} {Quantum}\ }\textbf {\bibinfo
+  {volume} {7}},\ \bibinfo {pages} {1044} (\bibinfo {year} {2023})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Wang}\ and\ \citenamefont
+  {Cui}(2023)}]{wang2023classical}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont
+  {Wang}}\ and\ \bibinfo {author} {\bibfnamefont {W.}~\bibnamefont {Cui}},\
+  }\bibfield  {title} {\bibinfo {title} {Classical shadow tomography with
+  mutually unbiased bases},\ }\href@noop {} {\bibfield  {journal} {\bibinfo
+  {journal} {arXiv:2310.09644}\ } (\bibinfo {year} {2023})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Kunjummen}\ \emph {et~al.}(2023)\citenamefont
+  {Kunjummen}, \citenamefont {Tran}, \citenamefont {Carney},\ and\
+  \citenamefont {Taylor}}]{kunjummen2023shadow}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Kunjummen}}, \bibinfo {author} {\bibfnamefont {M.~C.}\ \bibnamefont {Tran}},
+  \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Carney}},\ and\ \bibinfo
+  {author} {\bibfnamefont {J.~M.}\ \bibnamefont {Taylor}},\ }\bibfield  {title}
+  {\bibinfo {title} {Shadow process tomography of quantum channels},\ }\href
+  {https://doi.org/10.1103/PhysRevA.107.042403} {\bibfield  {journal} {\bibinfo
+   {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {107}},\ \bibinfo
+  {pages} {042403} (\bibinfo {year} {2023})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Brydges}\ \emph {et~al.}(2019)\citenamefont
+  {Brydges}, \citenamefont {Elben}, \citenamefont {Jurcevic}, \citenamefont
+  {Vermersch}, \citenamefont {Maier}, \citenamefont {Lanyon}, \citenamefont
+  {Zoller}, \citenamefont {Blatt},\ and\ \citenamefont
+  {Roos}}]{brydges2019probing}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {T.}~\bibnamefont
+  {Brydges}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Elben}},
+  \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Jurcevic}}, \bibinfo
+  {author} {\bibfnamefont {B.}~\bibnamefont {Vermersch}}, \bibinfo {author}
+  {\bibfnamefont {C.}~\bibnamefont {Maier}}, \bibinfo {author} {\bibfnamefont
+  {B.~P.}\ \bibnamefont {Lanyon}}, \bibinfo {author} {\bibfnamefont
+  {P.}~\bibnamefont {Zoller}}, \bibinfo {author} {\bibfnamefont
+  {R.}~\bibnamefont {Blatt}},\ and\ \bibinfo {author} {\bibfnamefont {C.~F.}\
+  \bibnamefont {Roos}},\ }\bibfield  {title} {\bibinfo {title} {Probing
+  {R\'enyi} entanglement entropy via randomized measurements},\ }\href
+  {https://doi.org/10.1126/science.aau4963} {\bibfield  {journal} {\bibinfo
+  {journal} {Science}\ }\textbf {\bibinfo {volume} {364}},\ \bibinfo {pages}
+  {260} (\bibinfo {year} {2019})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Vitale}\ \emph {et~al.}(2024)\citenamefont {Vitale},
+  \citenamefont {Rath}, \citenamefont {Jurcevic}, \citenamefont {Elben},
+  \citenamefont {Branciard},\ and\ \citenamefont
+  {Vermersch}}]{vitale2024robust}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {V.}~\bibnamefont
+  {Vitale}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Rath}},
+  \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Jurcevic}}, \bibinfo
+  {author} {\bibfnamefont {A.}~\bibnamefont {Elben}}, \bibinfo {author}
+  {\bibfnamefont {C.}~\bibnamefont {Branciard}},\ and\ \bibinfo {author}
+  {\bibfnamefont {B.}~\bibnamefont {Vermersch}},\ }\bibfield  {title} {\bibinfo
+  {title} {Robust estimation of the quantum {Fisher} information on a quantum
+  processor},\ }\href {https://doi.org/10.1103/PRXQuantum.5.030338} {\bibfield
+  {journal} {\bibinfo  {journal} {PRX Quantum}\ }\textbf {\bibinfo {volume}
+  {5}},\ \bibinfo {pages} {030338} (\bibinfo {year} {2024})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Peruzzo}\ \emph {et~al.}(2014)\citenamefont
+  {Peruzzo}, \citenamefont {McClean}, \citenamefont {Shadbolt}, \citenamefont
+  {Yung}, \citenamefont {Zhou}, \citenamefont {Love}, \citenamefont
+  {Aspuru-Guzik},\ and\ \citenamefont {O'Brien}}]{peruzzo2014variational}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Peruzzo}}, \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {McClean}},
+  \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Shadbolt}}, \bibinfo
+  {author} {\bibfnamefont {M.-H.}\ \bibnamefont {Yung}}, \bibinfo {author}
+  {\bibfnamefont {X.-Q.}\ \bibnamefont {Zhou}}, \bibinfo {author}
+  {\bibfnamefont {P.~J.}\ \bibnamefont {Love}}, \bibinfo {author}
+  {\bibfnamefont {A.}~\bibnamefont {Aspuru-Guzik}},\ and\ \bibinfo {author}
+  {\bibfnamefont {J.~L.}\ \bibnamefont {O'Brien}},\ }\bibfield  {title}
+  {\bibinfo {title} {A variational eigenvalue solver on a photonic quantum
+  processor},\ }\href {https://doi.org/10.1038/ncomms5213} {\bibfield
+  {journal} {\bibinfo  {journal} {Nat. Commun.}\ }\textbf {\bibinfo {volume}
+  {5}},\ \bibinfo {pages} {5213} (\bibinfo {year} {2014})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Campos}\ \emph {et~al.}(2021)\citenamefont {Campos},
+  \citenamefont {Nasrallah},\ and\ \citenamefont
+  {Biamonte}}]{campos2021abrupt}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {E.}~\bibnamefont
+  {Campos}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Nasrallah}},\
+  and\ \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Biamonte}},\
+  }\bibfield  {title} {\bibinfo {title} {Abrupt transitions in variational
+  quantum circuit training},\ }\href
+  {https://doi.org/10.1103/PhysRevA.103.032607} {\bibfield  {journal} {\bibinfo
+   {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {103}},\ \bibinfo
+  {pages} {032607} (\bibinfo {year} {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Akshay}\ \emph {et~al.}(2021)\citenamefont {Akshay},
+  \citenamefont {Rabinovich}, \citenamefont {Campos},\ and\ \citenamefont
+  {Biamonte}}]{akshay2021parameter}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {V.}~\bibnamefont
+  {Akshay}}, \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Rabinovich}},
+  \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Campos}},\ and\ \bibinfo
+  {author} {\bibfnamefont {J.}~\bibnamefont {Biamonte}},\ }\bibfield  {title}
+  {\bibinfo {title} {Parameter concentrations in quantum approximate
+  optimization},\ }\href {https://doi.org/10.1103/PhysRevA.104.L010401}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo
+  {volume} {104}},\ \bibinfo {pages} {L010401} (\bibinfo {year}
+  {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Mele}\ \emph {et~al.}(2022)\citenamefont {Mele},
+  \citenamefont {Mbeng}, \citenamefont {Santoro}, \citenamefont {Collura},\
+  and\ \citenamefont {Torta}}]{mele2022avoiding}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.~A.}\ \bibnamefont
+  {Mele}}, \bibinfo {author} {\bibfnamefont {G.~B.}\ \bibnamefont {Mbeng}},
+  \bibinfo {author} {\bibfnamefont {G.~E.}\ \bibnamefont {Santoro}}, \bibinfo
+  {author} {\bibfnamefont {M.}~\bibnamefont {Collura}},\ and\ \bibinfo {author}
+  {\bibfnamefont {P.}~\bibnamefont {Torta}},\ }\bibfield  {title} {\bibinfo
+  {title} {Avoiding barren plateaus via transferability of smooth solutions in
+  a {Hamiltonian} variational ansatz},\ }\href
+  {https://doi.org/10.1103/PhysRevA.106.L060401} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {106}},\
+  \bibinfo {pages} {L060401} (\bibinfo {year} {2022})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Nemkov}\ \emph {et~al.}(2025)\citenamefont {Nemkov},
+  \citenamefont {Kiktenko},\ and\ \citenamefont {Fedorov}}]{nemkov2025barren}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {N.~A.}\ \bibnamefont
+  {Nemkov}}, \bibinfo {author} {\bibfnamefont {E.~O.}\ \bibnamefont
+  {Kiktenko}},\ and\ \bibinfo {author} {\bibfnamefont {A.~K.}\ \bibnamefont
+  {Fedorov}},\ }\bibfield  {title} {\bibinfo {title} {Barren plateaus swamped
+  with traps},\ }\href {https://doi.org/10.1103/PhysRevA.111.012441} {\bibfield
+   {journal} {\bibinfo  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume}
+  {111}},\ \bibinfo {pages} {012441} (\bibinfo {year} {2025})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Bharti}\ and\ \citenamefont
+  {Haug}(2021)}]{bharti2021iterative}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
+  {Bharti}}\ and\ \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Haug}},\
+  }\bibfield  {title} {\bibinfo {title} {Iterative quantum-assisted
+  eigensolver},\ }\href {https://doi.org/10.1103/PhysRevA.104.L050401}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo
+  {volume} {104}},\ \bibinfo {pages} {L050401} (\bibinfo {year}
+  {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Kandala}\ \emph {et~al.}(2017)\citenamefont
+  {Kandala}, \citenamefont {Mezzacapo}, \citenamefont {Temme}, \citenamefont
+  {Takita}, \citenamefont {Brink}, \citenamefont {Chow},\ and\ \citenamefont
+  {Gambetta}}]{kandala2017hardware}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Kandala}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Mezzacapo}},
+  \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Temme}}, \bibinfo
+  {author} {\bibfnamefont {M.}~\bibnamefont {Takita}}, \bibinfo {author}
+  {\bibfnamefont {M.}~\bibnamefont {Brink}}, \bibinfo {author} {\bibfnamefont
+  {J.~M.}\ \bibnamefont {Chow}},\ and\ \bibinfo {author} {\bibfnamefont
+  {J.~M.}\ \bibnamefont {Gambetta}},\ }\bibfield  {title} {\bibinfo {title}
+  {Hardware-efficient variational quantum eigensolver for small molecules and
+  quantum magnets},\ }\href {https://doi.org/10.1038/nature23879} {\bibfield
+  {journal} {\bibinfo  {journal} {Nature}\ }\textbf {\bibinfo {volume} {549}},\
+  \bibinfo {pages} {242} (\bibinfo {year} {2017})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Raussendorf}\ and\ \citenamefont
+  {Briegel}(2001)}]{raussendorf2001oneway}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.}~\bibnamefont
+  {Raussendorf}}\ and\ \bibinfo {author} {\bibfnamefont {H.~J.}\ \bibnamefont
+  {Briegel}},\ }\bibfield  {title} {\bibinfo {title} {A one-way quantum
+  computer},\ }\href {https://doi.org/10.1103/PhysRevLett.86.5188} {\bibfield
+  {journal} {\bibinfo  {journal} {Phys. Rev. Lett.}\ }\textbf {\bibinfo
+  {volume} {86}},\ \bibinfo {pages} {5188} (\bibinfo {year}
+  {2001})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Briegel}\ \emph {et~al.}(2009)\citenamefont
+  {Briegel}, \citenamefont {Browne}, \citenamefont {D{\"u}r}, \citenamefont
+  {Raussendorf},\ and\ \citenamefont {Van~den Nest}}]{briegel2009measurement}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.~J.}\ \bibnamefont
+  {Briegel}}, \bibinfo {author} {\bibfnamefont {D.~E.}\ \bibnamefont {Browne}},
+  \bibinfo {author} {\bibfnamefont {W.}~\bibnamefont {D{\"u}r}}, \bibinfo
+  {author} {\bibfnamefont {R.}~\bibnamefont {Raussendorf}},\ and\ \bibinfo
+  {author} {\bibfnamefont {M.}~\bibnamefont {Van~den Nest}},\ }\bibfield
+  {title} {\bibinfo {title} {Measurement-based quantum computation},\ }\href
+  {https://doi.org/10.1038/nphys1157} {\bibfield  {journal} {\bibinfo
+  {journal} {Nat. Phys.}\ }\textbf {\bibinfo {volume} {5}},\ \bibinfo {pages}
+  {19} (\bibinfo {year} {2009})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Ware}\ \emph {et~al.}(2021)\citenamefont {Ware},
+  \citenamefont {Ribeill}, \citenamefont {Rist{\`e}}, \citenamefont {Ryan},
+  \citenamefont {Johnson},\ and\ \citenamefont
+  {Da~Silva}}]{ware2021experimental}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Ware}}, \bibinfo {author} {\bibfnamefont {G.}~\bibnamefont {Ribeill}},
+  \bibinfo {author} {\bibfnamefont {D.}~\bibnamefont {Rist{\`e}}}, \bibinfo
+  {author} {\bibfnamefont {C.~A.}\ \bibnamefont {Ryan}}, \bibinfo {author}
+  {\bibfnamefont {B.}~\bibnamefont {Johnson}},\ and\ \bibinfo {author}
+  {\bibfnamefont {M.~P.}\ \bibnamefont {Da~Silva}},\ }\bibfield  {title}
+  {\bibinfo {title} {Experimental {Pauli}-frame randomization on a
+  superconducting qubit},\ }\href {https://doi.org/10.1103/PhysRevA.103.042604}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo
+  {volume} {103}},\ \bibinfo {pages} {042604} (\bibinfo {year}
+  {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Qi}\ and\ \citenamefont
+  {Ng}(2021)}]{qi2021randomized}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Qi}}\ and\ \bibinfo {author} {\bibfnamefont {H.~K.}\ \bibnamefont {Ng}},\
+  }\bibfield  {title} {\bibinfo {title} {Randomized benchmarking in the
+  presence of time-correlated dephasing noise},\ }\href
+  {https://doi.org/10.1103/PhysRevA.103.022607} {\bibfield  {journal} {\bibinfo
+   {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {103}},\ \bibinfo
+  {pages} {022607} (\bibinfo {year} {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Gupta}\ \emph {et~al.}(2024)\citenamefont {Gupta},
+  \citenamefont {Van~den Berg}, \citenamefont {Takita}, \citenamefont
+  {Rist{\`e}}, \citenamefont {Temme},\ and\ \citenamefont
+  {Kandala}}]{gupta2024probabilistic}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {R.~S.}\ \bibnamefont
+  {Gupta}}, \bibinfo {author} {\bibfnamefont {E.}~\bibnamefont {Van~den Berg}},
+  \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Takita}}, \bibinfo
+  {author} {\bibfnamefont {D.}~\bibnamefont {Rist{\`e}}}, \bibinfo {author}
+  {\bibfnamefont {K.}~\bibnamefont {Temme}},\ and\ \bibinfo {author}
+  {\bibfnamefont {A.}~\bibnamefont {Kandala}},\ }\bibfield  {title} {\bibinfo
+  {title} {Probabilistic error cancellation for dynamic quantum circuits},\
+  }\href {https://doi.org/10.1103/PhysRevA.109.062617} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {109}},\
+  \bibinfo {pages} {062617} (\bibinfo {year} {2024})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Mari}\ \emph {et~al.}(2021)\citenamefont {Mari},
+  \citenamefont {Shammah},\ and\ \citenamefont {Zeng}}]{mari2021extending}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Mari}}, \bibinfo {author} {\bibfnamefont {N.}~\bibnamefont {Shammah}},\ and\
+  \bibinfo {author} {\bibfnamefont {W.~J.}\ \bibnamefont {Zeng}},\ }\bibfield
+  {title} {\bibinfo {title} {Extending quantum probabilistic error cancellation
+  by noise scaling},\ }\href {https://doi.org/10.1103/PhysRevA.104.052607}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo
+  {volume} {104}},\ \bibinfo {pages} {052607} (\bibinfo {year}
+  {2021})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Krebsbach}\ \emph {et~al.}(2022)\citenamefont
+  {Krebsbach}, \citenamefont {Trauzettel},\ and\ \citenamefont
+  {Calzona}}]{krebsbach2022optimization}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {M.}~\bibnamefont
+  {Krebsbach}}, \bibinfo {author} {\bibfnamefont {B.}~\bibnamefont
+  {Trauzettel}},\ and\ \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont
+  {Calzona}},\ }\bibfield  {title} {\bibinfo {title} {Optimization of
+  {Richardson} extrapolation for quantum error mitigation},\ }\href
+  {https://doi.org/10.1103/PhysRevA.106.062436} {\bibfield  {journal} {\bibinfo
+   {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {106}},\ \bibinfo
+  {pages} {062436} (\bibinfo {year} {2022})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Koenig}\ \emph {et~al.}(2024)\citenamefont {Koenig},
+  \citenamefont {Reinecke}, \citenamefont {Hahn},\ and\ \citenamefont
+  {Wellens}}]{koenig2024inverted}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {K.~F.}\ \bibnamefont
+  {Koenig}}, \bibinfo {author} {\bibfnamefont {F.}~\bibnamefont {Reinecke}},
+  \bibinfo {author} {\bibfnamefont {W.}~\bibnamefont {Hahn}},\ and\ \bibinfo
+  {author} {\bibfnamefont {T.}~\bibnamefont {Wellens}},\ }\bibfield  {title}
+  {\bibinfo {title} {Inverted-circuit zero-noise extrapolation for quantum-gate
+  error mitigation},\ }\href {https://doi.org/10.1103/PhysRevA.110.042625}
+  {\bibfield  {journal} {\bibinfo  {journal} {Phys. Rev. A}\ }\textbf {\bibinfo
+  {volume} {110}},\ \bibinfo {pages} {042625} (\bibinfo {year}
+  {2024})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Li}\ and\ \citenamefont
+  {Benjamin}(2017)}]{li2017efficient}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont
+  {Li}}\ and\ \bibinfo {author} {\bibfnamefont {S.~C.}\ \bibnamefont
+  {Benjamin}},\ }\bibfield  {title} {\bibinfo {title} {Efficient variational
+  quantum simulator incorporating active error minimisation},\ }\href
+  {https://doi.org/10.1103/PhysRevX.7.021050} {\bibfield  {journal} {\bibinfo
+  {journal} {Phys. Rev. X}\ }\textbf {\bibinfo {volume} {7}},\ \bibinfo {pages}
+  {021050} (\bibinfo {year} {2017})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Schultz}\ \emph {et~al.}(2022)\citenamefont
+  {Schultz}, \citenamefont {LaRose}, \citenamefont {Mari}, \citenamefont
+  {Quiroz}, \citenamefont {Shammah}, \citenamefont {Clader},\ and\
+  \citenamefont {Zeng}}]{schultz2022analyzing}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
+  {Schultz}}, \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {LaRose}},
+  \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Mari}}, \bibinfo {author}
+  {\bibfnamefont {G.}~\bibnamefont {Quiroz}}, \bibinfo {author} {\bibfnamefont
+  {N.}~\bibnamefont {Shammah}}, \bibinfo {author} {\bibfnamefont {B.~D.}\
+  \bibnamefont {Clader}},\ and\ \bibinfo {author} {\bibfnamefont {W.~J.}\
+  \bibnamefont {Zeng}},\ }\bibfield  {title} {\bibinfo {title} {Analyzing the
+  impact of time-correlated noise on zero-noise extrapolation},\ }\href
+  {https://doi.org/10.1103/PhysRevA.106.052406} {\bibfield  {journal} {\bibinfo
+   {journal} {Phys. Rev. A}\ }\textbf {\bibinfo {volume} {106}},\ \bibinfo
+  {pages} {052406} (\bibinfo {year} {2022})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Hempel}\ \emph {et~al.}(2018)\citenamefont {Hempel},
+  \citenamefont {Maier}, \citenamefont {Romero}, \citenamefont {McClean},
+  \citenamefont {Monz}, \citenamefont {Shen}, \citenamefont {Jurcevic},
+  \citenamefont {Lanyon}, \citenamefont {Love}, \citenamefont {Babbush},
+  \citenamefont {Aspuru-Guzik}, \citenamefont {Blatt},\ and\ \citenamefont
+  {Roos}}]{hempel2018quantum}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Hempel}}, \bibinfo {author} {\bibfnamefont {C.}~\bibnamefont {Maier}},
+  \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Romero}}, \bibinfo
+  {author} {\bibfnamefont {J.}~\bibnamefont {McClean}}, \bibinfo {author}
+  {\bibfnamefont {T.}~\bibnamefont {Monz}}, \bibinfo {author} {\bibfnamefont
+  {H.}~\bibnamefont {Shen}}, \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont
+  {Jurcevic}}, \bibinfo {author} {\bibfnamefont {B.~P.}\ \bibnamefont
+  {Lanyon}}, \bibinfo {author} {\bibfnamefont {P.}~\bibnamefont {Love}},
+  \bibinfo {author} {\bibfnamefont {R.}~\bibnamefont {Babbush}}, \bibinfo
+  {author} {\bibfnamefont {A.}~\bibnamefont {Aspuru-Guzik}}, \bibinfo {author}
+  {\bibfnamefont {R.}~\bibnamefont {Blatt}},\ and\ \bibinfo {author}
+  {\bibfnamefont {C.~F.}\ \bibnamefont {Roos}},\ }\bibfield  {title} {\bibinfo
+  {title} {Quantum chemistry calculations on a trapped-ion quantum simulator},\
+  }\href {https://doi.org/10.1103/PhysRevX.8.031022} {\bibfield  {journal}
+  {\bibinfo  {journal} {Phys. Rev. X}\ }\textbf {\bibinfo {volume} {8}},\
+  \bibinfo {pages} {031022} (\bibinfo {year} {2018})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {{Google AI Quantum}}(2020)}]{google2020hartree}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibnamefont {{Google AI Quantum}}},\
+  }\bibfield  {title} {\bibinfo {title} {Hartree-{Fock} on a superconducting
+  qubit quantum computer},\ }\href {https://doi.org/10.1126/science.abb9811}
+  {\bibfield  {journal} {\bibinfo  {journal} {Science}\ }\textbf {\bibinfo
+  {volume} {369}},\ \bibinfo {pages} {1084} (\bibinfo {year}
+  {2020})}\BibitemShut {NoStop}%
+\end{thebibliography}%

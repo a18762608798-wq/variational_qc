@@ -1,0 +1,42 @@
+\appendix
+
+\section{有限尺寸能隙说明}
+\label{sec:gap}
+
+取 $P=-2$ 对称性扇区的能隙
+\begin{equation}
+\Delta_{\rm sec}(L,s)=E_1^{(P=-2)}(L,s)-E_0^{(P=-2)}(L,s),
+\end{equation}
+其中 $E_0^{(P=-2)}$（$E_1^{(P=-2)}$）为该扇区基态（第一激发态）能量。
+$\delta=0$ 时 $L=8,12,16$ 的扇区能隙见图~\ref{fig:D02a}。
+临界点附近有限尺寸标度给出 $\Delta_{\rm sec}L\approx A$；
+画 $A$ 随 $s$ 变化（图~\ref{fig:D02b}），$L$ 增大时交点稳定在 $s=0.5$。
+具体说，相邻尺寸间交点的漂移随 $L$ 增大而缩小，与热力学极限下收敛到
+$s=0.5$ 一致。$s=0.5$ 处能隙随 $1/L$ 的变化（$L=8,12,16,20,24$）
+见图~\ref{fig:D02c}；过 $L=20,24$ 的线性拟合（系数标于图，
+拟合截距小，$b=0.05$）与能隙缩小趋势一致。因此有限尺寸效应只对相边界
+有一点影响，不影响相大体结构。
+全文基态均由精确对角化（Lanczos）得到，交点分析遵循量子自旋系统
+有限尺寸常规做法，见 Ref.~\cite{sandvik2010computational} 讲义。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{exp03_D02a.pdf}
+\caption{$\delta=0$ 时 $L=8,12,16$ 的对称性能隙 $\Delta_{\rm sec}$。
+\label{fig:D02a}}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{exp03_D02b.pdf}
+\caption{$A=\Delta_{\rm sec}L$ 随 $s$ 变化；$L\to\infty$ 时交点稳定在
+$s=0.5$。\label{fig:D02b}}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{exp03_D02c.pdf}
+\caption{$s=0.5$ 处能隙随 $1/L$ 变化，过 $L=20,24$ 线性拟合
+（拟合截距小，$b=0.05$）。
+\label{fig:D02c}}
+\end{figure}

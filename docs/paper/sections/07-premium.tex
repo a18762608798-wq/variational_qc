@@ -1,0 +1,68 @@
+\section{Hardware implementation}
+\label{sec:hardware}
+
+\subsection{Premium-qubit selection}
+\label{sec:premium}
+
+To run on hardware we screen candidate chains (rings) with two
+quantities: the stabilizer mean, probing two-qubit gate quality, and
+the readout fidelity, probing measurement quality.
+The ideal output is the cluster state
+$|C\rangle=\prod_{\langle ij\rangle}CZ_{ij}|+\rangle^{\otimes n}$,
+where $\langle ij\rangle$ runs over the edges of the candidate subgraph;
+its stabilizers $S_i$ (two-body $X_0Z_1$, $Z_{n-2}X_{n-1}$ at open ends,
+three-body $Z_{i-1}X_iZ_{i+1}$ otherwise) have expectation $+1$ in the
+absence of errors, so deviations of $\langle S_i\rangle$ from $1$
+directly reflect $CZ$ gate errors.
+Each candidate is characterized by $4$ benchmark circuits: \texttt{stab\_g0}
+and \texttt{stab\_g1} measure the even- and odd-index stabilizers separately
+(the two groups anticommute and cannot be read out together), while
+\texttt{allzero} and \texttt{allone} contain no $CZ$ gates and yield the readout
+fidelity $F_{\rm ro}$ from the mean of $P(00\cdots0)$ and
+$P(11\cdots11)$. The score
+\begin{equation}
+{\rm score}=0.8\,\bar{S}+0.2\,F_{\rm ro},
+\end{equation}
+where $\bar{S}=n^{-1}\sum_i\langle S_i\rangle$ is the stabilizer mean,
+ranks the candidates, weighting two-qubit gate quality over readout.
+Cluster states~\cite{raussendorf2001oneway}
+are the ideal outputs whose stabilizers we measure; measurement-based
+computation on such states is reviewed in
+Ref.~\cite{briegel2009measurement}.
+The $8$-chain and $10$-ring benchmarks differ (the ring carries one
+extra closing $CZ$ and all-three-body stabilizers), so rankings are only
+compared within each geometry, never across. In contrast to generic
+randomized benchmarks, this screening probes exactly the stabilizers of
+the states the hardware will prepare.
+Hardware characterization around this screening takes several
+complementary forms: Pauli-frame randomization has been demonstrated on
+a superconducting qubit and validated by gate-set
+tomography~\cite{ware2021experimental}, while the analysis of
+randomized benchmarking under time-correlated dephasing shows where the
+standard Markovian decay model stops
+applying~\cite{qi2021randomized}. Shadow-based Hamiltonian measurement
+offers a measurement-frugal
+alternative~\cite{hadfield2022measurements,huang2021derandomization}, and
+shadow tomography extends to quantum
+channels~\cite{kunjummen2023shadow}.
+
+The resulting rankings and selected qubits are reported in the Results and
+Discussion feature. This Methods section defines only the screening
+protocol and its within-geometry comparison rule.
+
+\subsection{Premium-qubit rankings}
+\label{sec:rankings}
+
+The screening reports three rankings on the Baihua processor: (a) top-ten
+$8$-chain candidates, (b) top-ten $10$-ring candidates, and (c) top-ten
+$8$-subchains within the champion ring. The specific qubit tables follow
+the latest S04 manifest; until the D07 figures land the slots below are
+reserved and no ranking is asserted.
+
+\begin{figure}[htbp]
+\centering
+\fbox{\parbox{0.9\columnwidth}{\centering TODO(GAP-001): D07a ranking figure pending.}}\\(a)
+\fbox{\parbox{0.9\columnwidth}{\centering TODO(GAP-001): D07b ranking figure pending.}}\\(b)
+\fbox{\parbox{0.9\columnwidth}{\centering TODO(GAP-001): D07c ranking figure pending.}}\\(c)
+\caption{Premium-qubit ranking placeholders. \label{fig:D07}}
+\end{figure}

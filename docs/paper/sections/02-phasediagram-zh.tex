@@ -1,0 +1,16 @@
+\section{有限尺寸相图}
+\label{sec:phasediagram}
+
+$99\times99$ 网格 $s=i/100$、$\delta=j/50$（$i,j=1,\dots,99$）上的归一化标记
+见图~\ref{fig:D01}。每格点由存储的基态独立计算，不插值、不平滑；
+简并点保留求解器最低本征矢，数据集中携带简并标记。
+该图用于定义参数区域、代表点选择和后续变分起点/终点协议。
+这里将归一化标记作为相标签约定；边界的有限尺寸漂移在附录中单独分析。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{exp01_D01.pdf}
+\caption{$L=8$ 时 $99\times99$ 网格上的归一化标记
+$\tilde{Z}_{\mathcal R}(s,\delta)$，逐点计算不插值。
+\label{fig:D01}}
+\end{figure}

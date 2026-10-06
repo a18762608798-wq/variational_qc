@@ -1,0 +1,66 @@
+\section{Model and symmetries}
+\label{sec:model}
+
+We consider the dimerized XXZ chain with $L$ sites and open boundary
+conditions, sites labeled $1,\dots,L$. The dimerized alternating-bond
+structure goes back to Su, Schrieffer, and Heeger~\cite{su1979solitons}. With $X_m,Y_m,Z_m$ the Pauli
+operators on site $m$, the Hamiltonian reads
+\begin{equation}
+H(s,\delta)=H_o+H_e,
+\end{equation}
+where $H_o$ ($H_e$) couples odd (even) bonds, $s$ is the dimerization
+parameter, and $\delta$ controls the anisotropy:
+\begin{equation}
+H_o=(1-s)\sum_{j=1}^{L/2}h_{2j-1,2j},\qquad
+H_e=s\sum_{j=1}^{L/2-1}h_{2j,2j+1},
+\end{equation}
+\begin{equation}
+h_{kl}=e^{-\delta}(X_kX_l+Y_kY_l)+e^{+\delta}Z_kZ_l,
+\end{equation}
+where $h_{kl}$ is the two-site bond operator with
+$J_{xx}=e^{-\delta}$ and $J_z=e^{+\delta}$; $\delta=0$ is the Heisenberg
+isotropic point, while $\delta>0$ leans toward Ising.
+Unless stated otherwise we take $L=8$.
+
+$H$ commutes with the total magnetization
+$Z_{\rm tot}=\sum_m Z_m$, the global spin flip $\prod_m X_m$, and the
+full-chain reflection $R$ ($m\leftrightarrow L+1-m$), so evolution under
+$H$ never leaves the initial symmetry sector. For $\delta\ne0$ the symmetry is $U(1)$ ($Z_{\rm tot}$
+conserved); at $\delta=0$ it enlarges to $SU(2)$.
+
+The topological phase here belongs to the one-dimensional
+symmetry-protected family whose study began with Haldane's conjecture
+of a finite gap for integer-spin antiferromagnetic
+chains~\cite{haldane1983nonlinear,dennijs1989preroughening} and the
+exact valence-bond-solid ground state found at a special point of the
+spin-$1$ chain~\cite{affleck1987rigorous,dennijs1989preroughening}.
+That phenomenology is now classified: gapped symmetric phases in one
+dimension are labeled by the second cohomology group, i.e.\ projective
+representations of the symmetry~\cite{chen2011classification}, equivalently
+in matrix-product-state
+form~\cite{schuch2011classifying}, with the degeneracy of the
+entanglement spectrum as the operational
+fingerprint~\cite{pollmann2010entanglement,li2008entanglement}.
+Our dimerized XXZ chain realizes three competing orders---trivial,
+topological, and antiferromagnetic---within a single tunable model,
+which is why a marker that resolves all three at once is needed.
+
+To distinguish the phases we use the normalized topological reflection
+marker, following the partial-reflection many-body invariant of
+Elben~\textit{et al.}~\cite{elben2020manybody}. Let $\rho_I$ be the reduced density matrix of the ground state
+on the central block $I$ (for $L=8$, sites $3$--$6$) and
+${\mathcal R}_I$ the mirror exchange about the central bond. With
+$Z_{\mathcal R}={\rm Tr}(\rho_I{\mathcal R}_I)$ and the corresponding
+quantities $\rho_{I_{1,2}}$ on the left/right halves of $I$,
+\begin{equation}
+\tilde{Z}_{\mathcal R}=
+\frac{Z_{\mathcal R}}
+{\sqrt{[{\rm Tr}(\rho_{I_1}^2)+{\rm Tr}(\rho_{I_2}^2)]/2}},
+\end{equation}
+where the denominator is the mean purity of the two halves.
+In other words, $\tilde{Z}_{\mathcal R}$ is the reflection expectation
+normalized by the local mixedness, so that it approaches $+1$ ($-1$) in
+the trivial (topological) phase and $0$ in the magnetically ordered
+phase, independent of the overall entanglement level.
+The finite-size phase diagram mapped with this marker is reported in
+Sec.~\ref{sec:phasediagram}.

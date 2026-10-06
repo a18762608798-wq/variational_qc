@@ -1,0 +1,57 @@
+\section{Hardware-simulator comparison}
+\label{sec:comparison}
+
+We compare hardware and simulator on the same panels: simulator
+$p=1,2,3$ curves overlaid with the hardware best-layer $p^*$ scatter
+points, each estimator carrying its standard-deviation error bar.
+That is, every point shows the sampling uncertainty of its own
+estimator, so scatter across layers can be judged against shot noise
+rather than read as physics.
+Hardware and simulator are each internally normalized to $0$--$1$;
+we compare trends, not absolute values. The separate normalization is
+deliberate: gate-error suppression and readout residuals shift the two
+platforms' absolute scales differently, while the $s$-dependence of the
+AFM structure factor and the string operator survives as the common
+signal.
+Hardware variational experiments provide the backdrop: complete molecular
+spectra from VQE with subspace expansion on two transmons~\cite{colless2018robust},
+quantum chemistry on trapped
+ions~\cite{hempel2018quantum}, hardware-efficient optimization of
+six-qubit molecular and magnetic
+problems~\cite{kandala2017hardware}, Hartree--Fock on twelve
+superconducting qubits~\cite{google2020hartree}, and spin-chain ground
+states up to $102$ qubits on cloud
+devices~\cite{yu2023simulating}. Our protocol differs in comparing
+hardware against simulator layer-by-layer on directly measurable
+topological markers rather than energies alone.
+Four panels cover $\delta=0$ and $\delta=0.85$ times the two
+directly measurable markers; the figure slots are reserved below and the
+trend statements stay frozen until the D08 figures land.
+
+\begin{figure*}[htbp]
+\centering
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\fbox{\parbox{0.9\textwidth}{\centering TODO(GAP-002): D08a figure pending ($\delta=0$ AFM).}}\\(a)
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\fbox{\parbox{0.9\textwidth}{\centering TODO(GAP-002): D08b figure pending ($\delta=0$ string).}}\\(b)
+\end{minipage}
+\\
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\fbox{\parbox{0.9\textwidth}{\centering TODO(GAP-002): D08c figure pending ($\delta=0.85$ AFM).}}\\(c)
+\end{minipage}
+\hfill
+\begin{minipage}[b]{0.48\textwidth}
+\centering
+\fbox{\parbox{0.9\textwidth}{\centering TODO(GAP-002): D08d figure pending ($\delta=0.85$ string).}}\\(d)
+\end{minipage}
+\caption{Hardware-simulator comparison, four panels (placeholders):
+(a) $\delta=0$ AFM structure factor, (b) $\delta=0$ string operator,
+(c) $\delta=0.85$ AFM structure factor, (d) $\delta=0.85$ string
+operator. Each panel will overlay simulator $p=1,2,3$ curves with
+hardware $p^*$ scatter; normalization as in text. \label{fig:D08}}
+\end{figure*}

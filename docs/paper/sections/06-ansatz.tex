@@ -1,0 +1,99 @@
+\section{Variational state preparation}
+\label{sec:ansatz}
+
+\subsection{Illustrative start and end points}
+\label{sec:points}
+
+For each phase we define an illustrative start/end pair on the
+$\tilde{Z}_{\mathcal R}$ map (Fig.~\ref{fig:D05}). The end points are
+classical reference targets chosen deep inside the corresponding phase;
+they are demonstration endpoints for the variational protocol, not the
+actual final evolution endpoints. Keeping the reference points away from
+the phase boundaries reduces sensitivity to finite-size boundary drift.
+Start points share the dot style in three colors; end markers differ in
+both shape and color, with arrows showing the reference direction of
+each pair.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{exp01_D05.pdf}
+\caption{Illustrative start/end pairs on the $\tilde{Z}_{\mathcal R}$
+phase diagram of Fig.~\ref{fig:D01}, one pair per phase with the
+reference end point deep inside it; colors distinguish pairs and arrows
+mark reference direction.
+\label{fig:D05}}
+\end{figure}
+
+\subsection{Variational circuit structure}
+
+Our variational circuits follow the variational eigenvalue solver
+paradigm~\cite{peruzzo2014variational}: prepare an initial state, then
+apply a parameterized ansatz. The classical loop minimizes
+\begin{equation}
+E(\theta)=\langle\psi(\theta)|H|\psi(\theta)\rangle,
+\end{equation}
+where $|\psi(\theta)\rangle$ is the circuit output at parameters
+$\theta$. Variational algorithms of this form are surveyed in
+Refs.~\cite{cerezo2021variational,tilly2022variational}, which collect
+cost-function design, ansatz families, and best practices.
+In practice the optimization landscape, not the
+expressivity, is the bottleneck: gradients vanish exponentially with
+qubit number in random circuits forming
+$2$-designs~\cite{mcclean2018barren}, hardware-efficient circuits exhibit
+abrupt trainability transitions with depth~\cite{campos2021abrupt}, while
+optimal parameters can concentrate inverse-polynomially in problem
+size~\cite{akshay2021parameter}, smooth Hamiltonian-variational solutions
+transfer across sizes with non-vanishing
+gradients~\cite{mele2022avoiding}, and barren-plateau regimes can hide
+exponentially many traps~\cite{nemkov2025barren}. Krylov-like iterative
+solvers offer a complementary route to ground
+states~\cite{bharti2021iterative}. Hardware-efficient variational
+optimization was first demonstrated on superconducting hardware for
+small molecules and quantum
+magnets~\cite{kandala2017hardware}, and spin-chain variational simulation
+has since been pushed to $102$ qubits on cloud superconducting
+devices~\cite{yu2023simulating}. Our orbit ansatz differs from all of
+these in tying parameters by reflection symmetry and fixing the
+entanglement structure at initialization, as described next.
+The three initial states (odd-bond singlet
+product and its counterparts, all in the $P=-2$ sector, where $P$ labels
+the combined symmetry eigenvalue) pair with an
+orbit ansatz in which mirror-symmetric bond pairs share rotation angles
+(odd bonds $O_j\leftrightarrow O_{M+1-j}$, even bonds
+$E_j\leftrightarrow E_{M-j}$). That is, the ansatz is built in two steps:
+first fix the entanglement structure with a phase-matched initial state,
+then dress all bonds with rotations tied by the reflection symmetry, so
+the parameter count grows with the number of bond orbits rather than
+bonds. One schematic per phase is shown in Fig.~\ref{fig:D06}(a)--(c): initial state
+plus required ansatz circuit for the trivial, topological, and
+AFM cases.
+The construction keeps the trial states in the target symmetry sector.
+The quality of the resulting states is evaluated later by the
+hardware-simulator benchmarks.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{exp04_D06a.pdf}
+\caption{(a) Trivial initial state plus required ansatz circuit. The dashed
+box $U^{(k)}$ is the $k$th variational layer; $\theta^{(k)}_j$
+($\phi^{(k)}_j$) is the $XX{+}YY$ ($ZZ$) angle shared by the $j$th
+mirror-symmetric bond orbit in layer $k$ (odd $O_j\leftrightarrow
+O_{M+1-j}$, even $E_j\leftrightarrow E_{M-j}$; $\theta=\phi$ at
+$\delta=0$). Even-bond sublayer first. \label{fig:D06}}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\addtocounter{figure}{-1}
+\includegraphics[width=\columnwidth]{exp04_D06b.pdf}
+\caption{(b) Topological initial state plus required ansatz circuit, same
+notation as (a); odd-bond sublayer first.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\addtocounter{figure}{-1}
+\includegraphics[width=\columnwidth]{exp04_D06c.pdf}
+\caption{(c) AFM initial state plus required ansatz circuit, same notation
+as (a); even-bond sublayer first.}
+\end{figure}

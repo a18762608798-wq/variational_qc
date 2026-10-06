@@ -20,6 +20,26 @@
       },
       "registered_skills": {},
       "installed_at": "2026-10-05T04:06:07.633962+00:00"
+    },
+    "scientific-paper": {
+      "version": "0.3.1",
+      "source": "local",
+      "manifest_hash": "sha256:9d6472250213c18df32d7387cea90e6dbb99825dd5c9ee02503de9a28b1ec65b",
+      "enabled": true,
+      "priority": 4,
+      "registered_commands": {
+        "opencode": [
+          "speckit.specify",
+          "speckit.clarify",
+          "speckit.plan",
+          "speckit.tasks",
+          "speckit.analyze",
+          "speckit.implement",
+          "speckit.converge"
+        ]
+      },
+      "registered_skills": {},
+      "installed_at": "2026-10-06T15:41:28.393572+00:00"
     }
   }
 }

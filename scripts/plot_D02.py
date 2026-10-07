@@ -2,7 +2,7 @@
 
 Reads data/exp03/exp03_D02.npz only; no physics recomputed.
 (a) Delta vs s + per-curve minima (same simple marker),
-(b) A vs s + pairwise crossings (12-16 colored with legend; others marker-only),
+(b) A vs s + pairwise crossings (20-24 colored with legend; others marker-only),
 (c) Delta vs 1/L + LS fit.
 Style via the vendored scripts/figure_style.py. Self-checks grids, shapes,
 and marker/table agreement before plotting.
@@ -19,11 +19,11 @@ sys.path.insert(0, HERE)
 DATA = os.path.join(HERE, "..", "data", "exp03")
 FIGDIR = os.path.join(HERE, "..", "figs", "exp03")
 
-LS = [8, 12, 16]
+LS = [8, 12, 16, 20, 24]
 FIT_LS = [8, 12, 16, 20, 24]
-LINESTYLES = ["-", "--", ":"]
-CROSS_MARKERS = ["o", "s", "^"]
-PAIR_LABELS = ["8-12", "8-16", "12-16"]
+LINESTYLES = ["-", "--", ":", "-.", (0, (3, 1, 1, 1))]
+CROSS_MARKERS = ["o", "s", "^", "D", "v", "p", "*", "X", "d", "h"]
+PAIR_LABELS = ["8-12", "8-16", "8-20", "8-24", "12-16", "12-20", "12-24", "16-20", "16-24", "20-24"]
 HIGHLIGHT = "#CC79A7"  # colored marker for the 12-16 crossing (plan §2)
 
 
@@ -42,20 +42,21 @@ def main():
     D_wide = d["D_wide"]
     A_narr = d["A_narrow"]
     assert s_wide.shape == (99,) and s_narrow.shape == (99,)
-    assert D_wide.shape == (3, 99) and A_narr.shape == (3, 99)
+    assert D_wide.shape == (5, 99) and A_narr.shape == (5, 99)
     assert abs(s_wide[49] - 0.5) < 1e-12, "wide grid must contain s=0.5 at i=50"
     assert np.isfinite(D_wide).all() and np.isfinite(A_narr).all()
     cross_s = d["cross_s"]
     cross_A = d["cross_A"]
-    assert list(d["cross_pairs"]) == [102, 103, 203]
-    assert cross_s.shape == (3,) and cross_A.shape == (3,)
-    assert s_narrow[0] < cross_s[2] < s_narrow[-1]
+    assert list(d["cross_pairs"]) == [102, 103, 104, 105, 203, 204, 205, 304, 305, 405]
+    assert cross_s.shape == (10,) and cross_A.shape == (10,)
+    assert s_narrow[0] < cross_s[4] < s_narrow[-1]
     a, b = float(d["fit_a"]), float(d["fit_b"])
     assert list(d["fit_Ls"]) == FIT_LS
     xs = np.array(d["fit_x"])
     ys = np.array(d["fit_y"])
     assert xs.shape == (5,) and ys.shape == (5,)
-    assert abs(ys[0] - D_wide[0, 49]) < 1e-12, "(iii) must reuse (i) s=0.5 point"
+    for r in range(5):
+        assert abs(ys[r] - D_wide[r, 49]) < 1e-12, "(iii) must reuse (i) s=0.5 point"
 
     os.makedirs(FIGDIR, exist_ok=True)
 
@@ -80,14 +81,15 @@ def main():
     for r, L in enumerate(LS):
         ax.plot(s_narrow, A_narr[r], color=palette[r], linestyle=LINESTYLES[r],
                 linewidth=1.5, label=rf"$L={L}$")
-    for p in range(3):
-        last = (p == 2)  # 12-16: colored marker + legend; others marker-only
+    for p in range(10):
+        last = (p == 9)  # 20-24: colored marker + legend; others marker-only
         ax.plot(cross_s[p], cross_A[p], marker=CROSS_MARKERS[p],
                 color="black", markerfacecolor=HIGHLIGHT if last else "white",
                 markeredgewidth=0.8, markersize=5, linestyle="None", zorder=3,
                 label=rf"${PAIR_LABELS[p]}$: ${cross_s[p]:.3f}$" if last else None)
+    ax.set_xlim(0.5, 0.53)
     ax.set_xlabel(r"$s$")
-    ax.set_ylabel(r"$A=\Delta L$")
+    ax.set_ylabel(r"$A=\Delta_{\mathrm{sec}} L$")
     ax.legend(frameon=False, fontsize=7)
     finalize_figure(fig, os.path.join(FIGDIR, "exp03_D02b.pdf"))
     finalize_figure(fig, os.path.join(FIGDIR, "exp03_D02b.png"))
@@ -105,7 +107,7 @@ def main():
     ax.text(0.05, 0.95, rf"$a={a:.2f}$" "\n" rf"$b={b:.2f}$",
             transform=ax.transAxes, ha="left", va="top", fontsize=7)
     ax.set_xlabel(r"$1/L$")
-    ax.set_ylabel(r"$\Delta$")
+    ax.set_ylabel(r"$\Delta_{\mathrm{sec}}$")
     finalize_figure(fig, os.path.join(FIGDIR, "exp03_D02c.pdf"))
     finalize_figure(fig, os.path.join(FIGDIR, "exp03_D02c.png"))
     plt.close(fig)

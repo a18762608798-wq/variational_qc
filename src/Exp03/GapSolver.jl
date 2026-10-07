@@ -7,16 +7,18 @@ const DELTA_FIXED = 0.0  # spec PRE-001: all three D02 parts at δ = 0
 
 # spec PRE-002 grids (same convention as S01: 101-partition minus boundaries).
 const S_WIDE = [i / 100 for i in 1:99]                    # (i) s ∈ [0,1]
-const S_NARROW = [0.45 + 0.15k / 100 for k in 1:99]       # (ii) s ∈ [0.45,0.6]
+const S_NARROW = [0.5 + 0.03k / 100 for k in 1:99]       # (ii) s ∈ [0.5,0.53]
 
 # Exact integer keys (denominator 10000): overlap <=> equal keys, no float compare.
+# Narrow keys 5003..5297 step 3 share no key with wide keys (100i); union has no overlaps.
 key_wide(i::Integer) = 100 * i            # i/100 = key/10000
-key_narrow(k::Integer) = 4500 + 15 * k     # 0.45+0.15k/100 = key/10000
+key_narrow(k::Integer) = 5000 + 3 * k     # 0.5+0.03k/100 = key/10000
 
 """Union of (i)+(ii) s-grids as (key, s) sorted by key.
 
 Shared points take the canonical single-division value key/10000.0, which is
 bit-identical to i/100 for the overlapping (i) points (both correctly rounded).
+With the Q9 narrow grid (s = 0.5+0.03k/100) there are no overlaps: 198 points/L.
 (iii) s = 0.5 is key 5000, i.e. the (i) i = 50 point: reused, never recomputed.
 """
 function union_points()

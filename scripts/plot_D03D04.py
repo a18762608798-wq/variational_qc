@@ -57,10 +57,13 @@ def main():
     for r, label in enumerate(REP_LABELS):
         ax.plot(q, curves[r], color=palette[r], linestyle=LINESTYLES[r],
                 linewidth=1.5, label=label)
-    ax.axvline(np.pi, color="black", linewidth=0.6, linestyle=":")
-    ax.text(np.pi, -0.032, r"$\pi$", transform=ax.get_xaxis_transform(),
-            ha="center", va="center", fontsize=7, clip_on=False)
+    ax.set_xlim(0.0, 2.0 * np.pi)
+    ax.set_xticks([0.0, 0.5 * np.pi, np.pi, 1.5 * np.pi, 2.0 * np.pi])
+    ax.set_xticklabels([r"$0$", r"$\pi/2$", r"$\pi$", r"$3\pi/2$", r"$2\pi$"])
+    ax.set_ylim(bottom=0.0)
     peak = curves[2].max()
+    ax.plot([np.pi, np.pi], [0.0, peak], color="black", linewidth=0.6,
+            linestyle=":", zorder=2)
     ax.plot(np.pi, peak, marker="o", color=palette[2], markeredgecolor="black",
             markersize=5, linestyle="None", zorder=3)
     ax.set_xlabel(r"$q$")

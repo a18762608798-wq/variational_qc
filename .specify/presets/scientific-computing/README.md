@@ -1,6 +1,6 @@
 # scientific-computing preset
 
-面向科学计算 / 数值实验的 Spec Kit 模板包。核心主张：**理论、实验定义与实现分离**，spec 是实验定义的权威来源。
+面向科学计算与数值实验 feature 的 Spec Kit 模板包。这里的 feature 通常对应一个独立实验、数值研究任务或共享实验能力；核心主张是：**理论、实验定义与实现分离**，spec 是实验定义的权威来源。
 
 ## 文件
 
@@ -16,10 +16,13 @@
 - `commands/speckit.analyze.md` — 只读检查 spec / plan / tasks 的完整性、一致性与 constitution 符合度
 - `commands/speckit.implement.md` — 实现、验证，验证通过后连续执行正式实验
 - `commands/speckit.converge.md` — 审计实现与结果是否满足 spec / plan / tasks，剩余工作补回 tasks
+- `skills/` — 随 preset 源维护的 scientific skills bundle；项目使用时同步到局部 `.opencode/skills/`
 
 ## 标识约定
 
 `P##` 实验步骤、`VAL-###` 验证标准、`INV-###` 实验不变量、`T###` 任务。跨文档用这些 ID 互引，避免同一事实写两份。
+
+实验 feature 通常按项目既有命名约定使用 `expXX` 或 `shared-XX` 目录。实验过程和结果产物使用项目约定的 `S##` / `D##` 标识，并由对应 feature 的 spec 绑定其来源与验证条件。
 
 ## 安装到项目
 
@@ -36,3 +39,23 @@ specify preset resolve spec-template
 ```bash
 specify preset update scientific-computing --dev ~/sync/computer/code/agent/specify/dev/scientific-computing --priority 5
 ```
+
+## 局部 Skills 安装
+
+`skills/` 是该 preset 配套 skills 的 canonical source。创建或升级项目后，在项目根目录同步到局部目录：
+
+```bash
+mkdir -p .opencode/skills
+cp -a /path/to/scientific-computing/skills/. .opencode/skills/
+```
+
+项目局部 `.opencode/skills/` 优先于全局 skills。同步已有项目时，先比较同名目录的 diff；如果项目已经定制过 skill，不要直接覆盖。`skills/VERSION` 记录当前 bundle 版本。
+
+当前 bundle 包含：
+
+- `scientific-research-computing`
+- `scientific-project-environment`
+- `scientific-figure-style`
+- `scientific-package-development`
+
+`scientific-experiment-map` 和 `scientific-project-status` 暂不属于本 preset 的 bundle，归属另行决定。

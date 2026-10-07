@@ -1,9 +1,9 @@
 ---
-description: 根据当前 paper feature 的 spec 和 plan 生成可执行任务列表。
+description: 根据当前 feature 的 spec 和 plan 生成可执行任务列表。
 ---
 
 
-<!-- Source: scientific-paper -->
+<!-- Source: scientific-computing -->
 # Tasks
 
 ## Workflow
@@ -22,35 +22,36 @@ description: 根据当前 paper feature 的 spec 和 plan 生成可执行任务�
    - 不要为了形式化而生成不必要的任务。
    - 不要机械复制 plan 的章节标题。
 
-5. `Assemble / Write / Cite / Format` 只包含实现当前 plan 所需要的工作。
+5. `Implementation` 只包含实现当前 plan 所需要的工作。
    - 保持 feature 边界。
-   - 遵循 plan 中已经确定的章节→skill 映射。
-   - 不在 tasks 阶段重新设计主张或补充证据绑定。
-   - 如果 plan 无法执行或缺少必要写作决策，停止拆分并返回 plan。
+   - 遵循 plan 中已经确定的模块与技术方案。
+   - 不在 tasks 阶段重新设计架构或补充技术决策。
+   - 如果 plan 无法执行或缺少必要实现决策，停止拆分并返回 plan。
 
-6. `Review` 必须覆盖 spec 中全部适用的 `VAL-*` 和 plan 中对应的评审方案。
-   - 每个 Review task 应引用它落实的 `VAL-*`。
-   - 必须包含编译通过、引用齐全、打分达标、意见清零任务。
-   - 不重新定义验收标准。
-   - 写作任务完成不等于 feature 完成。
+6. `Validation` 必须覆盖 spec 中全部适用的 `VAL-*` 和 plan 中对应的验证方案。
+   - 每个 Validation task 应引用它落实的 `VAL-*`。
+   - 一个 task 可以覆盖多个相关 `VAL-*`。
+   - 不要求 Implementation task 机械引用所有 `PRE-*` / `POST-*` / `INV-*`。
+   - 不重新定义验证标准。
+   - 实现任务完成不等于 feature 完成。
+   - 必须包含足以判断科学 / 数值结果是否有效的验证任务。
 
 7. 如果拆分过程中发现阻塞性上游问题，不通过 task 绕过：
 
-   - 主张、证据绑定、Boundary、Contract 或引用要求存在缺失 / 歧义 → 返回 `specify` / `clarify`；
-   - 章节映射或 LaTeX 工程方案不足以执行 → 返回 `plan`。
+   - 实验定义、科学参数、Boundary、Contract 或 Validation 存在缺失 / 歧义 → 返回 `specify` / `clarify`；
+   - 实现架构、技术选择或模块职责不足以执行 → 返回 `plan`。
 
    阻塞问题存在时，不生成假定这些问题已经解决的任务。
-   （`GAP-DATA` 留空位先行是 plan 已安排的，不算绕过；`GAP-INTERP` 无用户推测时算阻塞。）
 
 8. `Follow-up` 仅在存在明确的非阻塞后续工作时生成。
    没有内容时删除该 section。
 
    `Follow-up` 不得用于容纳：
 
-   - 未解决的主张争议；
-   - 缺失的证据绑定；
-   - 尚未确定的引用要求；
-   - 阻塞成文正确性的写作工作。
+   - 未解决的科学问题；
+   - 缺失的 Contract；
+   - 尚未确定的 Validation 标准；
+   - 阻塞当前 feature 正确性的实现工作。
 
 9. 删除：
    - 未替换的模板占位符；
@@ -59,9 +60,9 @@ description: 根据当前 paper feature 的 spec 和 plan 生成可执行任务�
    - 与当前 feature 无关的任务。
 
 10. 完成前检查：
-    - 所有写作任务均来自 plan；
-    - 所有必要 Review 均被覆盖；
-    - 没有新增主张；
+    - 所有 Implementation 任务均来自 plan；
+    - 所有必要 Validation 均被覆盖；
+    - 没有新增实验定义；
     - 没有与其他 feature 重复职责；
     - 每个任务都有明确完成条件。
 

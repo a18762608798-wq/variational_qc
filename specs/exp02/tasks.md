@@ -25,9 +25,10 @@
   完成条件：D03/D04 文件 + manifest 落盘，形状与坐标与 S01 一致。
 - [x] T006 出图（`scripts/plot_D03D04.py`）：D03 三线同图 + D04 四联热力图
   （`(a)–(d)` 按 outline 顺序，mathtext 标签，`figure_style.py` 风格，
-  矢量 PDF + 300dpi PNG 落 `figs/exp02/`）。
+  矢量 PDF + 300dpi PNG 落 `figs/exp02/`；D03 横坐标刻度为 `0, π/2, π, 3π/2, 2π`，
+  保留 `q=π` 半截竖线（仅从峰值圆点向下）与峰值圆点标记，无额外 `π` 轴外文本）。
   完成条件：坐标系自检通过，三线标签与代表点对应，四联顺序正确，
-  附 skill 风格检查报告块。
+  D03 刻度与标记检查通过，附 skill 风格检查报告块。
 
 ## Validation
 

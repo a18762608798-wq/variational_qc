@@ -17,7 +17,7 @@
   "figs/exp02/exp02_D04d.png"
  ],
  "python": {
-  "executable": "/home/mintusr/sync/theory/physics/contemporary_physics/quant_comp_note/04_project/variational_qc/variational_qc_v0.3.0/.CondaPkg/.pixi/envs/default/bin/python",
+  "executable": "/home/mintusr/sync/theory/physics/quant_comp/04_project/variational_qc/.CondaPkg/.pixi/envs/default/bin/python",
   "version": "3.12.14",
   "numpy": "2.5.3",
   "matplotlib": "3.11.2"

@@ -47,7 +47,7 @@ Spec 是持续维护的活文档，而不是一次性交付物。
 
 | 域 | Skill |
 | --- | --- |
-| 研究型计算（仿真 / 参数扫描 / 论文复现） | `julia-scientific-computing` |
-| 可复用 Julia 包 / 库开发 | `julia-package-development` |
+| 研究型计算（仿真 / 参数扫描 / 论文复现） | `scientific-research-computing` |
+| 可复用 Julia 包 / 库开发 | `scientific-package-development` |
 | 运行环境 | `scientific-project-environment` |
 | 出图风格 | `scientific-figure-style` |

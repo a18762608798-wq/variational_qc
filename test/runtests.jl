@@ -200,6 +200,22 @@ end
     @test_throws ArgumentError sector_basis(28)  # MAX_L=26 resource guard
 end
 
+@testset "exp03 L=20 sector basis smoke (T011)" begin
+    using Exp03
+    b20 = sector_basis(20)
+    @test length(b20.members) > 0
+    @test sum(length, b20.members) == binomial(20, 10)  # orbit partition of Z_tot=0 strings
+    @test all(count_ones(x) == 10 for x in b20.members[1])
+end
+
+@testset "exp03 L=24 sector basis smoke (T013)" begin
+    using Exp03
+    b24 = sector_basis(24)
+    @test length(b24.members) == 677294
+    @test sum(length, b24.members) == binomial(24, 12)  # orbit partition of Z_tot=0 strings
+    @test all(count_ones(x) == 12 for x in b24.members[1])
+end
+
 @testset "exp03 sector hamiltonian vs independent kron path (L=8)" begin
     using Exp03
     using Exp03
@@ -292,16 +308,14 @@ end
 end
 
 @testset "exp03 union grid (spec PRE-002)" begin
-    using Exp03: union_points, key_wide, key_narrow, S_WIDE
+    using Exp03: union_points, key_wide, key_narrow, S_WIDE, S_NARROW
     pts = union_points()
-    @test length(pts) == 194  # 99 + 99 - 4 overlaps
+    @test length(pts) == 198  # 99 + 99, no overlaps (Q9 narrow grid)
     keyset = Set(p.key for p in pts)
     @test Set([key_wide(i) for i in 1:99]) ∪ Set([key_narrow(k) for k in 1:99]) == keyset
-    overlap = [4500 + 15k for k in (20, 40, 60, 80)]
-    @test overlap == [4800, 5100, 5400, 5700]
-    for key in overlap
-        @test key in Set([key_wide(i) for i in 1:99])
-    end
+    @test isempty(Set([key_wide(i) for i in 1:99]) ∩ Set([key_narrow(k) for k in 1:99]))
+    @test [key_narrow(k) for k in (1, 50, 99)] == [5003, 5150, 5297]
+    @test S_NARROW[1] ≈ 0.5003 && S_NARROW[99] ≈ 0.5297
     bykey = Dict(p.key => p.s for p in pts)
     @test bykey[5000] == 0.5  # (iii) reuses (i) i = 50
     @test bykey[key_wide(1)] == S_WIDE[1] == 0.01

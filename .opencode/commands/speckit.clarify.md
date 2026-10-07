@@ -1,9 +1,9 @@
 ---
-description: 澄清论文主张口径，向用户要依赖结果的解释推测。
+description: 澄清当前 feature specification 中影响科学语义、边界、输出或验证的关键歧义。
 ---
 
 
-<!-- Source: scientific-paper -->
+<!-- Source: scientific-computing -->
 # Clarify
 
 ## Workflow
@@ -12,62 +12,70 @@ description: 澄清论文主张口径，向用户要依赖结果的解释推测�
 
 2. 读取项目 live constitution，并遵守其中约束。
 
-3. 检查 spec 是否存在会实质影响后续写作的主张歧义、证据缺口或口径冲突。
+3. 检查 spec 是否存在会实质影响后续 plan、implementation 或 validation 的缺失、歧义或冲突。
 
-   Paper Description 重点检查：
+   Scientific Description 重点检查：
 
-   * 核心主张是否明确、无歧义；
-   * 每条 `CLM` 是否有证据绑定，无证据的是否已记 `GAP-DATA`；
-   * `GAP-INTERP` 是否列出需要用户解释推测的全部位置；
-   * 引用需求 `CIT-###` 是否覆盖全部主张方向；
+   * 目标是否明确；
+   * 实验 / 计算定义是否足以确定科学语义；
+   * 关键输入、参数、初始条件和边界条件是否明确；
+   * 输出和 observable 的科学含义是否明确；
    * `Open Questions` 中是否存在阻塞性问题。
 
    Specification Contract 重点检查：
 
-   * 章节清单 `SEC-###` 是否完整（PRA 不单列 Related Work）；
-   * 图位 `FIG-###` 与上游图文件是否对得上；
-   * 缺件标记是否完整（留空位 + 冻结主张）；
-   * 验收 `VAL-*` 是否足以判断成文。
+   * feature 边界与依赖是否明确；
+   * Preconditions 是否足以定义合法执行的前提；
+   * Postconditions 是否足以判断成功结果；
+   * 必要的 Invariants 是否明确；
+   * Validation 是否足以验证关键 Contract；
+   * Validation 是否正确引用对应 Contract ID。
 
-   同时检查 Paper Description 与 Specification Contract 是否一致。
+   同时检查 Scientific Description 与 Specification Contract 是否一致。
 
-4. 不询问纯 LaTeX 实现层问题，例如：
+4. 不询问纯实现层问题，例如：
 
-   * 宏包选什么；
-   * 目录怎么拆分；
-   * 编译命令怎么写。
+   * 文件如何拆分；
+   * 使用什么模块结构；
+   * API 如何设计；
+   * CPU / GPU 如何实现；
+   * 普通代码风格选择。
 
    这些属于 plan 或 implementation。
 
-5. 只询问真正需要用户决定且无法从已有上下文可靠确定的问题，
-   重点是 `GAP-INTERP`：依赖结果的解释、与文献的对比口径、结论下到什么程度。
+5. 只询问真正需要用户决定且无法从已有上下文可靠确定的问题。
 
    * 每次只问一个问题；
    * 优先处理影响最大的歧义；
    * 最多询问 10 个问题；
    * 已经明确的信息不要重复询问；
-   * 可从上下文无歧义推导的表达形式不问，直接整理。
+   * 仅属于措辞、结构整理，或可从已有上下文无歧义推导出的表达形式，不作为澄清问题询问用户，直接整理。
 
 6. 每获得一个明确答案后：
 
-   * 用户的解释推测以 `[推测(user, 待 D## 验证)]` + 提出者 + 日期写入正文对应位置；
-   * 推测不得使用事实语气；相关 `GAP-INTERP` 保留（转正要等 converge）；
-   * 更新 `spec.md` 中实际受影响的内容，Description 与 Contract 保持一致；
-   * 修改已有 Contract 约束时保留其稳定 ID；只有新增独立约束时才创建新 ID；
+   * 更新 `spec.md` 中实际受影响的内容；
+   * Scientific Description 与 Contract 同时受影响时，保持两者一致；
+   * 修改已有 Contract 约束时保留其稳定 ID；
+   * 只有新增独立约束时才创建新的 ID；
    * 不因编辑、排序或删除其他约束而重新编号已有 ID；
+   * 遵循 spec 已有的 Contract 表达方式，不为了形式化而改写已经明确的内容；
    * 如果答案解决了 `Open Questions` 中的对应问题，删除该问题；
+   * 删除已经失效或与新答案冲突的旧描述；
    * 不额外创建澄清历史章节。
 
-7. 不自行猜测主张内容、证据指向或解释口径。
+7. 不自行猜测会改变科学语义的内容。
 
-8. 如果剩余问题只影响 LaTeX 实现方式而不影响 spec，则停止澄清并留给 plan。
+8. 如果剩余问题只影响实现方式而不影响 spec，则停止澄清并留给 plan。
 
 9. 完成后重新检查 spec：
 
    * 是否仍存在阻塞性 Open Questions；
-   * 主张与证据绑定是否仍有缺口；
-   * Description 与 Contract 是否一致；
-   * `VAL-*` 是否足以覆盖关键 Contract；
+   * Scientific Description 是否仍存在影响科学语义的歧义；
+   * Scientific Description 与 Specification Contract 是否一致；
+   * Boundary / Preconditions / Postconditions / Invariants 是否存在关键缺口；
+   * Validation 是否足以覆盖关键 Contract；
+   * 是否存在重复或互相矛盾的规范性定义；
+   * 是否混入 plan / implementation 层的问题；
    * 是否与 constitution 冲突。
 
 如果没有值得正式澄清的关键问题，不修改 spec，直接报告可以继续进入 plan。
@@ -75,5 +83,5 @@ description: 澄清论文主张口径，向用户要依赖结果的解释推测�
 完成后报告：
 
 * 更新的 `spec.md` 路径；
-* 本次解决了多少个问题（含新增推测数）；
-* 是否仍存在阻塞性的 Open Questions / `GAP-DATA`。
+* 本次解决了多少个问题；
+* 是否仍存在阻塞性的 Open Questions。

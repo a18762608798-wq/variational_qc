@@ -3,8 +3,11 @@
 # I/O only; physics lives in the GapSolver/CrossFit implementation files.
 
 const SCHEMA = "exp03/v1"
-const LS = (8, 12, 16)
-const EXTRA_LS = (20, 24)  # (iii) extra points at (δ=0, s=0.5): independent solve_gap
+const LS = (8, 12, 16, 20, 24)
+# extra_iii channel retired (Q8): (iii) reuses (i) for all five L.
+# save_extra/_extrapath/EXTRA_ID/EXTRA_LS kept for historical compatibility only.
+const EXTRA_LS = (24,)
+const EXTRA_ID = "extra-iii"
 const EXTRA_ID = "extra-iii"
 const BLOCK = 50  # s-points per chunk file
 const CHUNKS_DIRNAME = "chunks"
@@ -120,8 +123,8 @@ function assemble_D02(dir::AbstractString)
     all(isfinite, D_wide) || throw(ErrorException("non-finite Δ in D_wide"))
     all(isfinite, A_narr) || throw(ErrorException("non-finite A in D_narrow"))
     minimum(D_wide) ≥ GAP_MIN_TOL || throw(ErrorException("Δ below tolerance: $(minimum(D_wide))"))
-    # (ii) crossings per pair (spec PRE-003 + Q5); each pair must bracket at least once.
-    pairs = [(1, 2), (1, 3), (2, 3)]
+    # (ii) crossings per pair (spec PRE-003 + Q5/Q7/Q8); each pair must bracket at least once.
+    pairs = [(1, 2), (1, 3), (1, 4), (1, 5), (2, 3), (2, 4), (2, 5), (3, 4), (3, 5), (4, 5)]
     cross_s = zeros(length(pairs))
     cross_A = zeros(length(pairs))
     for (p, (r1, r2)) in enumerate(pairs)
@@ -130,18 +133,11 @@ function assemble_D02(dir::AbstractString)
         cross_s[p], cross_A[p] = cs[1][1], cs[1][2]
     end
     # (iii) Δ vs 1/L at s = 0.5 over five L; fit uses L=20,24 only (spec PRE-004).
-    # L=8/12/16 reuse the (i) i = 50 point; L=20/24 come from the extra chunk.
-    isfile(_extrapath(dir)) || throw(ErrorException("extra_iii chunk missing: invalid run"))
-    e = NPZ.npzread(_extrapath(dir))
-    vec(e["Ls"]) == collect(EXTRA_LS) || throw(ErrorException("extra Ls mismatch"))
-    e["s"][] == 0.5 || throw(ErrorException("extra s mismatch"))
-    extra_D = Float64.(vec(e["Delta"]))
-    all(isfinite, extra_D) || throw(ErrorException("non-finite extra Δ"))
-    minimum(extra_D) ≥ GAP_MIN_TOL || throw(ErrorException("extra Δ below tolerance"))
-    fit_Ls = [collect(LS); collect(EXTRA_LS)]
-    ys = [[D_wide[r, 50] for r in 1:length(LS)]; extra_D]
+    # All five points reuse the (i) i = 50 values (extra_iii channel retired, Q8).
+    fit_Ls = collect(LS)
+    ys = [D_wide[r, 50] for r in 1:length(LS)]
     xs = [1.0 / L for L in fit_Ls]
-    fit = linear_fit([1.0 / L for L in EXTRA_LS], extra_D)
+    fit = linear_fit([1.0 / 20, 1.0 / 24], [D_wide[4, 50], D_wide[5, 50]])
     (isfinite(fit.a) && isfinite(fit.b)) || throw(ErrorException("non-finite fit coefficients"))
     npz_path = joinpath(dir, D02_NPZ_NAME)
     tmp = npz_path * ".tmp"

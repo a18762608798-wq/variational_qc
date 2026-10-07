@@ -1,14 +1,15 @@
 ---
-description: 审计成文是否真正满足 spec，推测转正或降级，剩余工作补回 tasks。
+description: 审计当前 feature 的实际实现与结果是否真正满足 spec、plan 和 tasks，并将剩余工作补回 tasks。
 ---
 
 
-<!-- Source: scientific-paper -->
+<!-- Source: scientific-computing -->
 # Converge
 
 ## Workflow
 
 1. 读取当前 feature 的：
+
    * `spec.md`
    * `plan.md`
    * `tasks.md`
@@ -16,50 +17,96 @@ description: 审计成文是否真正满足 spec，推测转正或降级，剩�
 2. 读取项目 live constitution，并遵守其中约束。
 
 3. 检查当前实际状态，包括适用时的：
-   * `docs/paper/` 下正文与图表
-   * 编译产物与报告
-   * 打分与改文记录
-    * 上游 `D##` 落定情况（对照缺件表）
-     * post-implement `paper-self-review` 报告、评分与 `paper-revision` 记录；
-       Converge 本身不是 review/revision skill，也不是 `/speckit.review` 命令
 
-4. 本命令是审计与任务收敛阶段。不直接修改：
+   * 实现代码
+   * 测试
+   * validation
+   * 正式运行结果
+   * 输出文件
+   * 运行记录
+
+4. 本命令是审计与任务收敛阶段。
+
+   不直接修改：
+
    * `spec.md`
    * `plan.md`
-   * 正文与图表
-   * 编译结果
+   * 实现代码
+   * 测试代码
+   * 正式实验结果
 
 5. 对照 spec 检查实际状态：
-   * 每条 `CLM` 是否有真实证据支撑；
-   * `FIG` 是否与上游图文件一致；
-   * 全部 `CIT` 是否经 verify（已读确认）；
-   * 编译是否通过，引用是否齐全。
 
-6. 推测处理（本命令的核心）：
-   * 对每个 `[推测(user, 待 D## 验证)]`，检查对应数据是否已落定；
-   * 数据到位且支持推测 → 转正为事实陈述，删除推测标记，更新 spec；
-   * 数据到位但不支持 → 按用户意见改写或删除，不把错误推测留成文；
-   * 数据仍未到位 → 降级为开放问题或删除，不得以事实语气残留；
-   * 转正 / 降级都要更新 `spec.md` 的 `GAP-INTERP` 状态（spec 更新不在本命令做，
-     报告应返回 `specify` / `clarify` 处理）。
+   * Scientific Description 中的目标和输出是否真正实现；
+   * feature Boundary 是否被遵守；
+   * 正式运行是否满足适用的 `PRE-*`；
+   * `POST-*` 是否有实际结果与 validation evidence 支持；
+   * `INV-*` 是否有足够证据表明在要求范围内成立；
+   * 全部适用的 `VAL-*` 是否真实执行并通过；
+   * 是否存在 invalid run 或未处理失败。
 
-7. 如果发现写作层面的缺口，将新的、具体可执行任务追加到 `tasks.md`：
-   * 写作缺口 → Write 区
-   * 评审缺口 → Review 区
+6. 对照 plan 检查：
+
+   * 计划中的必要实现是否真实存在；
+   * 关键数值与技术决策是否按计划落实；
+   * 验证方案是否真正执行；
+   * 是否存在计划已写但实际遗漏的部分。
+
+7. 对照 tasks 检查：
+
+   * 已勾选任务是否确实完成；
+   * 是否存在“任务已完成但实际行为缺失”的情况；
+   * 是否存在实现过程中产生但尚未记录的必要剩余工作；
+   * Validation 任务是否有真实证据支持其完成状态。
+
+8. 如果发现实现层面的缺口，将新的、具体可执行任务追加到 `tasks.md`：
+
+   * 实现缺口 → `Implementation`
+   * 验证缺口 → `Validation`
+
    不删除或重写已有任务，不通过修改已完成任务掩盖历史状态。
-   新增任务必须直接对应已存在的 spec / plan，有明确完成条件，
-   不引入新的主张或证据绑定。
 
-8. 如果发现的问题实际属于上游定义错误（主张缺失、证据绑定错误、
-   需要新的科学决定），不在 `tasks.md` 中自行解决，
-   报告应返回 `specify` / `clarify` 或 `plan` 处理。
+9. 新增任务必须：
 
-9. 如果 spec、plan、tasks 与实际成文已经一致：
-   * 不新增任何任务；
-   * 明确报告 feature 已收敛。
+   * 直接对应已存在的 spec / plan；
+   * 有明确完成条件；
+   * 只描述真正缺失的工作；
+   * 不引入新的实验定义或实现设计。
 
-10. 完成后报告：
+   新增 Validation task 必须对应已有的 `VAL-*`。
+
+   如果实际审计发现某项 Contract 无法验证，
+   但 spec 中不存在相应 Validation 定义，
+   这属于 spec gap：
+
+   不得在 converge 中自行发明新的 validation requirement，
+   应返回 `specify` / `clarify`。
+
+10. 如果发现的问题实际属于上游定义错误，例如：
+
+    * spec 缺少必要科学定义；
+    * plan 与 spec 冲突；
+    * 需要改变实验参数、输出或 validation；
+    * 必须做出新的科学决定；
+
+    不在 `tasks.md` 中自行解决。
+
+    报告该问题应返回：
+
+    * `specify` / `clarify`；或
+    * `plan`
+
+    处理。
+
+11. 如果 spec、plan、tasks 与实际实现和结果已经一致：
+
+    * 不新增任何任务；
+    * 不为了形式化修改 `tasks.md`；
+    * 明确报告 feature 已收敛。
+
+12. 完成后报告：
+
     * 是否已收敛；
-    * 推测转正 / 降级数量；
-    * 新增任务；
+    * 发现的实现缺口数量；
+    * 新增的 Implementation / Validation 任务；
     * 是否存在需要返回上游处理的问题。

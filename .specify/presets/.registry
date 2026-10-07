@@ -22,9 +22,9 @@
       "installed_at": "2026-10-06T15:41:28.393572+00:00"
     },
     "scientific-computing": {
-      "version": "0.3.0",
+      "version": "0.4.0",
       "source": "local",
-      "manifest_hash": "sha256:f6dc96eb043a07b13b734a0146f92c1804cf1fb8b347059402fc4335a8bcd89e",
+      "manifest_hash": "sha256:0c5390965ed8a254e32276eb8c6897f2a7897ce1138cba34d57c36a685c0259e",
       "enabled": true,
       "priority": 3,
       "registered_commands": {
@@ -39,7 +39,7 @@
         ]
       },
       "registered_skills": {},
-      "installed_at": "2026-10-06T16:41:26.604103+00:00"
+      "installed_at": "2026-10-07T07:50:40.996307+00:00"
     }
   }
 }

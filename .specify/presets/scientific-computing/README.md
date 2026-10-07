@@ -5,7 +5,7 @@
 ## 文件
 
 - `preset.yml` — manifest，声明 id / provides / replaces
-- `templates/constitution-template.md` — 项目宪法：6 条原则（spec 权威、三层分离、feature 边界清晰、可重复可追溯、数值正确性优先于性能、技术风格映射到四个 scientific skills）
+- `templates/constitution-template.md` — 项目宪法：6 条原则（spec 权威、三层分离、feature 边界清晰、可重复可追溯、数值正确性优先于性能、技术风格映射到 scientific skills）
 - `templates/spec-template.md` — 实验定义：科学问题 / 系统定义 / 参数 / 流程 P0x / 数值要求 / observables / VAL / 可重复性 / INV / 依赖
 - `templates/plan-template.md` — 实现方案：Spec→实现映射、数值方法、数据结构、并行、Validation/Reproducibility Plan
 - `templates/tasks-template.md` — 任务：按 Phase 推进，Performance 在 Validation 之后
@@ -28,7 +28,7 @@
 
 ```bash
 specify init --here --integration opencode # 初始化
-specify preset add --dev ~/sync/computer/code/agent/specify/dev/scientific-computing --priority 5
+specify preset add --dev ~/sync/computer/code/agent/specify/dev/scientific-computing --priority 3
 specify preset resolve spec-template
 ```
 
@@ -37,7 +37,7 @@ specify preset resolve spec-template
 改完源目录后重装：
 
 ```bash
-specify preset update scientific-computing --dev ~/sync/computer/code/agent/specify/dev/scientific-computing --priority 5
+specify preset update scientific-computing --dev ~/sync/computer/code/agent/specify/dev/scientific-computing --priority 3
 ```
 
 ## 局部 Skills 安装
@@ -57,5 +57,7 @@ cp -a /path/to/scientific-computing/skills/. .opencode/skills/
 - `scientific-project-environment`
 - `scientific-figure-style`
 - `scientific-package-development`
+- `scientific-experiment-map`
+- `scientific-project-status`
 
-`scientific-experiment-map` 和 `scientific-project-status` 暂不属于本 preset 的 bundle，归属另行决定。
+`scientific-experiment-map` 负责实验数据产品与生产 feature 的归属映射；`scientific-project-status` 生成论文和实验状态看板。两者均随本 preset bundle 维护。

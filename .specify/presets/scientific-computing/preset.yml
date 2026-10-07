@@ -3,7 +3,7 @@ schema_version: "1.0"
 preset:
   id: "scientific-computing"
   name: "Scientific Computing & Experiments"
-  version: "0.3.0"
+  version: "0.4.0"
   description: "面向科学计算与数值实验 feature 的 Spec-Driven Development 工作流。"
   author: "YOUR_NAME"
 
